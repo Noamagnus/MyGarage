@@ -1,7 +1,12 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
+import 'package:my_garage/business_logic/imagePicker/bloc/imagepicker_bloc.dart';
 import 'package:my_garage/data/models/car_model.dart';
 import 'package:my_garage/presentation/screens/vahicle_screen.dart';
+import 'package:my_garage/presentation/widgets/add_car_dialog.dart';
+import 'package:my_garage/presentation/widgets/list_tile.dart';
 import 'package:provider/src/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -24,26 +29,22 @@ class GarageScreen extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               final car = listOfCars[index];
               return GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    MaterialPageRoute(
-                      builder: (context) => VehicleScreen(
-                        car: car,
+                  onTap: () {
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => VehicleScreen(
+                          car: car,
+                        ),
                       ),
-                    ),
-                  );
-                },
-                child: ListTile(
-                  title: Text('${car.brand}   ${car.year}'),
-                  subtitle: Text(car.licenceNumber.toString()),
-                  trailing: IconButton(
-                    icon: const Icon(Icons.delete),
-                    onPressed: () {
-                      context.read<GarageBloc>().add(RemoveCarFromGarage(car));
-                    },
-                  ),
-                ),
-              );
+                    );
+                  },
+                  child: CustomListTile(
+                    brand: car.brand,
+                    color: car.color,
+                    licenceNumber: car.licenceNumber,
+                    path: car.imageUrl,
+                    year: car.year,
+                  ));
             },
           );
         },
@@ -66,67 +67,23 @@ class GarageScreen extends StatelessWidget {
   }
 }
 
-class AddCarDialog extends StatelessWidget {
-  AddCarDialog({Key? key}) : super(key: key);
-
-  final Uuid uuid = const Uuid();
-
-  final carColor = TextEditingController();
-  final licenceNumber = TextEditingController();
-  final carBrand = TextEditingController();
-  final year = TextEditingController();
+class ImagePreview extends StatelessWidget {
+  const ImagePreview({Key? key, required this.path}) : super(key: key);
+  final String path;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        TextField(
-          controller: carBrand,
-          decoration: const InputDecoration(labelText: 'Brand'),
+    return Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: SizedBox(
+        height: 150,
+        width: double.infinity,
+        child: Image.file(
+          File(path),
+          fit: BoxFit.cover,
+          width: double.infinity,
         ),
-        TextField(
-          controller: licenceNumber,
-          // keyboardType: TextInputType.number,
-          decoration: const InputDecoration(labelText: 'Licence Number'),
-        ),
-        TextField(
-          controller: carColor,
-          decoration: const InputDecoration(labelText: 'Color'),
-        ),
-        TextField(
-          controller: year,
-          keyboardType: TextInputType.datetime,
-          decoration: const InputDecoration(labelText: 'Year'),
-        ),
-        const SizedBox(
-          height: 30,
-        ),
-        Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            TextButton(
-              onPressed: () {
-                context.read<GarageBloc>().add(AddCarToGarage(
-                      Car(
-                        brand: carBrand.text,
-                        color: carColor.text,
-                        isRegistered: false,
-                        licenceNumber: licenceNumber.text,
-                        type: CarType.camperVan,
-                        uuid: uuid.v4(),
-                        year: DateTime.now(),
-                      ),
-                    ));
-              },
-              child: const Text('Add Car'),
-            ),
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('OK'),
-            ),
-          ],
-        )
-      ],
+      ),
     );
   }
 }

@@ -14,6 +14,7 @@ _$_Car _$$_CarFromJson(Map<String, dynamic> json) => _$_Car(
       color: json['color'] as String,
       licenceNumber: json['licenceNumber'] as String,
       year: DateTime.parse(json['year'] as String),
+      imageUrl: json['imageUrl'] as String,
     );
 
 Map<String, dynamic> _$$_CarToJson(_$_Car instance) => <String, dynamic>{
@@ -24,6 +25,7 @@ Map<String, dynamic> _$$_CarToJson(_$_Car instance) => <String, dynamic>{
       'color': instance.color,
       'licenceNumber': instance.licenceNumber,
       'year': instance.year.toIso8601String(),
+      'imageUrl': instance.imageUrl,
     };
 
 const _$CarTypeEnumMap = {

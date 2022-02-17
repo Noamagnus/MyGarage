@@ -1,5 +1,5 @@
 import 'package:my_garage/data/models/car_model.dart';
-import 'package:my_garage/data/repositories/sembast.dart';
+import 'package:my_garage/data/dataproviders/sembast.dart';
 
 import 'package:sembast/sembast.dart';
 import 'package:uuid/uuid.dart';

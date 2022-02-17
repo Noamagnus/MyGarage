@@ -29,7 +29,8 @@ class _$CarTearOff {
       required bool isRegistered,
       required String color,
       required String licenceNumber,
-      required DateTime year}) {
+      required DateTime year,
+      required String imageUrl}) {
     return _Car(
       uuid: uuid,
       type: type,
@@ -38,6 +39,7 @@ class _$CarTearOff {
       color: color,
       licenceNumber: licenceNumber,
       year: year,
+      imageUrl: imageUrl,
     );
   }
 
@@ -57,7 +59,8 @@ mixin _$Car {
   bool get isRegistered => throw _privateConstructorUsedError;
   String get color => throw _privateConstructorUsedError;
   String get licenceNumber => throw _privateConstructorUsedError;
-  DateTime get year => throw _privateConstructorUsedError;
+  DateTime get year => throw _privateConstructorUsedError; // year manufactured
+  String get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -75,7 +78,8 @@ abstract class $CarCopyWith<$Res> {
       bool isRegistered,
       String color,
       String licenceNumber,
-      DateTime year});
+      DateTime year,
+      String imageUrl});
 }
 
 /// @nodoc
@@ -95,6 +99,7 @@ class _$CarCopyWithImpl<$Res> implements $CarCopyWith<$Res> {
     Object? color = freezed,
     Object? licenceNumber = freezed,
     Object? year = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_value.copyWith(
       uuid: uuid == freezed
@@ -125,6 +130,10 @@ class _$CarCopyWithImpl<$Res> implements $CarCopyWith<$Res> {
           ? _value.year
           : year // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -141,7 +150,8 @@ abstract class _$CarCopyWith<$Res> implements $CarCopyWith<$Res> {
       bool isRegistered,
       String color,
       String licenceNumber,
-      DateTime year});
+      DateTime year,
+      String imageUrl});
 }
 
 /// @nodoc
@@ -162,6 +172,7 @@ class __$CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res>
     Object? color = freezed,
     Object? licenceNumber = freezed,
     Object? year = freezed,
+    Object? imageUrl = freezed,
   }) {
     return _then(_Car(
       uuid: uuid == freezed
@@ -192,6 +203,10 @@ class __$CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res>
           ? _value.year
           : year // ignore: cast_nullable_to_non_nullable
               as DateTime,
+      imageUrl: imageUrl == freezed
+          ? _value.imageUrl
+          : imageUrl // ignore: cast_nullable_to_non_nullable
+              as String,
     ));
   }
 }
@@ -206,7 +221,8 @@ class _$_Car extends _Car {
       required this.isRegistered,
       required this.color,
       required this.licenceNumber,
-      required this.year})
+      required this.year,
+      required this.imageUrl})
       : super._();
 
   factory _$_Car.fromJson(Map<String, dynamic> json) => _$$_CarFromJson(json);
@@ -225,10 +241,12 @@ class _$_Car extends _Car {
   final String licenceNumber;
   @override
   final DateTime year;
+  @override // year manufactured
+  final String imageUrl;
 
   @override
   String toString() {
-    return 'Car(uuid: $uuid, type: $type, brand: $brand, isRegistered: $isRegistered, color: $color, licenceNumber: $licenceNumber, year: $year)';
+    return 'Car(uuid: $uuid, type: $type, brand: $brand, isRegistered: $isRegistered, color: $color, licenceNumber: $licenceNumber, year: $year, imageUrl: $imageUrl)';
   }
 
   @override
@@ -244,7 +262,8 @@ class _$_Car extends _Car {
             const DeepCollectionEquality().equals(other.color, color) &&
             const DeepCollectionEquality()
                 .equals(other.licenceNumber, licenceNumber) &&
-            const DeepCollectionEquality().equals(other.year, year));
+            const DeepCollectionEquality().equals(other.year, year) &&
+            const DeepCollectionEquality().equals(other.imageUrl, imageUrl));
   }
 
   @override
@@ -256,7 +275,8 @@ class _$_Car extends _Car {
       const DeepCollectionEquality().hash(isRegistered),
       const DeepCollectionEquality().hash(color),
       const DeepCollectionEquality().hash(licenceNumber),
-      const DeepCollectionEquality().hash(year));
+      const DeepCollectionEquality().hash(year),
+      const DeepCollectionEquality().hash(imageUrl));
 
   @JsonKey(ignore: true)
   @override
@@ -277,7 +297,8 @@ abstract class _Car extends Car {
       required bool isRegistered,
       required String color,
       required String licenceNumber,
-      required DateTime year}) = _$_Car;
+      required DateTime year,
+      required String imageUrl}) = _$_Car;
   const _Car._() : super._();
 
   factory _Car.fromJson(Map<String, dynamic> json) = _$_Car.fromJson;
@@ -296,6 +317,8 @@ abstract class _Car extends Car {
   String get licenceNumber;
   @override
   DateTime get year;
+  @override // year manufactured
+  String get imageUrl;
   @override
   @JsonKey(ignore: true)
   _$CarCopyWith<_Car> get copyWith => throw _privateConstructorUsedError;

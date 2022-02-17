@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:my_garage/data/repositories/sembast.dart';
+import 'package:my_garage/data/dataproviders/sembast.dart';
 import 'package:my_garage/presentation/screens/garage_screen.dart';
 
 class SplashScreen extends StatefulWidget {
