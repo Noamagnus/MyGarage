@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
 import 'package:my_garage/business_logic/imagePicker/bloc/imagepicker_bloc.dart';
@@ -8,6 +9,11 @@ import 'package:my_garage/data/repositories/ImagePickerService.dart';
 import 'package:my_garage/presentation/screens/splash_screen.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(
+    SystemUiMode.immersiveSticky,
+  );
+
   runApp(MultiRepositoryProvider(
     providers: [
       RepositoryProvider(
@@ -37,18 +43,16 @@ class MyApp extends StatelessWidget {
           create: (_) => GarageBloc(
             GarageService(
               RepositoryProvider.of<SembastDatabase>(context),
-               
             ),
-            ImagePickerService(
-            ),
+            ImagePickerService(),
           )..add(const GarageEvent.loadCarsList()),
         ),
-        BlocProvider(create: (context) => ImagepickerBloc(
-          RepositoryProvider.of<ImagePickerService>(context)
-        ),)
-
+        BlocProvider(
+          create: (context) => ImagepickerBloc(RepositoryProvider.of<ImagePickerService>(context)),
+        )
       ],
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
@@ -58,4 +62,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

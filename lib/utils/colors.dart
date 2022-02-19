@@ -1,6 +1,21 @@
 import 'dart:ui';
 
 class AppColors {
+//List tile
+  static const Color listTileBackgroundColor = Color(0xFFFFFFFF);
+  static const Color listTileBorderColor = Color(0xFFDFDFDF);
+  static const Color listTileBrandTextColor = Color(0xFF565656);
+  static const Color listTileThinTextColor = Color(0xFF565656);
+
+ //AppCircularIconButton
+  static const Color iconButtonIconColor = Color(0xFF6E6E6E);
+  static const Color iconButtonBorderColor = Color(0xFFACACAC);
+  static const Color iconButtonBackground = Color(0xFFFFFFFF);
+
+
+
+  static const Color textTitleColor = Color(0xFF6E6E6E);
+  static const Color screenBackgroundColor = Color(0xFFF7F7F7);
   static const Color textColor = Color(0xFFccc7c5);
   static const Color mainColor = Color(0xFF89dad0);
   static const Color iconColor1 = Color(0xFFffd28d);

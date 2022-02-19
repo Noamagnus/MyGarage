@@ -7,6 +7,8 @@ import 'package:my_garage/data/models/car_model.dart';
 import 'package:my_garage/presentation/screens/vahicle_screen.dart';
 import 'package:my_garage/presentation/widgets/add_car_dialog.dart';
 import 'package:my_garage/presentation/widgets/list_tile.dart';
+import 'package:my_garage/presentation/widgets/rounder_icon_button.dart';
+import 'package:my_garage/utils/colors.dart';
 import 'package:provider/src/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -17,8 +19,32 @@ class GarageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<GarageBloc>().state;
     return Scaffold(
+      backgroundColor: AppColors.buttonBackgroundColor,
       appBar: AppBar(
-        title: const Text('Garage Screen'),
+        title: const Text(
+          'Garage Screen',
+          style: TextStyle(color: AppColors.textTitleColor),
+        ),
+        backgroundColor: AppColors.screenBackgroundColor,
+        elevation: 0,
+        actions: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: RoundedIconButton(
+              icon: Icons.add,
+              size: 40,
+              onPressed: () {
+                showDialog(
+                    context: context,
+                    builder: (BuildContext context) {
+                      return AlertDialog(
+                        content: SingleChildScrollView(child: AddCarDialog()),
+                      );
+                    });
+              },
+            ),
+          )
+        ],
       ),
       body: state.when(
         initial: () => Container(),
@@ -38,7 +64,7 @@ class GarageScreen extends StatelessWidget {
                       ),
                     );
                   },
-                  child: CustomListTile(
+                  child: CustomListTile2(
                     brand: car.brand,
                     color: car.color,
                     licenceNumber: car.licenceNumber,
@@ -52,17 +78,7 @@ class GarageScreen extends StatelessWidget {
           error.toString(),
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          showDialog(
-              context: context,
-              builder: (BuildContext context) {
-                return AlertDialog(
-                  content: SingleChildScrollView(child: AddCarDialog()),
-                );
-              });
-        },
-      ),
+      
     );
   }
 }

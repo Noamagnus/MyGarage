@@ -43,9 +43,13 @@ class AddCarDialog extends StatelessWidget {
           height: 30,
         ),
         imageUrl.when(
-          fulfilled: (imageUrl) => ImagePreview(
-            path: imageUrl!,
-          ),
+          fulfilled: (imageUrl) {
+            return imageUrl != null
+                ? ImagePreview(
+                    path: imageUrl,
+                  )
+                : Container();
+          },
           initial: () => Container(),
         ),
         TextButton(
