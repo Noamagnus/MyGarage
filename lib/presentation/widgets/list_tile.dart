@@ -4,22 +4,22 @@ import 'package:flutter/material.dart';
 import 'package:my_garage/utils/colors.dart';
 import 'package:my_garage/utils/widget_functions.dart';
 
-
-
-class CustomListTile2 extends StatelessWidget {
-  const CustomListTile2({
+class CustomListTile extends StatelessWidget {
+  const CustomListTile({
     Key? key,
     required this.brand,
     required this.licenceNumber,
-    required this.color,
+    required this.description,
     required this.year,
     required this.path,
+    required this.isRegistered,
   }) : super(key: key);
   final String brand;
   final String licenceNumber;
-  final String color;
-  final DateTime year;
+  final String description;
+  final DateTime? year;
   final String path;
+  final bool isRegistered;
 
   @override
   Widget build(BuildContext context) {
@@ -37,19 +37,23 @@ class CustomListTile2 extends StatelessWidget {
           width: 0.5,
         ),
       ),
-      // If padding is null then default padding is 8
       padding: const EdgeInsets.all(10),
       child: Row(
         children: [
           Expanded(
             flex: 45,
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(4),
-              child: path.isNotEmpty?Image.file(
-                File(path),
-                fit: BoxFit.cover,
-                width: double.infinity,
-              ):Container(),
+            child: Container(
+              height: 110,
+              child: ClipRRect(
+                borderRadius: BorderRadius.circular(4),
+                child: path.isNotEmpty
+                    ? Image.file(
+                        File(path),
+                        fit: BoxFit.cover,
+                        width: double.infinity,
+                      )
+                    : Container(),
+              ),
             ),
           ),
           Expanded(
@@ -92,18 +96,46 @@ class CustomListTile2 extends StatelessWidget {
                       ),
                     ),
                   ),
-                  const Expanded(
+                   Expanded(
                     flex: 50,
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: Text('test'),
-                    ),
+                    child: Align(alignment: Alignment.bottomRight, child: isRegistered? SmallRoundedContainer(text: 'Registered',):SmallRoundedContainer(text:'Not Registered')),
                   ),
                 ],
               ),
             ),
           )
         ],
+      ),
+    );
+  }
+}
+
+class SmallRoundedContainer extends StatelessWidget {
+  const SmallRoundedContainer({Key? key, required this.text}) : super(key: key);
+  final String text;
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      // width: size,
+      // height: size,
+      padding: const EdgeInsets.all(6),
+      decoration: BoxDecoration(
+        color: AppColors.screenBackgroundColor,
+        borderRadius: BorderRadius.circular(20),
+        //  border: Border.all(
+        //     color: AppColors.iconButtonBorderColor,
+        //     width: 0.5,
+        //   ),  // to make it circle
+      ),
+      // ignore: prefer_const_constructors
+      child: Text(
+        text,
+        // ignore: prefer_const_constructors
+        style: TextStyle(
+          fontSize: 10,
+          fontWeight: FontWeight.w600,
+          color: AppColors.textTitleColor,
+        ),
       ),
     );
   }

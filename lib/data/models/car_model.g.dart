@@ -11,9 +11,10 @@ _$_Car _$$_CarFromJson(Map<String, dynamic> json) => _$_Car(
       type: $enumDecode(_$CarTypeEnumMap, json['type']),
       brand: json['brand'] as String,
       isRegistered: json['isRegistered'] as bool,
-      color: json['color'] as String,
+      description: json['description'] as String,
       licenceNumber: json['licenceNumber'] as String,
-      year: DateTime.parse(json['year'] as String),
+      year:
+          json['year'] == null ? null : DateTime.parse(json['year'] as String),
       imageUrl: json['imageUrl'] as String,
     );
 
@@ -22,9 +23,9 @@ Map<String, dynamic> _$$_CarToJson(_$_Car instance) => <String, dynamic>{
       'type': _$CarTypeEnumMap[instance.type],
       'brand': instance.brand,
       'isRegistered': instance.isRegistered,
-      'color': instance.color,
+      'description': instance.description,
       'licenceNumber': instance.licenceNumber,
-      'year': instance.year.toIso8601String(),
+      'year': instance.year?.toIso8601String(),
       'imageUrl': instance.imageUrl,
     };
 

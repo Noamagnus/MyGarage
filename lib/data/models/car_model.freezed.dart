@@ -27,16 +27,16 @@ class _$CarTearOff {
       required CarType type,
       required String brand,
       required bool isRegistered,
-      required String color,
+      required String description,
       required String licenceNumber,
-      required DateTime year,
+      required DateTime? year,
       required String imageUrl}) {
     return _Car(
       uuid: uuid,
       type: type,
       brand: brand,
       isRegistered: isRegistered,
-      color: color,
+      description: description,
       licenceNumber: licenceNumber,
       year: year,
       imageUrl: imageUrl,
@@ -57,9 +57,9 @@ mixin _$Car {
   CarType get type => throw _privateConstructorUsedError;
   String get brand => throw _privateConstructorUsedError;
   bool get isRegistered => throw _privateConstructorUsedError;
-  String get color => throw _privateConstructorUsedError;
+  String get description => throw _privateConstructorUsedError;
   String get licenceNumber => throw _privateConstructorUsedError;
-  DateTime get year => throw _privateConstructorUsedError; // year manufactured
+  DateTime? get year => throw _privateConstructorUsedError; // year manufactured
   String get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -76,9 +76,9 @@ abstract class $CarCopyWith<$Res> {
       CarType type,
       String brand,
       bool isRegistered,
-      String color,
+      String description,
       String licenceNumber,
-      DateTime year,
+      DateTime? year,
       String imageUrl});
 }
 
@@ -96,7 +96,7 @@ class _$CarCopyWithImpl<$Res> implements $CarCopyWith<$Res> {
     Object? type = freezed,
     Object? brand = freezed,
     Object? isRegistered = freezed,
-    Object? color = freezed,
+    Object? description = freezed,
     Object? licenceNumber = freezed,
     Object? year = freezed,
     Object? imageUrl = freezed,
@@ -118,9 +118,9 @@ class _$CarCopyWithImpl<$Res> implements $CarCopyWith<$Res> {
           ? _value.isRegistered
           : isRegistered // ignore: cast_nullable_to_non_nullable
               as bool,
-      color: color == freezed
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
       licenceNumber: licenceNumber == freezed
           ? _value.licenceNumber
@@ -129,7 +129,7 @@ class _$CarCopyWithImpl<$Res> implements $CarCopyWith<$Res> {
       year: year == freezed
           ? _value.year
           : year // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -148,9 +148,9 @@ abstract class _$CarCopyWith<$Res> implements $CarCopyWith<$Res> {
       CarType type,
       String brand,
       bool isRegistered,
-      String color,
+      String description,
       String licenceNumber,
-      DateTime year,
+      DateTime? year,
       String imageUrl});
 }
 
@@ -169,7 +169,7 @@ class __$CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res>
     Object? type = freezed,
     Object? brand = freezed,
     Object? isRegistered = freezed,
-    Object? color = freezed,
+    Object? description = freezed,
     Object? licenceNumber = freezed,
     Object? year = freezed,
     Object? imageUrl = freezed,
@@ -191,9 +191,9 @@ class __$CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res>
           ? _value.isRegistered
           : isRegistered // ignore: cast_nullable_to_non_nullable
               as bool,
-      color: color == freezed
-          ? _value.color
-          : color // ignore: cast_nullable_to_non_nullable
+      description: description == freezed
+          ? _value.description
+          : description // ignore: cast_nullable_to_non_nullable
               as String,
       licenceNumber: licenceNumber == freezed
           ? _value.licenceNumber
@@ -202,7 +202,7 @@ class __$CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res>
       year: year == freezed
           ? _value.year
           : year // ignore: cast_nullable_to_non_nullable
-              as DateTime,
+              as DateTime?,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -219,7 +219,7 @@ class _$_Car extends _Car {
       required this.type,
       required this.brand,
       required this.isRegistered,
-      required this.color,
+      required this.description,
       required this.licenceNumber,
       required this.year,
       required this.imageUrl})
@@ -236,17 +236,17 @@ class _$_Car extends _Car {
   @override
   final bool isRegistered;
   @override
-  final String color;
+  final String description;
   @override
   final String licenceNumber;
   @override
-  final DateTime year;
+  final DateTime? year;
   @override // year manufactured
   final String imageUrl;
 
   @override
   String toString() {
-    return 'Car(uuid: $uuid, type: $type, brand: $brand, isRegistered: $isRegistered, color: $color, licenceNumber: $licenceNumber, year: $year, imageUrl: $imageUrl)';
+    return 'Car(uuid: $uuid, type: $type, brand: $brand, isRegistered: $isRegistered, description: $description, licenceNumber: $licenceNumber, year: $year, imageUrl: $imageUrl)';
   }
 
   @override
@@ -259,7 +259,8 @@ class _$_Car extends _Car {
             const DeepCollectionEquality().equals(other.brand, brand) &&
             const DeepCollectionEquality()
                 .equals(other.isRegistered, isRegistered) &&
-            const DeepCollectionEquality().equals(other.color, color) &&
+            const DeepCollectionEquality()
+                .equals(other.description, description) &&
             const DeepCollectionEquality()
                 .equals(other.licenceNumber, licenceNumber) &&
             const DeepCollectionEquality().equals(other.year, year) &&
@@ -273,7 +274,7 @@ class _$_Car extends _Car {
       const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(brand),
       const DeepCollectionEquality().hash(isRegistered),
-      const DeepCollectionEquality().hash(color),
+      const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(licenceNumber),
       const DeepCollectionEquality().hash(year),
       const DeepCollectionEquality().hash(imageUrl));
@@ -295,9 +296,9 @@ abstract class _Car extends Car {
       required CarType type,
       required String brand,
       required bool isRegistered,
-      required String color,
+      required String description,
       required String licenceNumber,
-      required DateTime year,
+      required DateTime? year,
       required String imageUrl}) = _$_Car;
   const _Car._() : super._();
 
@@ -312,11 +313,11 @@ abstract class _Car extends Car {
   @override
   bool get isRegistered;
   @override
-  String get color;
+  String get description;
   @override
   String get licenceNumber;
   @override
-  DateTime get year;
+  DateTime? get year;
   @override // year manufactured
   String get imageUrl;
   @override

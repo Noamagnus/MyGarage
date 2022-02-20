@@ -10,10 +10,10 @@ class ImagePickerService {
 // This function should have two steps
 // 1. To take the picture
 // 2. To save the picture to database
-  Future<String?> takePicture() async {
+  Future<String?> takePicture(ImageSource source) async {
     //We're getting cross-platforme file
     try {
-      final XFile? imageFile = await _picker.pickImage(source: ImageSource.camera, maxWidth: 600);
+      final XFile? imageFile = await _picker.pickImage(source: source, maxWidth: 600);
       if (imageFile == null) {
         return null;
       }
@@ -34,27 +34,5 @@ class ImagePickerService {
     }
   }
 
-  Future<String?> pickImageFromGallery() async {
-    //We're getting cross-platforme file
-    try {
-      final XFile? imageFile = await _picker.pickImage(source: ImageSource.gallery, maxWidth: 600);
-      if (imageFile == null) {
-        return null;
-      }
-      // This is path of temporary cross-platform file
-      final String pickedImageFile = imageFile.path;
-
-      //This is giving us device specific directory where we can store our files
-      final Directory appDir = await syspaths.getApplicationDocumentsDirectory();
-      //Using path package to get path from picked image
-      final String fileName = pth.basename(pickedImageFile);
-
-      final savedImage = await File(imageFile.path).copy('${appDir.path}/$fileName');
-      //some function that is passed to statefull widget constructor
-      // onSelectedImage(savedImage);
-      return savedImage.path;
-    } on PlatformException catch (e) {
-      print('Failed to pick image $e');
-    }
-  }
+  
 }

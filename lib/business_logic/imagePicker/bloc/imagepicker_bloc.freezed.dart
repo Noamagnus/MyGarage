@@ -25,6 +25,14 @@ class _$ImagepickerEventTearOff {
   TakePicture takePicture() {
     return const TakePicture();
   }
+
+  PickFromGallery pickFromGallery() {
+    return const PickFromGallery();
+  }
+
+  ClearPhoto clearPhoto() {
+    return const ClearPhoto();
+  }
 }
 
 /// @nodoc
@@ -36,18 +44,24 @@ mixin _$ImagepickerEvent {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() takePicture,
+    required TResult Function() pickFromGallery,
+    required TResult Function() clearPhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? takePicture,
+    TResult Function()? pickFromGallery,
+    TResult Function()? clearPhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? takePicture,
+    TResult Function()? pickFromGallery,
+    TResult Function()? clearPhoto,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -55,18 +69,24 @@ mixin _$ImagepickerEvent {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(TakePicture value) takePicture,
+    required TResult Function(PickFromGallery value) pickFromGallery,
+    required TResult Function(ClearPhoto value) clearPhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(TakePicture value)? takePicture,
+    TResult Function(PickFromGallery value)? pickFromGallery,
+    TResult Function(ClearPhoto value)? clearPhoto,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(TakePicture value)? takePicture,
+    TResult Function(PickFromGallery value)? pickFromGallery,
+    TResult Function(ClearPhoto value)? clearPhoto,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -129,6 +149,8 @@ class _$Started implements Started {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() takePicture,
+    required TResult Function() pickFromGallery,
+    required TResult Function() clearPhoto,
   }) {
     return started();
   }
@@ -138,6 +160,8 @@ class _$Started implements Started {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? takePicture,
+    TResult Function()? pickFromGallery,
+    TResult Function()? clearPhoto,
   }) {
     return started?.call();
   }
@@ -147,6 +171,8 @@ class _$Started implements Started {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? takePicture,
+    TResult Function()? pickFromGallery,
+    TResult Function()? clearPhoto,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -160,6 +186,8 @@ class _$Started implements Started {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(TakePicture value) takePicture,
+    required TResult Function(PickFromGallery value) pickFromGallery,
+    required TResult Function(ClearPhoto value) clearPhoto,
   }) {
     return started(this);
   }
@@ -169,6 +197,8 @@ class _$Started implements Started {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(TakePicture value)? takePicture,
+    TResult Function(PickFromGallery value)? pickFromGallery,
+    TResult Function(ClearPhoto value)? clearPhoto,
   }) {
     return started?.call(this);
   }
@@ -178,6 +208,8 @@ class _$Started implements Started {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(TakePicture value)? takePicture,
+    TResult Function(PickFromGallery value)? pickFromGallery,
+    TResult Function(ClearPhoto value)? clearPhoto,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -234,6 +266,8 @@ class _$TakePicture implements TakePicture {
   TResult when<TResult extends Object?>({
     required TResult Function() started,
     required TResult Function() takePicture,
+    required TResult Function() pickFromGallery,
+    required TResult Function() clearPhoto,
   }) {
     return takePicture();
   }
@@ -243,6 +277,8 @@ class _$TakePicture implements TakePicture {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? takePicture,
+    TResult Function()? pickFromGallery,
+    TResult Function()? clearPhoto,
   }) {
     return takePicture?.call();
   }
@@ -252,6 +288,8 @@ class _$TakePicture implements TakePicture {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? started,
     TResult Function()? takePicture,
+    TResult Function()? pickFromGallery,
+    TResult Function()? clearPhoto,
     required TResult orElse(),
   }) {
     if (takePicture != null) {
@@ -265,6 +303,8 @@ class _$TakePicture implements TakePicture {
   TResult map<TResult extends Object?>({
     required TResult Function(Started value) started,
     required TResult Function(TakePicture value) takePicture,
+    required TResult Function(PickFromGallery value) pickFromGallery,
+    required TResult Function(ClearPhoto value) clearPhoto,
   }) {
     return takePicture(this);
   }
@@ -274,6 +314,8 @@ class _$TakePicture implements TakePicture {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(TakePicture value)? takePicture,
+    TResult Function(PickFromGallery value)? pickFromGallery,
+    TResult Function(ClearPhoto value)? clearPhoto,
   }) {
     return takePicture?.call(this);
   }
@@ -283,6 +325,8 @@ class _$TakePicture implements TakePicture {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Started value)? started,
     TResult Function(TakePicture value)? takePicture,
+    TResult Function(PickFromGallery value)? pickFromGallery,
+    TResult Function(ClearPhoto value)? clearPhoto,
     required TResult orElse(),
   }) {
     if (takePicture != null) {
@@ -294,6 +338,239 @@ class _$TakePicture implements TakePicture {
 
 abstract class TakePicture implements ImagepickerEvent {
   const factory TakePicture() = _$TakePicture;
+}
+
+/// @nodoc
+abstract class $PickFromGalleryCopyWith<$Res> {
+  factory $PickFromGalleryCopyWith(
+          PickFromGallery value, $Res Function(PickFromGallery) then) =
+      _$PickFromGalleryCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$PickFromGalleryCopyWithImpl<$Res>
+    extends _$ImagepickerEventCopyWithImpl<$Res>
+    implements $PickFromGalleryCopyWith<$Res> {
+  _$PickFromGalleryCopyWithImpl(
+      PickFromGallery _value, $Res Function(PickFromGallery) _then)
+      : super(_value, (v) => _then(v as PickFromGallery));
+
+  @override
+  PickFromGallery get _value => super._value as PickFromGallery;
+}
+
+/// @nodoc
+
+class _$PickFromGallery implements PickFromGallery {
+  const _$PickFromGallery();
+
+  @override
+  String toString() {
+    return 'ImagepickerEvent.pickFromGallery()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is PickFromGallery);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() takePicture,
+    required TResult Function() pickFromGallery,
+    required TResult Function() clearPhoto,
+  }) {
+    return pickFromGallery();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? takePicture,
+    TResult Function()? pickFromGallery,
+    TResult Function()? clearPhoto,
+  }) {
+    return pickFromGallery?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? takePicture,
+    TResult Function()? pickFromGallery,
+    TResult Function()? clearPhoto,
+    required TResult orElse(),
+  }) {
+    if (pickFromGallery != null) {
+      return pickFromGallery();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
+    required TResult Function(TakePicture value) takePicture,
+    required TResult Function(PickFromGallery value) pickFromGallery,
+    required TResult Function(ClearPhoto value) clearPhoto,
+  }) {
+    return pickFromGallery(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(TakePicture value)? takePicture,
+    TResult Function(PickFromGallery value)? pickFromGallery,
+    TResult Function(ClearPhoto value)? clearPhoto,
+  }) {
+    return pickFromGallery?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(TakePicture value)? takePicture,
+    TResult Function(PickFromGallery value)? pickFromGallery,
+    TResult Function(ClearPhoto value)? clearPhoto,
+    required TResult orElse(),
+  }) {
+    if (pickFromGallery != null) {
+      return pickFromGallery(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class PickFromGallery implements ImagepickerEvent {
+  const factory PickFromGallery() = _$PickFromGallery;
+}
+
+/// @nodoc
+abstract class $ClearPhotoCopyWith<$Res> {
+  factory $ClearPhotoCopyWith(
+          ClearPhoto value, $Res Function(ClearPhoto) then) =
+      _$ClearPhotoCopyWithImpl<$Res>;
+}
+
+/// @nodoc
+class _$ClearPhotoCopyWithImpl<$Res>
+    extends _$ImagepickerEventCopyWithImpl<$Res>
+    implements $ClearPhotoCopyWith<$Res> {
+  _$ClearPhotoCopyWithImpl(ClearPhoto _value, $Res Function(ClearPhoto) _then)
+      : super(_value, (v) => _then(v as ClearPhoto));
+
+  @override
+  ClearPhoto get _value => super._value as ClearPhoto;
+}
+
+/// @nodoc
+
+class _$ClearPhoto implements ClearPhoto {
+  const _$ClearPhoto();
+
+  @override
+  String toString() {
+    return 'ImagepickerEvent.clearPhoto()';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType && other is ClearPhoto);
+  }
+
+  @override
+  int get hashCode => runtimeType.hashCode;
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() started,
+    required TResult Function() takePicture,
+    required TResult Function() pickFromGallery,
+    required TResult Function() clearPhoto,
+  }) {
+    return clearPhoto();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? takePicture,
+    TResult Function()? pickFromGallery,
+    TResult Function()? clearPhoto,
+  }) {
+    return clearPhoto?.call();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? started,
+    TResult Function()? takePicture,
+    TResult Function()? pickFromGallery,
+    TResult Function()? clearPhoto,
+    required TResult orElse(),
+  }) {
+    if (clearPhoto != null) {
+      return clearPhoto();
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Started value) started,
+    required TResult Function(TakePicture value) takePicture,
+    required TResult Function(PickFromGallery value) pickFromGallery,
+    required TResult Function(ClearPhoto value) clearPhoto,
+  }) {
+    return clearPhoto(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(TakePicture value)? takePicture,
+    TResult Function(PickFromGallery value)? pickFromGallery,
+    TResult Function(ClearPhoto value)? clearPhoto,
+  }) {
+    return clearPhoto?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Started value)? started,
+    TResult Function(TakePicture value)? takePicture,
+    TResult Function(PickFromGallery value)? pickFromGallery,
+    TResult Function(ClearPhoto value)? clearPhoto,
+    required TResult orElse(),
+  }) {
+    if (clearPhoto != null) {
+      return clearPhoto(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class ClearPhoto implements ImagepickerEvent {
+  const factory ClearPhoto() = _$ClearPhoto;
 }
 
 /// @nodoc

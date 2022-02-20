@@ -11,9 +11,9 @@ class Car with _$Car {
     required CarType type,
     required String brand,
     required bool isRegistered,
-    required String color,
+    required String description,
     required String licenceNumber,
-    required DateTime year, // year manufactured
+    required DateTime? year, // year manufactured
     required String imageUrl, // year manufactured
   }) = _Car;
   factory Car.fromJson(Map<String, dynamic> json) => _$CarFromJson(json);
