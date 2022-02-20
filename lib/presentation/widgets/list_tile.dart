@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 import 'package:my_garage/utils/colors.dart';
 import 'package:my_garage/utils/widget_functions.dart';
 
@@ -17,12 +18,13 @@ class CustomListTile extends StatelessWidget {
   final String brand;
   final String licenceNumber;
   final String description;
-  final DateTime? year;
+  final DateTime year;
   final String path;
   final bool isRegistered;
 
   @override
   Widget build(BuildContext context) {
+    final selectedYear = DateFormat('yyyy').format(year);
     return Container(
       height: 130,
       margin: const EdgeInsets.symmetric(
@@ -88,7 +90,7 @@ class CustomListTile extends StatelessWidget {
                   Expanded(
                     flex: 18,
                     child: Text(
-                      '$year',
+                      selectedYear,
                       style: const TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.w400,
@@ -96,9 +98,15 @@ class CustomListTile extends StatelessWidget {
                       ),
                     ),
                   ),
-                   Expanded(
+                  Expanded(
                     flex: 50,
-                    child: Align(alignment: Alignment.bottomRight, child: isRegistered? SmallRoundedContainer(text: 'Registered',):SmallRoundedContainer(text:'Not Registered')),
+                    child: Align(
+                        alignment: Alignment.bottomRight,
+                        child: isRegistered
+                            ? const SmallRoundedContainer(
+                                text: 'Registered',
+                              )
+                            : const SmallRoundedContainer(text: 'Not Registered')),
                   ),
                 ],
               ),
@@ -122,16 +130,10 @@ class SmallRoundedContainer extends StatelessWidget {
       decoration: BoxDecoration(
         color: AppColors.screenBackgroundColor,
         borderRadius: BorderRadius.circular(20),
-        //  border: Border.all(
-        //     color: AppColors.iconButtonBorderColor,
-        //     width: 0.5,
-        //   ),  // to make it circle
       ),
-      // ignore: prefer_const_constructors
       child: Text(
         text,
-        // ignore: prefer_const_constructors
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 10,
           fontWeight: FontWeight.w600,
           color: AppColors.textTitleColor,

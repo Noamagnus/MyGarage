@@ -16,8 +16,8 @@ dependencies:
   flutter_bloc: ^8.0.1
   freezed_annotation: ^1.1.0
   image_picker: ^0.8.2
+  intl: ^0.17.0
   json_annotation: ^4.4.0
-  keyboard_dismisser: ^2.0.0
   material_design_icons_flutter: ^5.0.6595
   path_provider: ^2.0.9
   sembast: ^3.1.1+1

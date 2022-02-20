@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
 import 'package:my_garage/business_logic/imagePicker/bloc/imagepicker_bloc.dart';
 import 'package:my_garage/data/models/car_model.dart';
-import 'package:my_garage/presentation/screens/vahicle_screen.dart';
+import 'package:my_garage/presentation/screens/vehicle_screen.dart';
 import 'package:my_garage/presentation/widgets/add_vehicle_dialog.dart';
 import 'package:my_garage/presentation/widgets/list_tile.dart';
 import 'package:my_garage/presentation/widgets/rounder_icon_button.dart';
@@ -17,13 +17,15 @@ class GarageScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+        final ThemeData themeData = Theme.of(context);
+
     final state = context.watch<GarageBloc>().state;
     return Scaffold(
       backgroundColor: AppColors.buttonBackgroundColor,
       appBar: AppBar(
-        title: const Text(
+        title:  Text(
           'Garage Screen',
-          style: TextStyle(color: AppColors.textTitleColor),
+          style: themeData.textTheme.headline2,
         ),
         backgroundColor: AppColors.screenBackgroundColor,
         elevation: 0,
@@ -37,9 +39,9 @@ class GarageScreen extends StatelessWidget {
                 showDialog(
                     context: context,
                     builder: (BuildContext context) {
-                      return AlertDialog(
+                      return const AlertDialog(
                         backgroundColor: AppColors.screenBackgroundColor,
-                        content: SingleChildScrollView(child: AddVehicleDialog()),
+                        content:  SingleChildScrollView(child: AddVehicleDialog()),
                       );
                     });
               },
@@ -56,23 +58,24 @@ class GarageScreen extends StatelessWidget {
             itemBuilder: (BuildContext context, int index) {
               final car = listOfCars[index];
               return GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => VehicleScreen(
-                          car: car,
-                        ),
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => VehicleScreen(
+                        car: car,
                       ),
-                    );
-                  },
-                  child: CustomListTile(
-                    brand: car.brand,
-                    description: car.description,
-                    licenceNumber: car.licenceNumber,
-                    path: car.imageUrl,
-                    year: car.year,
-                    isRegistered: car.isRegistered,
-                  ));
+                    ),
+                  );
+                },
+                child: CustomListTile(
+                  brand: car.brand,
+                  description: car.description,
+                  licenceNumber: car.licenceNumber,
+                  path: car.imageUrl,
+                  year: car.year,
+                  isRegistered: car.isRegistered,
+                ),
+              );
             },
           );
         },

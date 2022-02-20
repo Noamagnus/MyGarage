@@ -324,6 +324,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.4.4"
+  intl:
+    dependency: "direct main"
+    description:
+      name: intl
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.17.0"
   io:
     dependency: transitive
     description:
@@ -352,13 +359,6 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "6.1.4"
-  keyboard_dismisser:
-    dependency: "direct main"
-    description:
-      name: keyboard_dismisser
-      url: "https://pub.dartlang.org"
-    source: hosted
-    version: "2.0.0"
   lints:
     dependency: transitive
     description:

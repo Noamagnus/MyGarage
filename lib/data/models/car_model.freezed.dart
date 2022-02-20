@@ -29,7 +29,7 @@ class _$CarTearOff {
       required bool isRegistered,
       required String description,
       required String licenceNumber,
-      required DateTime? year,
+      required DateTime year,
       required String imageUrl}) {
     return _Car(
       uuid: uuid,
@@ -59,7 +59,7 @@ mixin _$Car {
   bool get isRegistered => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get licenceNumber => throw _privateConstructorUsedError;
-  DateTime? get year => throw _privateConstructorUsedError; // year manufactured
+  DateTime get year => throw _privateConstructorUsedError; // year manufactured
   String get imageUrl => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
@@ -78,7 +78,7 @@ abstract class $CarCopyWith<$Res> {
       bool isRegistered,
       String description,
       String licenceNumber,
-      DateTime? year,
+      DateTime year,
       String imageUrl});
 }
 
@@ -129,7 +129,7 @@ class _$CarCopyWithImpl<$Res> implements $CarCopyWith<$Res> {
       year: year == freezed
           ? _value.year
           : year // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -150,7 +150,7 @@ abstract class _$CarCopyWith<$Res> implements $CarCopyWith<$Res> {
       bool isRegistered,
       String description,
       String licenceNumber,
-      DateTime? year,
+      DateTime year,
       String imageUrl});
 }
 
@@ -202,7 +202,7 @@ class __$CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res>
       year: year == freezed
           ? _value.year
           : year // ignore: cast_nullable_to_non_nullable
-              as DateTime?,
+              as DateTime,
       imageUrl: imageUrl == freezed
           ? _value.imageUrl
           : imageUrl // ignore: cast_nullable_to_non_nullable
@@ -240,7 +240,7 @@ class _$_Car extends _Car {
   @override
   final String licenceNumber;
   @override
-  final DateTime? year;
+  final DateTime year;
   @override // year manufactured
   final String imageUrl;
 
@@ -298,7 +298,7 @@ abstract class _Car extends Car {
       required bool isRegistered,
       required String description,
       required String licenceNumber,
-      required DateTime? year,
+      required DateTime year,
       required String imageUrl}) = _$_Car;
   const _Car._() : super._();
 
@@ -317,7 +317,7 @@ abstract class _Car extends Car {
   @override
   String get licenceNumber;
   @override
-  DateTime? get year;
+  DateTime get year;
   @override // year manufactured
   String get imageUrl;
   @override

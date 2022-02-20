@@ -7,6 +7,8 @@ import 'package:my_garage/data/repositories/GarageService.dart';
 import 'package:my_garage/data/dataproviders/sembast.dart';
 import 'package:my_garage/data/repositories/ImagePickerService.dart';
 import 'package:my_garage/presentation/screens/splash_screen.dart';
+import 'package:my_garage/utils/constants.dart';
+import 'package:my_garage/utils/dimensions.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -55,8 +57,9 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-          primarySwatch: Colors.blue,
-        ),
+        primaryColor: Colors.blue,
+        textTheme: Dimensions.screenWidth < 500 ? kTextThemeDefault : kTextThemeLarge,
+      ),
         home: const SplashScreen(),
       ),
     );

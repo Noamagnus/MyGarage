@@ -8,7 +8,6 @@ import 'package:my_garage/utils/dimensions.dart';
 import 'package:my_garage/utils/widget_functions.dart';
 import 'package:provider/src/provider.dart';
 import 'package:uuid/uuid.dart';
-import 'package:keyboard_dismisser/keyboard_dismisser.dart';
 
 class AddVehicleDialog extends StatefulWidget {
   const AddVehicleDialog({Key? key}) : super(key: key);
@@ -23,11 +22,8 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
   final licenceNumberTextController = TextEditingController();
   final carBrandTextController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-  // final node1 = FocusNode();
-  // final node2 = FocusNode();
-  // final node3 = FocusNode();
 
-  DateTime? year;
+  DateTime year=DateTime.now();
 
   bool isRegistered = true;
 
@@ -35,6 +31,8 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
   void initState() {
     super.initState();
     carBrandTextController.addListener(() => setState(() {}));
+    licenceNumberTextController.addListener(() => setState(() {}));
+    descriptionTextController.addListener(() => setState(() {}));
   }
 
   @override
@@ -93,9 +91,17 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
               controller: licenceNumberTextController,
               maxLength: 10,
               // keyboardType: TextInputType.number,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Licence Number',
                 border: InputBorder.none,
+                suffixIcon: licenceNumberTextController.text.isEmpty
+                    ? Container(
+                        width: 0,
+                      )
+                    : IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () => licenceNumberTextController.clear(),
+                      ),
               ),
               validator: (value) {
                 if (value != null && value.isEmpty) {
@@ -118,9 +124,17 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
               maxLines: 5,
               controller: descriptionTextController,
               keyboardType: TextInputType.multiline,
-              decoration: const InputDecoration(
+              decoration: InputDecoration(
                 labelText: 'Description',
                 border: InputBorder.none,
+                suffixIcon: descriptionTextController.text.isEmpty
+                    ? Container(
+                        width: 0,
+                      )
+                    : IconButton(
+                        icon: const Icon(Icons.close),
+                        onPressed: () => descriptionTextController.clear(),
+                      ),
               ),
               validator: (value) {
                 if (value != null && value.isEmpty) {
@@ -147,7 +161,10 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                 lastDate: DateTime(2050),
               ).then((date) {
                 setState(() {
-                  year = date!;
+                  if(date!=null){
+                    year = date;
+                  }
+                  
                 });
               }),
               child: const Text(
