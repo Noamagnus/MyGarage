@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+
 import 'package:my_garage/utils/colors.dart';
 import 'package:my_garage/utils/widget_functions.dart';
 
@@ -15,7 +16,6 @@ class CustomListTile extends StatelessWidget {
     required this.year,
     required this.path,
     required this.isRegistered,
-
   }) : super(key: key);
   final String brand;
   final String licenceNumber;
@@ -23,7 +23,6 @@ class CustomListTile extends StatelessWidget {
   final DateTime year;
   final String path;
   final bool isRegistered;
-
 
   @override
   Widget build(BuildContext context) {
@@ -133,23 +132,34 @@ class CustomListTile extends StatelessWidget {
 }
 
 class SmallRoundedContainer extends StatelessWidget {
-  const SmallRoundedContainer({Key? key, required this.text}) : super(key: key);
+  const SmallRoundedContainer({
+    Key? key,
+    required this.text,
+    this.color,
+    this.border,
+    this.borderRadius,
+    this.textColor,
+  }) : super(key: key);
   final String text;
+  final Color? color;
+  final BoxBorder? border;
+  final BorderRadiusGeometry? borderRadius;
+  final Color? textColor;
   @override
   Widget build(BuildContext context) {
     return Container(
       padding: EdgeInsets.all(6.sp),
       decoration: BoxDecoration(
-        color: AppColors.screenBackgroundColor,
-        borderRadius: BorderRadius.circular(20),
-        // border: Border.all(color: AppColors.blueColor,width: 0.5.sp),
+        color: color ?? AppColors.screenBackgroundColor,
+        borderRadius: borderRadius ?? BorderRadius.circular(20.r),
+        border: border,
       ),
       child: Text(
         text,
         style: TextStyle(
           fontSize: 10.sp,
           fontWeight: FontWeight.w600,
-          color: AppColors.textTitleColor,
+          color: textColor??AppColors.textTitleColor,
         ),
       ),
     );

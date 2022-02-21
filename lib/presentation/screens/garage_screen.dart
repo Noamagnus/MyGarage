@@ -136,7 +136,10 @@ class CustomAppBar extends StatelessWidget {
                   builder: (BuildContext context) {
                     return const AlertDialog(
                       backgroundColor: AppColors.screenBackgroundColor,
-                      content: SingleChildScrollView(child: AddVehicleDialog()),
+                      content: SingleChildScrollView(
+                        physics: BouncingScrollPhysics(),
+                        child: AddVehicleDialog(),
+                      ),
                     );
                   });
             },

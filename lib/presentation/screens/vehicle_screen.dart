@@ -7,10 +7,12 @@ import 'package:intl/intl.dart';
 
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
 import 'package:my_garage/data/models/car_model.dart';
+import 'package:my_garage/presentation/widgets/list_tile.dart';
 import 'package:my_garage/presentation/widgets/rounder_icon_button.dart';
 import 'package:my_garage/presentation/widgets/text_widgets.dart';
 import 'package:my_garage/utils/colors.dart';
 import 'package:my_garage/utils/dimensions.dart';
+import 'package:my_garage/utils/widget_functions.dart';
 
 class VehicleScreen extends StatelessWidget {
   final Car car;
@@ -19,8 +21,8 @@ class VehicleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final sidePadding = EdgeInsets.symmetric(horizontal: 15.sp);
-    final carY = car.year;
-    final year = DateFormat('yyyy').format(carY);
+    final carYear = car.year;
+    final year = DateFormat('yyyy').format(carYear);
 
     return Scaffold(
       backgroundColor: AppColors.screenBackgroundColor,
@@ -58,11 +60,24 @@ class VehicleScreen extends StatelessWidget {
                                 label: 'Year',
                                 text: year,
                               ),
-                              VehicleScreenText(
-                                label: 'Licence number',
-                                text: car.licenceNumber,
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  VehicleScreenText(
+                                    label: 'Licence number',
+                                    text: car.licenceNumber,
+                                  ),
+                                  SmallRoundedContainer(
+                                    color: AppColors.white,
+                                    text: car.isRegistered ? 'Registered' : 'Not Registered',
+                                    border: Border.all(color: AppColors.blueColor, width: 0.5.sp),
+                                    borderRadius: BorderRadius.circular(30.r),
+                                    textColor: AppColors.blueColor,
+                                  )
+                                ],
                               ),
                               const Divider(
+                                height: 0,
                                 color: AppColors.blueColor,
                               )
                             ],
@@ -71,18 +86,7 @@ class VehicleScreen extends StatelessWidget {
                       ),
                       Expanded(
                         flex: 34,
-                        child: Container(
-                          padding: EdgeInsets.symmetric(
-                            horizontal: 20.h,
-                            vertical: 5.w,
-                          ),
-                          width: Dimensions.screenWidth,
-                          color: AppColors.screenBackgroundColor,
-                          child: EasyText(
-                            car.description,
-                            color: AppColors.grey500,
-                          ),
-                        ),
+                        child: DescriptionStack(car: car),
                       )
                     ],
                   ),
@@ -94,6 +98,58 @@ class VehicleScreen extends StatelessWidget {
                   width: Dimensions.screenHeight,
                 );
         },
+      ),
+    );
+  }
+}
+
+class DescriptionStack extends StatelessWidget {
+  const DescriptionStack({
+    Key? key,
+    required this.car,
+  }) : super(key: key);
+
+  final Car car;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.only(
+        // top: 20.h,
+        left: 20.w,
+        right: 20.w,
+        bottom: 20.w,
+      ),
+      width: Dimensions.screenWidth,
+      color: AppColors.screenBackgroundColor,
+      child: Container(
+        padding: EdgeInsets.all(10.sp),
+        decoration: BoxDecoration(
+          color: AppColors.white,
+          borderRadius: BorderRadius.circular(8.r),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            EasyText(
+              'Description',
+              fontSize: 16.sp,
+              color: AppColors.grey600,
+              fontWeight: FontWeight.w700,
+            ),
+            addVerticalSpace(8.h),
+            Container(
+              height: 130,
+              child: SingleChildScrollView(
+                physics: const BouncingScrollPhysics(),
+                child: EasyText(
+                  car.description,
+                  color: AppColors.grey500,
+                ),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -178,7 +234,7 @@ class VehicleScreenText extends StatelessWidget {
       children: [
         EasyText(
           label,
-          color:AppColors.blueColor,
+          color: AppColors.blueColor,
           fontSize: 12.sp,
         ),
         EasyText(
