@@ -15,14 +15,14 @@ class CustomListTile extends StatelessWidget {
     required this.description,
     required this.year,
     required this.path,
-    required this.isRegistered,
+    required this.isServiced,
   }) : super(key: key);
   final String brand;
   final String licenceNumber;
   final String description;
   final DateTime year;
   final String path;
-  final bool isRegistered;
+  final bool isServiced;
 
   @override
   Widget build(BuildContext context) {
@@ -115,11 +115,11 @@ class CustomListTile extends StatelessWidget {
                     flex: 50,
                     child: Align(
                         alignment: Alignment.bottomRight,
-                        child: isRegistered
+                        child: isServiced
                             ? const SmallRoundedContainer(
-                                text: 'Registered',
+                                text: 'Serviced',
                               )
-                            : const SmallRoundedContainer(text: 'Not Registered')),
+                            : const SmallRoundedContainer(text: 'Not Serviced')),
                   ),
                 ],
               ),

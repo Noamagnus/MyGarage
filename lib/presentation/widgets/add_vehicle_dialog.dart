@@ -26,7 +26,7 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
 
   DateTime year = DateTime.now();
 
-  bool isRegistered = true;
+  bool isServiced = true;
 
   @override
   void initState() {
@@ -107,32 +107,32 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                 });
               }),
               child: const Text(
-                'Registration Expired Date',
+                'Registration Expire Date',
                 style: TextStyle(color: AppColors.textTitleColor),
               ),
             ),
           ),
           addVerticalSpace(20.h),
-          //Is registered switch
+          //Is serviced switch
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              isRegistered
+              isServiced
                   ? const EasyText(
-                      'Registered',
+                      'Serviced',
                       color: AppColors.grey600,
                     )
                   : const EasyText(
-                      'Not Registered',
+                      'Not Serviced',
                       color: AppColors.grey600,
                     ),
               Switch(
                 onChanged: (value) {
                   setState(() {
-                    isRegistered = value;
+                    isServiced = value;
                   });
                 },
-                value: isRegistered,
+                value: isServiced,
               )
             ],
           ),
@@ -140,7 +140,7 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              EasyText(
+              const EasyText(
                 'Vehicle photo',
                 color: AppColors.grey600,
               ),
@@ -194,11 +194,11 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                           .read<ImagepickerBloc>()
                           .state
                           .when(fulfilled: (url) => url, initial: () {});
-                      if (_checkOtherFields(year, imageUrl, isRegistered, context)) {
+                      if (_checkOtherFields(year, imageUrl, isServiced, context)) {
                         final car = Car(
                           brand: carBrandTextController.text,
                           description: descriptionTextController.text,
-                          isRegistered: isRegistered,
+                          isServiced: isServiced,
                           licenceNumber: licenceNumberTextController.text,
                           type: CarType.camperVan,
                           uuid: uuid.v4(),
@@ -296,7 +296,7 @@ class CustomTextFormField extends StatelessWidget {
   }
 }
 
-bool _checkOtherFields(DateTime? year, String? imageUrl, bool isRegistered, BuildContext context) {
+bool _checkOtherFields(DateTime? year, String? imageUrl, bool isServiced, BuildContext context) {
   if (year == null) {
     customShowDialog('Registration Expiry Date is required', context);
     return false;

@@ -26,7 +26,7 @@ class _$CarTearOff {
       {required String uuid,
       required CarType type,
       required String brand,
-      required bool isRegistered,
+      required bool isServiced,
       required String description,
       required String licenceNumber,
       required DateTime year,
@@ -35,7 +35,7 @@ class _$CarTearOff {
       uuid: uuid,
       type: type,
       brand: brand,
-      isRegistered: isRegistered,
+      isServiced: isServiced,
       description: description,
       licenceNumber: licenceNumber,
       year: year,
@@ -56,7 +56,7 @@ mixin _$Car {
   String get uuid => throw _privateConstructorUsedError;
   CarType get type => throw _privateConstructorUsedError;
   String get brand => throw _privateConstructorUsedError;
-  bool get isRegistered => throw _privateConstructorUsedError;
+  bool get isServiced => throw _privateConstructorUsedError;
   String get description => throw _privateConstructorUsedError;
   String get licenceNumber => throw _privateConstructorUsedError;
   DateTime get year => throw _privateConstructorUsedError; // year manufactured
@@ -75,7 +75,7 @@ abstract class $CarCopyWith<$Res> {
       {String uuid,
       CarType type,
       String brand,
-      bool isRegistered,
+      bool isServiced,
       String description,
       String licenceNumber,
       DateTime year,
@@ -95,7 +95,7 @@ class _$CarCopyWithImpl<$Res> implements $CarCopyWith<$Res> {
     Object? uuid = freezed,
     Object? type = freezed,
     Object? brand = freezed,
-    Object? isRegistered = freezed,
+    Object? isServiced = freezed,
     Object? description = freezed,
     Object? licenceNumber = freezed,
     Object? year = freezed,
@@ -114,9 +114,9 @@ class _$CarCopyWithImpl<$Res> implements $CarCopyWith<$Res> {
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
               as String,
-      isRegistered: isRegistered == freezed
-          ? _value.isRegistered
-          : isRegistered // ignore: cast_nullable_to_non_nullable
+      isServiced: isServiced == freezed
+          ? _value.isServiced
+          : isServiced // ignore: cast_nullable_to_non_nullable
               as bool,
       description: description == freezed
           ? _value.description
@@ -147,7 +147,7 @@ abstract class _$CarCopyWith<$Res> implements $CarCopyWith<$Res> {
       {String uuid,
       CarType type,
       String brand,
-      bool isRegistered,
+      bool isServiced,
       String description,
       String licenceNumber,
       DateTime year,
@@ -168,7 +168,7 @@ class __$CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res>
     Object? uuid = freezed,
     Object? type = freezed,
     Object? brand = freezed,
-    Object? isRegistered = freezed,
+    Object? isServiced = freezed,
     Object? description = freezed,
     Object? licenceNumber = freezed,
     Object? year = freezed,
@@ -187,9 +187,9 @@ class __$CarCopyWithImpl<$Res> extends _$CarCopyWithImpl<$Res>
           ? _value.brand
           : brand // ignore: cast_nullable_to_non_nullable
               as String,
-      isRegistered: isRegistered == freezed
-          ? _value.isRegistered
-          : isRegistered // ignore: cast_nullable_to_non_nullable
+      isServiced: isServiced == freezed
+          ? _value.isServiced
+          : isServiced // ignore: cast_nullable_to_non_nullable
               as bool,
       description: description == freezed
           ? _value.description
@@ -218,7 +218,7 @@ class _$_Car extends _Car {
       {required this.uuid,
       required this.type,
       required this.brand,
-      required this.isRegistered,
+      required this.isServiced,
       required this.description,
       required this.licenceNumber,
       required this.year,
@@ -234,7 +234,7 @@ class _$_Car extends _Car {
   @override
   final String brand;
   @override
-  final bool isRegistered;
+  final bool isServiced;
   @override
   final String description;
   @override
@@ -246,7 +246,7 @@ class _$_Car extends _Car {
 
   @override
   String toString() {
-    return 'Car(uuid: $uuid, type: $type, brand: $brand, isRegistered: $isRegistered, description: $description, licenceNumber: $licenceNumber, year: $year, imageUrl: $imageUrl)';
+    return 'Car(uuid: $uuid, type: $type, brand: $brand, isServiced: $isServiced, description: $description, licenceNumber: $licenceNumber, year: $year, imageUrl: $imageUrl)';
   }
 
   @override
@@ -258,7 +258,7 @@ class _$_Car extends _Car {
             const DeepCollectionEquality().equals(other.type, type) &&
             const DeepCollectionEquality().equals(other.brand, brand) &&
             const DeepCollectionEquality()
-                .equals(other.isRegistered, isRegistered) &&
+                .equals(other.isServiced, isServiced) &&
             const DeepCollectionEquality()
                 .equals(other.description, description) &&
             const DeepCollectionEquality()
@@ -273,7 +273,7 @@ class _$_Car extends _Car {
       const DeepCollectionEquality().hash(uuid),
       const DeepCollectionEquality().hash(type),
       const DeepCollectionEquality().hash(brand),
-      const DeepCollectionEquality().hash(isRegistered),
+      const DeepCollectionEquality().hash(isServiced),
       const DeepCollectionEquality().hash(description),
       const DeepCollectionEquality().hash(licenceNumber),
       const DeepCollectionEquality().hash(year),
@@ -295,7 +295,7 @@ abstract class _Car extends Car {
       {required String uuid,
       required CarType type,
       required String brand,
-      required bool isRegistered,
+      required bool isServiced,
       required String description,
       required String licenceNumber,
       required DateTime year,
@@ -311,7 +311,7 @@ abstract class _Car extends Car {
   @override
   String get brand;
   @override
-  bool get isRegistered;
+  bool get isServiced;
   @override
   String get description;
   @override

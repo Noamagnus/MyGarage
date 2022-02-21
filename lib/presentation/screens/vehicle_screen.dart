@@ -12,6 +12,7 @@ import 'package:my_garage/presentation/widgets/rounder_icon_button.dart';
 import 'package:my_garage/presentation/widgets/text_widgets.dart';
 import 'package:my_garage/utils/colors.dart';
 import 'package:my_garage/utils/dimensions.dart';
+import 'package:my_garage/utils/helper_functiones.dart';
 import 'package:my_garage/utils/widget_functions.dart';
 
 class VehicleScreen extends StatelessWidget {
@@ -67,9 +68,20 @@ class VehicleScreen extends StatelessWidget {
                                     label: 'Licence number',
                                     text: car.licenceNumber,
                                   ),
+                                  Expanded(
+                                    child: Container(),
+                                  ),
                                   SmallRoundedContainer(
                                     color: AppColors.white,
-                                    text: car.isRegistered ? 'Registered' : 'Not Registered',
+                                    text: isRegistered(car.year) ? 'Registered' : 'Not Registered',
+                                    border: Border.all(color: AppColors.blueColor, width: 0.5.sp),
+                                    borderRadius: BorderRadius.circular(30.r),
+                                    textColor: AppColors.blueColor,
+                                  ),
+                                  addHorizontalSpace(10),
+                                  SmallRoundedContainer(
+                                    color: AppColors.white,
+                                    text: car.isServiced ? 'Serviced' : 'Not Serviced',
                                     border: Border.all(color: AppColors.blueColor, width: 0.5.sp),
                                     borderRadius: BorderRadius.circular(30.r),
                                     textColor: AppColors.blueColor,
@@ -103,7 +115,7 @@ class VehicleScreen extends StatelessWidget {
   }
 }
 
-class DescriptionStack extends StatelessWidget {
+ class DescriptionStack extends StatelessWidget {
   const DescriptionStack({
     Key? key,
     required this.car,

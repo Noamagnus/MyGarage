@@ -10,7 +10,7 @@ class Car with _$Car {
     required String uuid,
     required CarType type,
     required String brand,
-    required bool isRegistered,
+    required bool isServiced,
     required String description,
     required String licenceNumber,
     required DateTime year, // year manufactured

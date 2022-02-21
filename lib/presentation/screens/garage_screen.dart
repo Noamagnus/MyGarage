@@ -183,7 +183,7 @@ class GarageBodyWidget extends StatelessWidget {
                   licenceNumber: car.licenceNumber,
                   path: car.imageUrl,
                   year: car.year,
-                  isRegistered: car.isRegistered,
+                  isServiced: car.isServiced,
                 ),
               );
             },

@@ -3,6 +3,9 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_garage/data/dataproviders/sembast.dart';
 import 'package:my_garage/presentation/screens/garage_screen.dart';
+import 'package:my_garage/presentation/widgets/text_widgets.dart';
+import 'package:my_garage/utils/colors.dart';
+import 'package:my_garage/utils/widget_functions.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({Key? key}) : super(key: key);
@@ -36,14 +39,49 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children:  [
-            const Text('Splash Screen'),
+          children: [
+            const Expanded(
+              child: SizedBox(),
+            ),
+            const Icon(
+              Icons.garage,
+              size: 120,
+              color: AppColors.blueColor,
+              // color: AppColors.grey800,
+            ),
+            const EasyText(
+              'My Garage',
+              fontSize: 50,
+              fontWeight: FontWeight.w700,
+              color: AppColors.grey800,
+            ),
             SizedBox(
               height: 30.h,
             ),
             Padding(
-              padding:  EdgeInsets.symmetric(horizontal: 30.w),
+              padding: EdgeInsets.symmetric(horizontal: 30.w),
               child: const LinearProgressIndicator(),
+            ),
+            const Expanded(
+              child: SizedBox(),
+            ),
+            Padding(
+              padding:  EdgeInsets.only(bottom: 10.h,right: 10.w,),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  const EasyText(
+                    'Milos Ivackovic',
+                    color: AppColors.grey600,
+                  ),
+                  addHorizontalSpace(5.w),
+                  const EasyText(
+                    '2022.',
+                    color: AppColors.grey600,
+                  ),
+                  
+                ],
+              ),
             ),
           ],
         ),
