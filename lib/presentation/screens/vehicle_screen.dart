@@ -2,14 +2,15 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
 import 'package:my_garage/data/models/car_model.dart';
 import 'package:my_garage/presentation/widgets/rounder_icon_button.dart';
+import 'package:my_garage/presentation/widgets/text_widgets.dart';
 import 'package:my_garage/utils/colors.dart';
 import 'package:my_garage/utils/dimensions.dart';
-import 'package:my_garage/utils/widget_functions.dart';
 
 class VehicleScreen extends StatelessWidget {
   final Car car;
@@ -17,8 +18,7 @@ class VehicleScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeData themeData = Theme.of(context);
-    final sidePadding = EdgeInsets.symmetric(horizontal: 25);
+    final sidePadding = EdgeInsets.symmetric(horizontal: 15.sp);
     final carY = car.year;
     final year = DateFormat('yyyy').format(carY);
 
@@ -41,27 +41,27 @@ class VehicleScreen extends StatelessWidget {
                             fit: BoxFit.cover,
                             width: double.infinity,
                           )
-                        : const SizedBox(
-                            height: 130,
+                        :  SizedBox(
+                            height: 130.h,
                             width: double.infinity,
                           ),
                     Positioned(
                       width: Dimensions.screenWidth,
-                      top: 25,
+                      top: 15.h,
                       child: Padding(
                         padding: sidePadding,
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
                             RoundedIconButton(
-                              size: 35,
+                              size: 30.sp,
                               icon: Icons.keyboard_backspace,
                               onPressed: () {
                                 Navigator.of(context).pop();
                               },
                             ),
                             RoundedIconButton(
-                              size: 35,
+                              size: 30.sp,
                               icon: Icons.delete,
                               onPressed: () {
                                 context.read<GarageBloc>().add(RemoveCarFromGarage(car));
@@ -77,10 +77,13 @@ class VehicleScreen extends StatelessWidget {
               ),
             ),
             Expanded(
-              flex: 30,
+              flex: 32,
               child: Container(
                 width: Dimensions.screenWidth,
-                padding: sidePadding,
+                padding: EdgeInsets.symmetric(
+                  horizontal:20.h,
+                  vertical: 12.w,
+                ),
                 color: AppColors.screenBackgroundColor,
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -89,31 +92,34 @@ class VehicleScreen extends StatelessWidget {
                     VehicleScreenText(
                       label: 'Brand',
                       text: car.brand,
-                      themeData: themeData,
                     ),
                     VehicleScreenText(
                       label: 'Year',
                       text: year,
-                      themeData: themeData,
                     ),
                     VehicleScreenText(
-                      label: 'Licence Number',
+                      label: 'Licence number',
                       text: car.licenceNumber,
-                      themeData: themeData,
+                    ),
+                    const Divider(
+                      color: Colors.blue,
                     )
                   ],
                 ),
               ),
             ),
             Expanded(
-              flex: 36,
+              flex: 34,
               child: Container(
-                padding:const  EdgeInsets.symmetric(horizontal: 15, vertical: 25),
+                padding: EdgeInsets.symmetric(
+                  horizontal: 20.h,
+                  vertical: 5.w,
+                ),
                 width: Dimensions.screenWidth,
-                color: Colors.red,
-                child: Text(
+                color: AppColors.screenBackgroundColor,
+                child: EasyText(
                   car.description,
-                  style: themeData.textTheme.bodyText2,
+                  color: AppColors.textColor,
                 ),
               ),
             )
@@ -129,24 +135,25 @@ class VehicleScreenText extends StatelessWidget {
     Key? key,
     required this.text,
     required this.label,
-    required this.themeData,
   }) : super(key: key);
   final String text;
   final String label;
-  final ThemeData themeData;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(
+        EasyText(
           label,
-          style: themeData.textTheme.bodyText2,
+          color: Colors.blue,
+          fontSize: 12.sp,
         ),
-        Text(
+        EasyText(
           text,
-          style: themeData.textTheme.headline1,
+          color: AppColors.listTileBrandTextColor,
+          fontSize: 20.sp,
+          fontWeight: FontWeight.w700,
         ),
       ],
     );

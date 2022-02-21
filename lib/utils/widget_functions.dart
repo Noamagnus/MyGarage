@@ -7,3 +7,21 @@ Widget addVerticalSpace(double height) {
 Widget addHorizontalSpace(double width) {
   return SizedBox(width: width);
 }
+
+
+Future<dynamic> customShowDialog(String message, BuildContext context) {
+  return showDialog(
+    context: context,
+    builder: (context) => AlertDialog(
+      title: Text(message),
+      actions: [
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Back'),
+        )
+      ],
+    ),
+  );
+}

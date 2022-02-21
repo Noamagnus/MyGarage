@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_garage/data/dataproviders/sembast.dart';
 import 'package:my_garage/presentation/screens/garage_screen.dart';
 
@@ -21,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void _navigateToHome() async {
     await Future.delayed(const Duration(seconds: 2));
     Navigator.of(context).pushReplacement(MaterialPageRoute(
-      builder: (context) => GarageScreen(),
+      builder: (context) => const GarageScreen(),
     ));
   }
 
@@ -35,10 +36,10 @@ class _SplashScreenState extends State<SplashScreen> {
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
-          children: const [
+          children:  [
             Text('Splash Screen'),
             SizedBox(
-              height: 30,
+              height: 30.h,
             ),
             LinearProgressIndicator(),
           ],

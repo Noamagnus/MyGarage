@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
 import 'package:my_garage/business_logic/imagePicker/bloc/imagepicker_bloc.dart';
 import 'package:my_garage/data/models/car_model.dart';
 import 'package:my_garage/presentation/screens/garage_screen.dart';
 import 'package:my_garage/utils/colors.dart';
-import 'package:my_garage/utils/dimensions.dart';
 import 'package:my_garage/utils/widget_functions.dart';
 import 'package:provider/src/provider.dart';
 import 'package:uuid/uuid.dart';
@@ -45,10 +45,10 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
           addVerticalSpace(5),
           Container(
             color: AppColors.listTileBackgroundColor,
-            padding: const EdgeInsets.only(
-              left: 6,
-              right: 6,
-              bottom: 4,
+            padding:  EdgeInsets.only(
+              left: 6.w,
+              right: 6.w,
+              bottom: 4.h,
             ),
             //! Brand
             child: TextFormField(
@@ -74,18 +74,17 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                   return null;
                 }
               },
-              onChanged: (value) {},
             ),
           ),
-          addVerticalSpace(10),
+          addVerticalSpace(10.h),
           //! Licence number text field
 
           Container(
             color: AppColors.listTileBackgroundColor,
-            padding: const EdgeInsets.only(
-              left: 6,
-              right: 6,
-              bottom: 4,
+            padding:  EdgeInsets.only(
+              left: 6.w,
+              right: 6.w,
+              bottom: 4.h,
             ),
             child: TextFormField(
               controller: licenceNumberTextController,
@@ -116,9 +115,9 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
           //! Description text field
           Container(
             color: AppColors.listTileBackgroundColor,
-            padding: const EdgeInsets.only(
-              left: 6,
-              right: 6,
+            padding:  EdgeInsets.only(
+              left: 6.w,
+              right: 6.h,
             ),
             child: TextFormField(
               maxLines: 5,
@@ -145,10 +144,10 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
               },
             ),
           ),
-          addVerticalSpace(10),
+          addVerticalSpace(10.h),
           //DatePicker button
           SizedBox(
-            height: 40,
+            height: 40.h,
             width: double.infinity,
             child: TextButton(
               style: TextButton.styleFrom(
@@ -173,9 +172,7 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
               ),
             ),
           ),
-          const SizedBox(
-            height: 20,
-          ),
+          addVerticalSpace(20.h),
           //Is registered switch
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -200,13 +197,13 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                 onPressed: () {
                   context.read<ImagepickerBloc>().add(const TakePicture());
                 },
-                icon: const Icon(Icons.camera),
+                icon: const Icon(Icons.camera,color: Colors.blue,),
               ),
               IconButton(
                 onPressed: () {
                   context.read<ImagepickerBloc>().add(const PickFromGallery());
                 },
-                icon: const Icon(Icons.image),
+                icon: const Icon(Icons.image,color: Colors.blue,),
               ),
             ],
           ),
@@ -219,16 +216,16 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                     )
                   : const SizedBox.shrink();
             },
-            initial: () => const SizedBox(
-              height: 30,
+            initial: () =>  SizedBox(
+              height: 30.h,
             ),
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               SizedBox(
-                height: 40,
-                width: 80,
+                height: 40.h,
+                width: 80.w,
                 child: TextButton(
                   style: TextButton.styleFrom(
                     backgroundColor: AppColors.listTileBackgroundColor,
@@ -261,13 +258,13 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                   },
                   child: const Text(
                     'Add',
-                    style: TextStyle(color: AppColors.textTitleColor),
+                    style: TextStyle(color: AppColors.lightGrey3,fontWeight: FontWeight.w700,),
                   ),
                 ),
               ),
               SizedBox(
-                height: 40,
-                width: 80,
+                height: 40.h,
+                width: 80.w,
                 child: TextButton(
                   style: TextButton.styleFrom(
                     backgroundColor: AppColors.listTileBackgroundColor,
@@ -278,7 +275,8 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                   },
                   child: const Text(
                     'Cancel',
-                    style: TextStyle(color: AppColors.textTitleColor),
+                    style: TextStyle(color: AppColors.lightGrey3,fontWeight: FontWeight.w700,),
+
                   ),
                 ),
               ),
@@ -301,19 +299,3 @@ bool _checkOtherFields(DateTime? year, String? imageUrl, bool isRegistered, Buil
   return true;
 }
 
-Future<dynamic> customShowDialog(String message, BuildContext context) {
-  return showDialog(
-    context: context,
-    builder: (context) => AlertDialog(
-      title: Text(message),
-      actions: [
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: const Text('Back'),
-        )
-      ],
-    ),
-  );
-}

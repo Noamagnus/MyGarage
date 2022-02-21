@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 import 'package:my_garage/utils/colors.dart';
 import 'package:my_garage/utils/widget_functions.dart';
@@ -26,28 +27,28 @@ class CustomListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final selectedYear = DateFormat('yyyy').format(year);
     return Container(
-      height: 130,
-      margin: const EdgeInsets.symmetric(
-        horizontal: 16,
-        vertical: 6,
+      height: 130.h,
+      margin:  EdgeInsets.symmetric(
+        horizontal: 16.w,
+        vertical: 6.h,
       ),
       decoration: BoxDecoration(
         color: AppColors.listTileBackgroundColor,
-        borderRadius: BorderRadius.circular(8),
+        borderRadius: BorderRadius.circular(8.r),
         border: Border.all(
           color: AppColors.listTileBorderColor,
-          width: 0.5,
+          width: 0.5.sp,
         ),
       ),
-      padding: const EdgeInsets.all(10),
+      padding:  EdgeInsets.all(10.sp),
       child: Row(
         children: [
           Expanded(
             flex: 45,
-            child: Container(
-              height: 110,
+            child: SizedBox(
+              height: 110.h,
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(4),
+                borderRadius: BorderRadius.circular(4.r),
                 child: path.isNotEmpty
                     ? Image.file(
                         File(path),
@@ -61,27 +62,38 @@ class CustomListTile extends StatelessWidget {
           Expanded(
             flex: 55,
             child: Padding(
-              padding: const EdgeInsets.only(left: 10.0),
+              padding:  EdgeInsets.only(left: 10.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     flex: 25,
-                    child: Text(
-                      brand,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.listTileBrandTextColor,
-                      ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 20.h,
+                          width: 6.w,
+                          color: Colors.blue,
+                        ),
+                        addHorizontalSpace(8.w),
+                        Text(
+                          brand,
+                          style:  TextStyle(
+                            fontSize: 16.sp,
+                            fontWeight: FontWeight.bold,
+                            color: AppColors.listTileBrandTextColor,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Expanded(
                     flex: 17,
                     child: Text(
                       licenceNumber,
-                      style: const TextStyle(
-                        fontSize: 10,
+                      style:  TextStyle(
+                        fontSize: 10.sp,
                         fontWeight: FontWeight.w400,
                         color: AppColors.listTileThinTextColor,
                       ),
@@ -91,8 +103,8 @@ class CustomListTile extends StatelessWidget {
                     flex: 18,
                     child: Text(
                       selectedYear,
-                      style: const TextStyle(
-                        fontSize: 10,
+                      style:  TextStyle(
+                        fontSize: 10.sp,
                         fontWeight: FontWeight.w400,
                         color: AppColors.listTileThinTextColor,
                       ),
@@ -126,15 +138,15 @@ class SmallRoundedContainer extends StatelessWidget {
     return Container(
       // width: size,
       // height: size,
-      padding: const EdgeInsets.all(6),
+      padding:  EdgeInsets.all(6.sp),
       decoration: BoxDecoration(
         color: AppColors.screenBackgroundColor,
         borderRadius: BorderRadius.circular(20),
       ),
       child: Text(
         text,
-        style: const TextStyle(
-          fontSize: 10,
+        style:  TextStyle(
+          fontSize: 10.sp,
           fontWeight: FontWeight.w600,
           color: AppColors.textTitleColor,
         ),

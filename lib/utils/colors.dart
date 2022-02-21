@@ -1,6 +1,14 @@
 import 'dart:ui';
 
 class AppColors {
+//All colors
+  static const Color colorWhite = Color(0xFFFFFFFF);
+  static const Color lightGrey1 = Color(0xFFACACAC);
+  static const Color lightGrey2 = Color(0xFFa9a29f);
+  static const Color lightGrey3 = Color(0xFF8f837f);
+
+
+
 //List tile
   static const Color listTileBackgroundColor = Color(0xFFFFFFFF);
   static const Color listTileBorderColor = Color(0xFFDFDFDF);
@@ -11,6 +19,10 @@ class AppColors {
   static const Color iconButtonIconColor = Color(0xFF6E6E6E);
   static const Color iconButtonBorderColor = Color(0xFFACACAC);
   static const Color iconButtonBackground = Color(0xFFFFFFFF);
+
+// Text colors
+  static const Color darkGreyColor = Color(0xFF788085);
+
 
 
 

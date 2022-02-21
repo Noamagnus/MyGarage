@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
 import 'package:my_garage/business_logic/imagePicker/bloc/imagepicker_bloc.dart';
 import 'package:my_garage/data/repositories/GarageService.dart';
 import 'package:my_garage/data/dataproviders/sembast.dart';
 import 'package:my_garage/data/repositories/ImagePickerService.dart';
 import 'package:my_garage/presentation/screens/splash_screen.dart';
-import 'package:my_garage/utils/constants.dart';
-import 'package:my_garage/utils/dimensions.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.immersiveSticky,
+    overlays: [SystemUiOverlay.bottom]
   );
 
   runApp(MultiRepositoryProvider(
@@ -53,14 +54,19 @@ class MyApp extends StatelessWidget {
           create: (context) => ImagepickerBloc(RepositoryProvider.of<ImagePickerService>(context)),
         )
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        title: 'Flutter Demo',
-        theme: ThemeData(
-        primaryColor: Colors.blue,
-        textTheme: Dimensions.screenWidth < 500 ? kTextThemeDefault : kTextThemeLarge,
-      ),
-        home: const SplashScreen(),
+      child: ScreenUtilInit(
+        designSize: const Size(360,640),
+        builder: ()=>
+         MaterialApp(
+          debugShowCheckedModeBanner: false,
+          title: 'Flutter Demo',
+          theme: ThemeData(
+          primaryColor: Colors.blue,
+          textTheme: GoogleFonts.nunitoTextTheme(Theme.of(context).textTheme),
+          
+        ),
+          home: const SplashScreen(),
+        ),
       ),
     );
   }

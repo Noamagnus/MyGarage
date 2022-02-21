@@ -16,7 +16,12 @@ class GarageBloc extends Bloc<GarageEvent, GarageState> {
       emit(const GarageState.garageLoadingState());
       await emit.forEach<List<Car>>(
         garageService.getAllCarsSteams(),
-        onData: (list) => GarageState.garageLoadedState(list),
+        onData: (list) {
+          if (list.isEmpty) {
+            return const GarageState.initial();
+          } 
+           return GarageState.garageLoadedState(list);
+        },
         onError: (e, __) => GarageState.garageErrorState(e.toString()),
       );
     });
@@ -29,6 +34,5 @@ class GarageBloc extends Bloc<GarageEvent, GarageState> {
     on<ShowCarDetails>((event, emit) async {
       /// Need to store selected car somewhere
     });
-  
   }
 }
