@@ -11,86 +11,7 @@ import 'package:my_garage/presentation/widgets/text_widgets.dart';
 import 'package:my_garage/utils/colors.dart';
 import 'package:my_garage/utils/dimensions.dart';
 import 'package:my_garage/utils/widget_functions.dart';
-import 'package:provider/src/provider.dart';
-
-// class GarageScreen extends StatelessWidget {
-//   const GarageScreen({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-
-//     final state = context.watch<GarageBloc>().state;
-//     return SafeArea(
-//       child: Scaffold(
-//         backgroundColor: AppColors.buttonBackgroundColor,
-//         appBar: AppBar(
-//           title:  EasyText(
-//             'Garage Screen',
-//             fontSize: 24.sp,
-//             color: AppColors.textTitleColor),
-
-//           backgroundColor: AppColors.screenBackgroundColor,
-//           elevation: 0,
-//           actions: [
-//             Padding(
-//               padding:  EdgeInsets.all(8.sp),
-//               child: RoundedIconButton(
-//                 icon: Icons.add,
-//                 size: 40.sp,
-//                 onPressed: () {
-//                   showDialog(
-//                       context: context,
-//                       builder: (BuildContext context) {
-//                         return const AlertDialog(
-//                           backgroundColor: AppColors.screenBackgroundColor,
-//                           content:  SingleChildScrollView(child: AddVehicleDialog()),
-//                         );
-//                       });
-//                 },
-//               ),
-//             )
-//           ],
-//         ),
-//         body: state.when(
-//           initial: () => Container(
-//             child: Text('Please add some vehicle'),
-//           ),
-//           garageLoadingState: () => const Center(child: CircularProgressIndicator()),
-//           garageLoadedState: (listOfCars) {
-//             return ListView.builder(
-//               itemCount: listOfCars.length,
-//               itemBuilder: (BuildContext context, int index) {
-//                 final car = listOfCars[index];
-//                 return GestureDetector(
-//                   onTap: () {
-//                     Navigator.of(context).push(
-//                       MaterialPageRoute(
-//                         builder: (context) => VehicleScreen(
-//                           car: car,
-//                         ),
-//                       ),
-//                     );
-//                   },
-//                   child: CustomListTile(
-//                     brand: car.brand,
-//                     description: car.description,
-//                     licenceNumber: car.licenceNumber,
-//                     path: car.imageUrl,
-//                     year: car.year,
-//                     isRegistered: car.isRegistered,
-//                   ),
-//                 );
-//               },
-//             );
-//           },
-//           garageErrorState: (String error) => Text(
-//             error.toString(),
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class ImagePreview extends StatelessWidget {
   const ImagePreview({Key? key, required this.path}) : super(key: key);
@@ -124,118 +45,151 @@ class GarageScreen extends StatelessWidget {
     final state = context.watch<GarageBloc>().state;
 
     return Scaffold(
-      backgroundColor: AppColors.buttonBackgroundColor,
-      body: Container(
-        height: Dimensions.screenHeight,
-        width: Dimensions.screenWidth,
-        child: Column(
-          children: [
-            addVerticalSpace(10),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                Row(
-                  crossAxisAlignment: CrossAxisAlignment.end,
-                  children: [
-                    addHorizontalSpace(10.w),
-                    Icon(
-                      Icons.garage,
-                      size: 40.sp,
-                      color: Colors.blue,
-                    ),
-                    addHorizontalSpace(10.w),
-                    EasyText('Garage', fontSize: 24.sp, color: AppColors.textTitleColor),
-                  ],
-                ),
-                Padding(
-                  padding: EdgeInsets.only(right: 15.w,bottom: 5.h,),
-                  child: RoundedIconButton(
-                    icon: Icons.add,
-                    size: 30.sp,
-                    onPressed: () {
-                      showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            return const AlertDialog(
-                              backgroundColor: AppColors.screenBackgroundColor,
-                              content: SingleChildScrollView(child: AddVehicleDialog()),
-                            );
-                          });
-                    },
+      backgroundColor: AppColors.screenBackgroundColor,
+      body: OrientationBuilder(
+        builder: (BuildContext context, Orientation orientation) {
+          return orientation == Orientation.portrait
+              ? SizedBox(
+                  height: Dimensions.screenHeight,
+                  width: Dimensions.screenWidth,
+                  child: Column(
+                    children: [
+                      addVerticalSpace(10),
+                      const CustomAppBar(),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15.w),
+                        child: const Divider(
+                          color: AppColors.blueColor,
+                        ),
+                      ),
+                      GarageBodyWidget(
+                        state: state,
+                      )
+                    ],
                   ),
                 )
-              ],
-            ),
-            Padding(
-              padding: EdgeInsets.symmetric(horizontal: 15.w),
-              child: const Divider(
-                color: Colors.blue,
-              ),
-            ),
-            state.when(
-              initial: () => Expanded(child: const Center(child: Text('Please add some vehicle'))),
-              garageLoadingState: () => const Center(child: CircularProgressIndicator()),
-              garageLoadedState: (listOfCars) {
-                return Expanded(
-                  child: ListView.builder(
-                    itemCount: listOfCars.length,
-                    itemBuilder: (BuildContext context, int index) {
-                      final car = listOfCars[index];
-                      return GestureDetector(
-                        onTap: () {
-                          Navigator.of(context).push(
-                            MaterialPageRoute(
-                              builder: (context) => VehicleScreen(
-                                car: car,
-                              ),
-                            ),
-                          );
-                        },
-                        child: CustomListTile(
-                          brand: car.brand,
-                          description: car.description,
-                          licenceNumber: car.licenceNumber,
-                          path: car.imageUrl,
-                          year: car.year,
-                          isRegistered: car.isRegistered,
+              : SizedBox(
+                  height: Dimensions.screenWidth,
+                  width: Dimensions.screenHeight,
+                  child: Column(
+                    children: [
+                      addVerticalSpace(10),
+                      const CustomAppBar(),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 15.w),
+                        child: const Divider(
+                          color: AppColors.blueColor,
                         ),
-                      );
-                    },
+                      ),
+                      GarageBodyWidget(
+                        state: state,
+                      )
+                    ],
                   ),
                 );
-              },
-              garageErrorState: (String error) => Text(
-                error.toString(),
-              ),
-            ),
-          ],
-        ),
+        },
       ),
     );
   }
 }
 
-//  Row(children: [
-//           EasyText(
-//                 'Garage Screen',
-//                 fontSize: 24.sp,
-//                 color: AppColors.textTitleColor),
-//                 Padding(
-//                   padding:  EdgeInsets.all(8.sp),
-//                   child: RoundedIconButton(
-//                     icon: Icons.add,
-//                     size: 40.sp,
-//                     onPressed: () {
-//                       showDialog(
-//                           context: context,
-//                           builder: (BuildContext context) {
-//                             return const AlertDialog(
-//                               backgroundColor: AppColors.screenBackgroundColor,
-//                               content:  SingleChildScrollView(child: AddVehicleDialog()),
-//                             );
-//                           });
-//                     },
-//                   ),
-//                 )
-//         ],),
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            addHorizontalSpace(10.w),
+            Icon(
+              Icons.garage,
+              size: 40.sp,
+              color: AppColors.blueColor,
+            ),
+            addHorizontalSpace(10.w),
+            EasyText(
+              'Garage',
+              fontSize: 24.sp,
+              fontWeight: FontWeight.w500,
+              color: AppColors.textTitleColor,
+            ),
+          ],
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            right: 15.w,
+            bottom: 5.h,
+          ),
+          child: RoundedIconButton(
+            icon: Icons.add,
+            size: 30.sp,
+            onPressed: () {
+              showDialog(
+                  context: context,
+                  builder: (BuildContext context) {
+                    return const AlertDialog(
+                      backgroundColor: AppColors.screenBackgroundColor,
+                      content: SingleChildScrollView(child: AddVehicleDialog()),
+                    );
+                  });
+            },
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class GarageBodyWidget extends StatelessWidget {
+  const GarageBodyWidget({
+    Key? key,
+    required this.state,
+  }) : super(key: key);
+  final GarageState state;
+  @override
+  Widget build(BuildContext context) {
+    return state.when(
+      initial: () => const Expanded(child: Center(child: Text('Please add some vehicle'))),
+      garageLoadingState: () => const Center(child: CircularProgressIndicator()),
+      garageLoadedState: (listOfCars) {
+        return Expanded(
+          child: ListView.builder(
+            itemCount: listOfCars.length,
+            itemBuilder: (BuildContext context, int index) {
+              final car = listOfCars[index];
+              return GestureDetector(
+                onTap: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => VehicleScreen(
+                        car: car,
+                      ),
+                    ),
+                  );
+                },
+                child: CustomListTile(
+                  brand: car.brand,
+                  description: car.description,
+                  licenceNumber: car.licenceNumber,
+                  path: car.imageUrl,
+                  year: car.year,
+                  isRegistered: car.isRegistered,
+                ),
+              );
+            },
+          ),
+        );
+      },
+      garageErrorState: (String error) => Text(
+        error.toString(),
+      ),
+    );
+  }
+}

@@ -9,12 +9,12 @@ import 'package:my_garage/data/repositories/GarageService.dart';
 import 'package:my_garage/data/dataproviders/sembast.dart';
 import 'package:my_garage/data/repositories/ImagePickerService.dart';
 import 'package:my_garage/presentation/screens/splash_screen.dart';
+import 'package:my_garage/utils/colors.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(
     SystemUiMode.immersiveSticky,
-    overlays: [SystemUiOverlay.bottom]
   );
 
   runApp(MultiRepositoryProvider(
@@ -61,7 +61,7 @@ class MyApp extends StatelessWidget {
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
           theme: ThemeData(
-          primaryColor: Colors.blue,
+          primaryColor: AppColors.blueColor,
           textTheme: GoogleFonts.nunitoTextTheme(Theme.of(context).textTheme),
           
         ),

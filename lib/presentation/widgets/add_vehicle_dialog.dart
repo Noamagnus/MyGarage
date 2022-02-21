@@ -4,6 +4,7 @@ import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
 import 'package:my_garage/business_logic/imagePicker/bloc/imagepicker_bloc.dart';
 import 'package:my_garage/data/models/car_model.dart';
 import 'package:my_garage/presentation/screens/garage_screen.dart';
+import 'package:my_garage/presentation/widgets/text_widgets.dart';
 import 'package:my_garage/utils/colors.dart';
 import 'package:my_garage/utils/widget_functions.dart';
 import 'package:provider/src/provider.dart';
@@ -23,7 +24,7 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
   final carBrandTextController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
-  DateTime year=DateTime.now();
+  DateTime year = DateTime.now();
 
   bool isRegistered = true;
 
@@ -43,106 +44,46 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
       child: Column(
         children: [
           addVerticalSpace(5),
-          Container(
-            color: AppColors.listTileBackgroundColor,
-            padding:  EdgeInsets.only(
-              left: 6.w,
-              right: 6.w,
-              bottom: 4.h,
-            ),
-            //! Brand
-            child: TextFormField(
-              maxLines: 1,
-              maxLength: 20,
-              controller: carBrandTextController,
-              decoration: InputDecoration(
-                labelText: 'Brand',
-                border: InputBorder.none,
-                suffixIcon: carBrandTextController.text.isEmpty
-                    ? Container(
-                        width: 0,
-                      )
-                    : IconButton(
-                        icon: const Icon(Icons.close),
-                        onPressed: () => carBrandTextController.clear(),
-                      ),
-              ),
-              validator: (value) {
-                if (value != null && value.isEmpty) {
-                  return ('Please enter vehicle brand');
-                } else {
-                  return null;
-                }
-              },
-            ),
+          CustomTextFormField(
+            descriptionTextController: carBrandTextController,
+            maxLines: 1,
+            maxLength: 20,
+            labelText: 'Brand',
+            validator: (value) {
+              if (value != null && value.isEmpty) {
+                return ('Please enter vehicle brand');
+              } else {
+                return null;
+              }
+            },
           ),
           addVerticalSpace(10.h),
-          //! Licence number text field
-
-          Container(
-            color: AppColors.listTileBackgroundColor,
-            padding:  EdgeInsets.only(
-              left: 6.w,
-              right: 6.w,
-              bottom: 4.h,
-            ),
-            child: TextFormField(
-              controller: licenceNumberTextController,
-              maxLength: 10,
-              // keyboardType: TextInputType.number,
-              decoration: InputDecoration(
-                labelText: 'Licence Number',
-                border: InputBorder.none,
-                suffixIcon: licenceNumberTextController.text.isEmpty
-                    ? Container(
-                        width: 0,
-                      )
-                    : IconButton(
-                        icon: const Icon(Icons.close),
-                        onPressed: () => licenceNumberTextController.clear(),
-                      ),
-              ),
-              validator: (value) {
-                if (value != null && value.isEmpty) {
-                  return ('Please enter vehicle Licence Number');
-                } else {
-                  return null;
-                }
-              },
-            ),
+          // Licence number text field
+          CustomTextFormField(
+            descriptionTextController: licenceNumberTextController,
+            maxLength: 10,
+            labelText: 'Licence number',
+            validator: (value) {
+              if (value != null && value.isEmpty) {
+                return ('Please enter vehicle LicenceNumber');
+              } else {
+                return null;
+              }
+            },
           ),
           addVerticalSpace(10),
-          //! Description text field
-          Container(
-            color: AppColors.listTileBackgroundColor,
-            padding:  EdgeInsets.only(
-              left: 6.w,
-              right: 6.h,
-            ),
-            child: TextFormField(
-              maxLines: 5,
-              controller: descriptionTextController,
-              keyboardType: TextInputType.multiline,
-              decoration: InputDecoration(
-                labelText: 'Description',
-                border: InputBorder.none,
-                suffixIcon: descriptionTextController.text.isEmpty
-                    ? Container(
-                        width: 0,
-                      )
-                    : IconButton(
-                        icon: const Icon(Icons.close),
-                        onPressed: () => descriptionTextController.clear(),
-                      ),
-              ),
-              validator: (value) {
-                if (value != null && value.isEmpty) {
-                  return ('Please enter vehicle description');
-                } else {
-                  return null;
-                }
-              },
-            ),
+          // Description text field
+          CustomTextFormField(
+            descriptionTextController: descriptionTextController,
+            labelText: 'Description',
+            maxLines: 5,
+            validator: (value) {
+              if (value != null && value.isEmpty) {
+                return ('Please enter vehicle description');
+              } else {
+                return null;
+              }
+            },
           ),
           addVerticalSpace(10.h),
           //DatePicker button
@@ -160,10 +101,9 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                 lastDate: DateTime(2050),
               ).then((date) {
                 setState(() {
-                  if(date!=null){
+                  if (date != null) {
                     year = date;
                   }
-                  
                 });
               }),
               child: const Text(
@@ -177,7 +117,15 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              isRegistered ? const Text('Registered') : const Text('Not Registered'),
+              isRegistered
+                  ? const EasyText(
+                      'Registered',
+                      color: AppColors.grey600,
+                    )
+                  : const EasyText(
+                      'Not Registered',
+                      color: AppColors.grey600,
+                    ),
               Switch(
                 onChanged: (value) {
                   setState(() {
@@ -188,26 +136,35 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
               )
             ],
           ),
-          //! Image picker buttons
+          // Image picker buttons
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const Text('Vehicle photo'),
+              EasyText(
+                'Vehicle photo',
+                color: AppColors.grey600,
+              ),
               IconButton(
                 onPressed: () {
                   context.read<ImagepickerBloc>().add(const TakePicture());
                 },
-                icon: const Icon(Icons.camera,color: Colors.blue,),
+                icon: const Icon(
+                  Icons.camera,
+                  color: AppColors.blueColor,
+                ),
               ),
               IconButton(
                 onPressed: () {
                   context.read<ImagepickerBloc>().add(const PickFromGallery());
                 },
-                icon: const Icon(Icons.image,color: Colors.blue,),
+                icon: const Icon(
+                  Icons.image,
+                  color: AppColors.blueColor,
+                ),
               ),
             ],
           ),
-          //! Image preview
+          // Image preview
           imageUrl.when(
             fulfilled: (imageUrl) {
               return imageUrl != null
@@ -216,7 +173,7 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                     )
                   : const SizedBox.shrink();
             },
-            initial: () =>  SizedBox(
+            initial: () => SizedBox(
               height: 30.h,
             ),
           ),
@@ -258,7 +215,10 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                   },
                   child: const Text(
                     'Add',
-                    style: TextStyle(color: AppColors.lightGrey3,fontWeight: FontWeight.w700,),
+                    style: TextStyle(
+                      color: AppColors.grey600,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ),
@@ -275,14 +235,62 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                   },
                   child: const Text(
                     'Cancel',
-                    style: TextStyle(color: AppColors.lightGrey3,fontWeight: FontWeight.w700,),
-
+                    style: TextStyle(
+                      color: AppColors.grey600,
+                      fontWeight: FontWeight.w700,
+                    ),
                   ),
                 ),
               ),
             ],
           )
         ],
+      ),
+    );
+  }
+}
+
+class CustomTextFormField extends StatelessWidget {
+  const CustomTextFormField({
+    required this.labelText,
+    Key? key,
+    required this.descriptionTextController,
+    this.validator,
+    this.maxLength,
+    this.maxLines,
+  }) : super(key: key);
+  final String labelText;
+  final TextEditingController descriptionTextController;
+  final String? Function(String?)? validator;
+  final int? maxLength;
+  final int? maxLines;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: AppColors.listTileBackgroundColor,
+      padding: EdgeInsets.only(
+        left: 6.w,
+        right: 6.h,
+      ),
+      child: TextFormField(
+        maxLength: maxLength,
+        maxLines: maxLines,
+        controller: descriptionTextController,
+        keyboardType: TextInputType.multiline,
+        decoration: InputDecoration(
+          labelText: labelText,
+          border: InputBorder.none,
+          suffixIcon: descriptionTextController.text.isEmpty
+              ? Container(
+                  width: 0,
+                )
+              : IconButton(
+                  icon: const Icon(Icons.close),
+                  onPressed: () => descriptionTextController.clear(),
+                ),
+        ),
+        validator: validator,
       ),
     );
   }
@@ -298,4 +306,3 @@ bool _checkOtherFields(DateTime? year, String? imageUrl, bool isRegistered, Buil
   }
   return true;
 }
-

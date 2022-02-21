@@ -15,6 +15,7 @@ class CustomListTile extends StatelessWidget {
     required this.year,
     required this.path,
     required this.isRegistered,
+
   }) : super(key: key);
   final String brand;
   final String licenceNumber;
@@ -23,12 +24,13 @@ class CustomListTile extends StatelessWidget {
   final String path;
   final bool isRegistered;
 
+
   @override
   Widget build(BuildContext context) {
     final selectedYear = DateFormat('yyyy').format(year);
     return Container(
       height: 130.h,
-      margin:  EdgeInsets.symmetric(
+      margin: EdgeInsets.symmetric(
         horizontal: 16.w,
         vertical: 6.h,
       ),
@@ -40,7 +42,7 @@ class CustomListTile extends StatelessWidget {
           width: 0.5.sp,
         ),
       ),
-      padding:  EdgeInsets.all(10.sp),
+      padding: EdgeInsets.all(10.sp),
       child: Row(
         children: [
           Expanded(
@@ -62,7 +64,7 @@ class CustomListTile extends StatelessWidget {
           Expanded(
             flex: 55,
             child: Padding(
-              padding:  EdgeInsets.only(left: 10.w),
+              padding: EdgeInsets.only(left: 10.w),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -74,15 +76,15 @@ class CustomListTile extends StatelessWidget {
                         Container(
                           height: 20.h,
                           width: 6.w,
-                          color: Colors.blue,
+                          color: AppColors.blueColor,
                         ),
                         addHorizontalSpace(8.w),
                         Text(
                           brand,
-                          style:  TextStyle(
+                          style: TextStyle(
                             fontSize: 16.sp,
-                            fontWeight: FontWeight.bold,
-                            color: AppColors.listTileBrandTextColor,
+                            fontWeight: FontWeight.w900,
+                            color: AppColors.grey700,
                           ),
                         ),
                       ],
@@ -92,7 +94,7 @@ class CustomListTile extends StatelessWidget {
                     flex: 17,
                     child: Text(
                       licenceNumber,
-                      style:  TextStyle(
+                      style: TextStyle(
                         fontSize: 10.sp,
                         fontWeight: FontWeight.w400,
                         color: AppColors.listTileThinTextColor,
@@ -103,7 +105,7 @@ class CustomListTile extends StatelessWidget {
                     flex: 18,
                     child: Text(
                       selectedYear,
-                      style:  TextStyle(
+                      style: TextStyle(
                         fontSize: 10.sp,
                         fontWeight: FontWeight.w400,
                         color: AppColors.listTileThinTextColor,
@@ -136,16 +138,15 @@ class SmallRoundedContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      // width: size,
-      // height: size,
-      padding:  EdgeInsets.all(6.sp),
+      padding: EdgeInsets.all(6.sp),
       decoration: BoxDecoration(
         color: AppColors.screenBackgroundColor,
         borderRadius: BorderRadius.circular(20),
+        // border: Border.all(color: AppColors.blueColor,width: 0.5.sp),
       ),
       child: Text(
         text,
-        style:  TextStyle(
+        style: TextStyle(
           fontSize: 10.sp,
           fontWeight: FontWeight.w600,
           color: AppColors.textTitleColor,

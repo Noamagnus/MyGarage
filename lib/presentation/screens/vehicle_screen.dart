@@ -23,108 +23,140 @@ class VehicleScreen extends StatelessWidget {
     final year = DateFormat('yyyy').format(carY);
 
     return Scaffold(
-      body: SizedBox(
-        height: Dimensions.screenHeight,
-        width: Dimensions.screenWidth,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Expanded(
-              flex: 34,
-              child: SizedBox(
-                height: Dimensions.screenHeight / 3,
-                child: Stack(
-                  children: [
-                    car.imageUrl.isNotEmpty
-                        ? Image.file(
-                            File(car.imageUrl),
-                            fit: BoxFit.cover,
-                            width: double.infinity,
-                          )
-                        :  SizedBox(
-                            height: 130.h,
-                            width: double.infinity,
+      backgroundColor: AppColors.screenBackgroundColor,
+      body: OrientationBuilder(
+        builder: (context, orientation) {
+          return orientation == Orientation.portrait
+              ? SizedBox(
+                  height: Dimensions.screenHeight,
+                  width: Dimensions.screenWidth,
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        flex: 34,
+                        child: StackImageWithButtons(car: car, sidePadding: sidePadding),
+                      ),
+                      Expanded(
+                        flex: 32,
+                        child: Container(
+                          width: Dimensions.screenWidth,
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20.h,
+                            vertical: 12.w,
                           ),
-                    Positioned(
-                      width: Dimensions.screenWidth,
-                      top: 15.h,
-                      child: Padding(
-                        padding: sidePadding,
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            RoundedIconButton(
-                              size: 30.sp,
-                              icon: Icons.keyboard_backspace,
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                            RoundedIconButton(
-                              size: 30.sp,
-                              icon: Icons.delete,
-                              onPressed: () {
-                                context.read<GarageBloc>().add(RemoveCarFromGarage(car));
-                                Navigator.of(context).pop();
-                              },
-                            ),
-                          ],
+                          color: AppColors.screenBackgroundColor,
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              VehicleScreenText(
+                                label: 'Brand',
+                                text: car.brand,
+                              ),
+                              VehicleScreenText(
+                                label: 'Year',
+                                text: year,
+                              ),
+                              VehicleScreenText(
+                                label: 'Licence number',
+                                text: car.licenceNumber,
+                              ),
+                              const Divider(
+                                color: AppColors.blueColor,
+                              )
+                            ],
+                          ),
                         ),
                       ),
-                    )
-                  ],
+                      Expanded(
+                        flex: 34,
+                        child: Container(
+                          padding: EdgeInsets.symmetric(
+                            horizontal: 20.h,
+                            vertical: 5.w,
+                          ),
+                          width: Dimensions.screenWidth,
+                          color: AppColors.screenBackgroundColor,
+                          child: EasyText(
+                            car.description,
+                            color: AppColors.grey500,
+                          ),
+                        ),
+                      )
+                    ],
+                  ),
+                )
+              : StackImageWithButtons(
+                  car: car,
+                  sidePadding: sidePadding,
+                  height: Dimensions.screenWidth,
+                  width: Dimensions.screenHeight,
+                );
+        },
+      ),
+    );
+  }
+}
+
+class StackImageWithButtons extends StatelessWidget {
+  const StackImageWithButtons({
+    Key? key,
+    required this.car,
+    required this.sidePadding,
+    this.height,
+    this.width,
+  }) : super(key: key);
+
+  final Car car;
+  final EdgeInsets sidePadding;
+  final double? height;
+  final double? width;
+
+  @override
+  Widget build(BuildContext context) {
+    return SizedBox(
+      height: height ?? Dimensions.screenHeight / 3,
+      child: Stack(
+        children: [
+          car.imageUrl.isNotEmpty
+              ? Image.file(
+                  File(car.imageUrl),
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                )
+              : SizedBox(
+                  height: 130.h,
+                  width: double.infinity,
                 ),
+          Positioned(
+            width: width ?? Dimensions.screenWidth,
+            top: 15.h,
+            child: Padding(
+              padding: sidePadding,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  RoundedIconButton(
+                    size: 30.sp,
+                    icon: Icons.keyboard_backspace,
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                  RoundedIconButton(
+                    size: 30.sp,
+                    icon: Icons.delete,
+                    onPressed: () {
+                      context.read<GarageBloc>().add(RemoveCarFromGarage(car));
+                      Navigator.of(context).pop();
+                    },
+                  ),
+                ],
               ),
             ),
-            Expanded(
-              flex: 32,
-              child: Container(
-                width: Dimensions.screenWidth,
-                padding: EdgeInsets.symmetric(
-                  horizontal:20.h,
-                  vertical: 12.w,
-                ),
-                color: AppColors.screenBackgroundColor,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    VehicleScreenText(
-                      label: 'Brand',
-                      text: car.brand,
-                    ),
-                    VehicleScreenText(
-                      label: 'Year',
-                      text: year,
-                    ),
-                    VehicleScreenText(
-                      label: 'Licence number',
-                      text: car.licenceNumber,
-                    ),
-                    const Divider(
-                      color: Colors.blue,
-                    )
-                  ],
-                ),
-              ),
-            ),
-            Expanded(
-              flex: 34,
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 20.h,
-                  vertical: 5.w,
-                ),
-                width: Dimensions.screenWidth,
-                color: AppColors.screenBackgroundColor,
-                child: EasyText(
-                  car.description,
-                  color: AppColors.textColor,
-                ),
-              ),
-            )
-          ],
-        ),
+          )
+        ],
       ),
     );
   }
@@ -146,14 +178,14 @@ class VehicleScreenText extends StatelessWidget {
       children: [
         EasyText(
           label,
-          color: Colors.blue,
+          color:AppColors.blueColor,
           fontSize: 12.sp,
         ),
         EasyText(
           text,
-          color: AppColors.listTileBrandTextColor,
+          color: AppColors.grey600,
           fontSize: 20.sp,
-          fontWeight: FontWeight.w700,
+          fontWeight: FontWeight.w800,
         ),
       ],
     );

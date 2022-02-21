@@ -2,40 +2,33 @@ import 'dart:ui';
 
 class AppColors {
 //All colors
-  static const Color colorWhite = Color(0xFFFFFFFF);
-  static const Color lightGrey1 = Color(0xFFACACAC);
-  static const Color lightGrey2 = Color(0xFFa9a29f);
-  static const Color lightGrey3 = Color(0xFF8f837f);
-
+  static const Color white = Color(0xFFFFFFFF);
+  static const Color grey50 = Color(0xFFFAFAFA);
+  static const Color grey100 = Color(0xFFF5F5F5);
+  static const Color grey200 = Color(0xFFEEEEEE);
+  static const Color grey300 = Color(0xFFE0E0E0);
+  static const Color grey350 = Color(0xFFD6D6D6);
+  static const Color grey400 = Color(0xFFBDBDBD);
+  static const Color grey500 = Color(0xFF9E9E9E); //Colors.grey
+  static const Color grey600 = Color(0xFF757575);
+  static const Color grey700 = Color(0xFF616161);
+  static const Color grey800 = Color(0xFF424242);
+// Accent color
+  static const Color blueColor = Color(0xFF2196F3);
 
 
 //List tile
-  static const Color listTileBackgroundColor = Color(0xFFFFFFFF);
-  static const Color listTileBorderColor = Color(0xFFDFDFDF);
-  static const Color listTileBrandTextColor = Color(0xFF565656);
-  static const Color listTileThinTextColor = Color(0xFF565656);
+  static const Color listTileBackgroundColor = Color(0xFFFFFFFF);//white
+  static const Color listTileBorderColor = Color(0xFFD6D6D6); //grey350
+  static const Color listTileBrandTextColor = Color(0xFF616161); //grey700
+  static const Color listTileThinTextColor = Color(0xFF424242); //grey800
 
- //AppCircularIconButton
-  static const Color iconButtonIconColor = Color(0xFF6E6E6E);
-  static const Color iconButtonBorderColor = Color(0xFFACACAC);
-  static const Color iconButtonBackground = Color(0xFFFFFFFF);
+  //AppCircularIconButton
+  static const Color iconButtonIconColor = Color(0xFF757575); //grey600
+  static const Color iconButtonBorderColor = Color(0xFF9E9E9E);//grey500
+  static const Color iconButtonBackground = Color(0xFFFFFFFF); //white
 
-// Text colors
-  static const Color darkGreyColor = Color(0xFF788085);
-
-
-
-
-  static const Color textTitleColor = Color(0xFF6E6E6E);
-  static const Color screenBackgroundColor = Color(0xFFF7F7F7);
-  static const Color textColor = Color(0xFFccc7c5);
-  static const Color mainColor = Color(0xFF89dad0);
-  static const Color iconColor1 = Color(0xFFffd28d);
-  static const Color iconColor2 = Color(0xFFfcab88);
-  static const Color paraColor = Color(0xFF8f837f);
-  static const Color buttonBackgroundColor = Color(0xFFf7f6f4);
-  static const Color signColor = Color(0xFFa9a29f);
-  static const Color titleColor = Color(0xFF5c524f);
-  static const Color mainBlackColor = Color(0xFF332d2b);
-  static const Color yellowColor = Color(0xFFffd379);
+  //Title and background colors
+  static const Color textTitleColor = Color(0xFF757575); //grey600
+  static const Color screenBackgroundColor = Color(0xFFEEEEEE); //grey200
 }

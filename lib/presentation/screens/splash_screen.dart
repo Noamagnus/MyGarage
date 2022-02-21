@@ -37,11 +37,14 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children:  [
-            Text('Splash Screen'),
+            const Text('Splash Screen'),
             SizedBox(
               height: 30.h,
             ),
-            LinearProgressIndicator(),
+            Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 30.w),
+              child: const LinearProgressIndicator(),
+            ),
           ],
         ),
       ),
