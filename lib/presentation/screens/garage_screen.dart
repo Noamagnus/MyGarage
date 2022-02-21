@@ -13,29 +13,7 @@ import 'package:my_garage/utils/dimensions.dart';
 import 'package:my_garage/utils/widget_functions.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class ImagePreview extends StatelessWidget {
-  const ImagePreview({Key? key, required this.path}) : super(key: key);
-  final String path;
 
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: 16.w,
-        horizontal: 8.h,
-      ),
-      child: SizedBox(
-        height: 150.h,
-        width: double.infinity,
-        child: Image.file(
-          File(path),
-          fit: BoxFit.cover,
-          width: double.infinity,
-        ),
-      ),
-    );
-  }
-}
 
 class GarageScreen extends StatelessWidget {
   const GarageScreen({Key? key}) : super(key: key);
@@ -44,50 +22,52 @@ class GarageScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final state = context.watch<GarageBloc>().state;
 
-    return Scaffold(
-      backgroundColor: AppColors.screenBackgroundColor,
-      body: OrientationBuilder(
-        builder: (BuildContext context, Orientation orientation) {
-          return orientation == Orientation.portrait
-              ? SizedBox(
-                  height: Dimensions.screenHeight,
-                  width: Dimensions.screenWidth,
-                  child: Column(
-                    children: [
-                      addVerticalSpace(10),
-                      const CustomAppBar(),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15.w),
-                        child: const Divider(
-                          color: AppColors.blueColor,
+    return SafeArea(
+      child: Scaffold(
+        backgroundColor: AppColors.screenBackgroundColor,
+        body: OrientationBuilder(
+          builder: (BuildContext context, Orientation orientation) {
+            return orientation == Orientation.portrait
+                ? SizedBox(
+                    height: Dimensions.screenHeight,
+                    width: Dimensions.screenWidth,
+                    child: Column(
+                      children: [
+                        addVerticalSpace(10),
+                        const CustomAppBar(),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15.w),
+                          child: const Divider(
+                            color: AppColors.blueColor,
+                          ),
                         ),
-                      ),
-                      GarageBodyWidget(
-                        state: state,
-                      )
-                    ],
-                  ),
-                )
-              : SizedBox(
-                  height: Dimensions.screenWidth,
-                  width: Dimensions.screenHeight,
-                  child: Column(
-                    children: [
-                      addVerticalSpace(10),
-                      const CustomAppBar(),
-                      Padding(
-                        padding: EdgeInsets.symmetric(horizontal: 15.w),
-                        child: const Divider(
-                          color: AppColors.blueColor,
+                        GarageBodyWidget(
+                          state: state,
+                        )
+                      ],
+                    ),
+                  )
+                : SizedBox(
+                    height: Dimensions.screenWidth,
+                    width: Dimensions.screenHeight,
+                    child: Column(
+                      children: [
+                        addVerticalSpace(10),
+                        const CustomAppBar(),
+                        Padding(
+                          padding: EdgeInsets.symmetric(horizontal: 15.w),
+                          child: const Divider(
+                            color: AppColors.blueColor,
+                          ),
                         ),
-                      ),
-                      GarageBodyWidget(
-                        state: state,
-                      )
-                    ],
-                  ),
-                );
-        },
+                        GarageBodyWidget(
+                          state: state,
+                        )
+                      ],
+                    ),
+                  );
+          },
+        ),
       ),
     );
   }
@@ -134,9 +114,10 @@ class CustomAppBar extends StatelessWidget {
               showDialog(
                   context: context,
                   builder: (BuildContext context) {
-                    return const AlertDialog(
+                    return  AlertDialog(
+                      contentPadding: EdgeInsets.all(15.sp),
                       backgroundColor: AppColors.screenBackgroundColor,
-                      content: SingleChildScrollView(
+                      content: const SingleChildScrollView(
                         physics: BouncingScrollPhysics(),
                         child: AddVehicleDialog(),
                       ),
@@ -192,6 +173,30 @@ class GarageBodyWidget extends StatelessWidget {
       },
       garageErrorState: (String error) => Text(
         error.toString(),
+      ),
+    );
+  }
+}
+
+class ImagePreview extends StatelessWidget {
+  const ImagePreview({Key? key, required this.path}) : super(key: key);
+  final String path;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(
+        vertical: 16.w,
+        horizontal: 8.h,
+      ),
+      child: SizedBox(
+        height: 150.h,
+        width: double.infinity,
+        child: Image.file(
+          File(path),
+          fit: BoxFit.cover,
+          width: double.infinity,
+        ),
       ),
     );
   }

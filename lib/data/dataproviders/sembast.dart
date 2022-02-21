@@ -6,10 +6,8 @@ import 'package:sembast/sembast_io.dart';
 class SembastDatabase {
   late Database _instance; //This is the object returned after we open database
   Database get instance => _instance;
-// This is "Flag field" means flagging if something is not right
   bool _hasBeenInitialized = false;
 
-// Thing that we'll do in initState we're gonna do in this init method
 // Here we initialize and open database
   Future<void> init() async {
     if (_hasBeenInitialized) return;
@@ -23,6 +21,3 @@ class SembastDatabase {
     _instance = await databaseFactoryIo.openDatabase(dbPath);
   }
 }
-
-// NOTE: late means its that field is not nullable but initially is not gonna 
-// contain any value

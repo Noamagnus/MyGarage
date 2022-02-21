@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
+import 'package:my_garage/presentation/widgets/small_rounded_container.dart';
 
 import 'package:my_garage/utils/colors.dart';
 import 'package:my_garage/utils/widget_functions.dart';
@@ -28,7 +29,7 @@ class CustomListTile extends StatelessWidget {
   Widget build(BuildContext context) {
     final selectedYear = DateFormat('yyyy').format(year);
     return Container(
-      height: 130.h,
+      height: 130,
       margin: EdgeInsets.symmetric(
         horizontal: 16.w,
         vertical: 6.h,
@@ -131,37 +132,4 @@ class CustomListTile extends StatelessWidget {
   }
 }
 
-class SmallRoundedContainer extends StatelessWidget {
-  const SmallRoundedContainer({
-    Key? key,
-    required this.text,
-    this.color,
-    this.border,
-    this.borderRadius,
-    this.textColor,
-  }) : super(key: key);
-  final String text;
-  final Color? color;
-  final BoxBorder? border;
-  final BorderRadiusGeometry? borderRadius;
-  final Color? textColor;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      padding: EdgeInsets.all(6.sp),
-      decoration: BoxDecoration(
-        color: color ?? AppColors.screenBackgroundColor,
-        borderRadius: borderRadius ?? BorderRadius.circular(20.r),
-        border: border,
-      ),
-      child: Text(
-        text,
-        style: TextStyle(
-          fontSize: 10.sp,
-          fontWeight: FontWeight.w600,
-          color: textColor??AppColors.textTitleColor,
-        ),
-      ),
-    );
-  }
-}
+

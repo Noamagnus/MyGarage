@@ -7,6 +7,7 @@ import 'package:my_garage/presentation/screens/garage_screen.dart';
 import 'package:my_garage/presentation/widgets/text_widgets.dart';
 import 'package:my_garage/utils/colors.dart';
 import 'package:my_garage/utils/widget_functions.dart';
+// ignore: implementation_imports
 import 'package:provider/src/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -268,7 +269,10 @@ class CustomTextFormField extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      color: AppColors.listTileBackgroundColor,
+      decoration: BoxDecoration(
+        color: AppColors.listTileBackgroundColor,
+        borderRadius: BorderRadius.circular(4.r),
+      ),
       padding: EdgeInsets.only(
         left: 6.w,
         right: 6.h,

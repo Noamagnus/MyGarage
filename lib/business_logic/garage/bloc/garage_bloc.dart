@@ -31,8 +31,6 @@ class GarageBloc extends Bloc<GarageEvent, GarageState> {
     on<RemoveCarFromGarage>((event, emit) async {
       await garageService.deleteCar(event.car);
     });
-    on<ShowCarDetails>((event, emit) async {
-      /// Need to store selected car somewhere
-    });
+    
   }
 }

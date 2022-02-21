@@ -1,21 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
 import 'package:my_garage/business_logic/imagePicker/bloc/imagepicker_bloc.dart';
-import 'package:my_garage/data/repositories/GarageService.dart';
 import 'package:my_garage/data/dataproviders/sembast.dart';
 import 'package:my_garage/data/repositories/ImagePickerService.dart';
+import 'package:my_garage/data/repositories/GarageService.dart';
 import 'package:my_garage/presentation/screens/splash_screen.dart';
 import 'package:my_garage/utils/colors.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(
-    SystemUiMode.immersiveSticky,
-  );
+  // SystemChrome.setEnabledSystemUIMode(
+  //   SystemUiMode.immersiveSticky,
+  // );
 
   runApp(MultiRepositoryProvider(
     providers: [

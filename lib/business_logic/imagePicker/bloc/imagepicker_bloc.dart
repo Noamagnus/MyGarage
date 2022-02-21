@@ -10,7 +10,7 @@ part 'imagepicker_bloc.freezed.dart';
 class ImagepickerBloc extends Bloc<ImagepickerEvent, ImagepickerState> {
   final ImagePickerService imagePickerService;
 
-  ImagepickerBloc(this.imagePickerService) : super(Initial()) {
+  ImagepickerBloc(this.imagePickerService) : super(const Initial()) {
     on<TakePicture>((event, emit) async {
       final imageUrl = await imagePickerService.takePicture(ImageSource.camera);
       emit(ImagepickerState.fulfilled(imageUrl));
