@@ -1,13 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
 import 'package:my_garage/business_logic/imagePicker/bloc/imagepicker_bloc.dart';
 import 'package:my_garage/data/models/car_model.dart';
 import 'package:my_garage/presentation/screens/garage_screen.dart';
 import 'package:my_garage/presentation/widgets/text_widgets.dart';
 import 'package:my_garage/utils/colors.dart';
+import 'package:my_garage/utils/dimensions.dart';
 import 'package:my_garage/utils/widget_functions.dart';
-// ignore: implementation_imports
 import 'package:provider/src/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -40,238 +41,266 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
   @override
   Widget build(BuildContext context) {
     final imageUrl = context.watch<ImagepickerBloc>().state;
-    return Form(
-      key: formKey,
-      child: Column(
-        children: [
-          addVerticalSpace(5),
-          CustomTextFormField(
-            descriptionTextController: carBrandTextController,
-            maxLines: 1,
-            maxLength: 20,
-            labelText: 'Brand',
-            validator: (value) {
-              if (value != null && value.isEmpty) {
-                return ('Please enter vehicle brand');
-              } else {
-                return null;
-              }
-            },
-          ),
-          addVerticalSpace(10.h),
-          // Licence number text field
-          CustomTextFormField(
-            descriptionTextController: licenceNumberTextController,
-            maxLength: 10,
-            labelText: 'Licence number',
-            validator: (value) {
-              if (value != null && value.isEmpty) {
-                return ('Please enter vehicle LicenceNumber');
-              } else {
-                return null;
-              }
-            },
-          ),
-          addVerticalSpace(10),
-          // Description text field
-          CustomTextFormField(
-            descriptionTextController: descriptionTextController,
-            labelText: 'Description',
-            maxLines: 5,
-            validator: (value) {
-              if (value != null && value.isEmpty) {
-                return ('Please enter vehicle description');
-              } else {
-                return null;
-              }
-            },
-          ),
-          addVerticalSpace(10.h),
-          //DatePicker button
-          SizedBox(
-            height: 40.h,
-            width: double.infinity,
-            child: TextButton(
-              style: TextButton.styleFrom(
-                backgroundColor: AppColors.listTileBackgroundColor,
-              ),
-              onPressed: () => showDatePicker(
-                context: context,
-                initialDate: DateTime.now(),
-                firstDate: DateTime(2020),
-                lastDate: DateTime(2050),
-              ).then((date) {
-                setState(() {
-                  if (date != null) {
-                    year = date;
+    return SingleChildScrollView(
+      child: Container(
+        height: Dimensions.screenHeight*0.9,
+       
+        padding: EdgeInsets.all(15.sp),
+        decoration: const BoxDecoration(
+            color: AppColors.screenBackgroundColor,
+            borderRadius: BorderRadius.only(
+              topLeft: const Radius.circular(15),
+              topRight: const Radius.circular(15),
+            )),
+        child: Form(
+          key: formKey,
+          child: Column(
+            // mainAxisSize: MainAxisSize.min,
+            children: [
+              addVerticalSpace(5),
+              CustomTextFormField(
+                height: Dimensions.screenWidth/7,
+                descriptionTextController: carBrandTextController,
+                maxLines: 1,
+                maxLength: 20,
+                labelText: 'Brand',
+                validator: (value) {
+                  if (value != null && value.isEmpty) {
+                    return ('Please enter vehicle brand');
+                  } else {
+                    return null;
                   }
-                });
-              }),
-              child: const Text(
-                'Registration Expire Date',
-                style: TextStyle(color: AppColors.textTitleColor),
-              ),
-            ),
-          ),
-          addVerticalSpace(20.h),
-          //Is serviced switch
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              isServiced
-                  ? const EasyText(
-                      'Serviced',
-                      color: AppColors.grey600,
-                    )
-                  : const EasyText(
-                      'Not Serviced',
-                      color: AppColors.grey600,
-                    ),
-              Switch(
-                onChanged: (value) {
-                  setState(() {
-                    isServiced = value;
-                  });
                 },
-                value: isServiced,
-              )
-            ],
-          ),
-          // Image picker buttons
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              const EasyText(
-                'Vehicle photo',
-                color: AppColors.grey600,
               ),
-              IconButton(
-                onPressed: () {
-                  context.read<ImagepickerBloc>().add(const TakePicture());
+              addVerticalSpace(10.h),
+              // Licence number text field
+              CustomTextFormField(
+                descriptionTextController: licenceNumberTextController,
+                maxLines: 1,
+                maxLength: 10,
+                labelText: 'Licence number',
+                validator: (value) {
+                  if (value != null && value.isEmpty) {
+                    return ('Please enter vehicle LicenceNumber');
+                  } else {
+                    return null;
+                  }
                 },
-                icon: const Icon(
-                  Icons.camera,
-                  color: AppColors.blueColor,
-                ),
               ),
-              IconButton(
-                onPressed: () {
-                  context.read<ImagepickerBloc>().add(const PickFromGallery());
+              addVerticalSpace(10),
+              // Description text field
+              CustomTextFormField(
+                maxLines: 3,
+
+
+                descriptionTextController: descriptionTextController,
+                labelText: 'Description',
+                validator: (value) {
+                  if (value != null && value.isEmpty) {
+                    return ('Please enter vehicle description');
+                  } else {
+                    return null;
+                  }
                 },
-                icon: const Icon(
-                  Icons.image,
-                  color: AppColors.blueColor,
-                ),
               ),
-            ],
-          ),
-          // Image preview
-          imageUrl.when(
-            fulfilled: (imageUrl) {
-              return imageUrl != null
-                  ? ImagePreview(
-                      path: imageUrl,
-                    )
-                  : const SizedBox.shrink();
-            },
-            initial: () => SizedBox(
-              height: 30.h,
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: [
+              addVerticalSpace(10.h),
+              //DatePicker button
               SizedBox(
                 height: 40.h,
-                width: 80.w,
+                width: double.infinity,
                 child: TextButton(
                   style: TextButton.styleFrom(
                     backgroundColor: AppColors.listTileBackgroundColor,
                   ),
-                  onPressed: () {
-                    final isValid = formKey.currentState!.validate();
-                    if (isValid) {
-                      final imageUrl = context
-                          .read<ImagepickerBloc>()
-                          .state
-                          .when(fulfilled: (url) => url, initial: () {});
-                      if (_checkOtherFields(year, imageUrl, isServiced, context)) {
-                        final car = Car(
-                          brand: carBrandTextController.text,
-                          description: descriptionTextController.text,
-                          isServiced: isServiced,
-                          licenceNumber: licenceNumberTextController.text,
-                          type: CarType.camperVan,
-                          uuid: uuid.v4(),
-                          year: year,
-                          imageUrl: imageUrl ?? '',
-                        );
-                        context.read<GarageBloc>().add(AddCarToGarage(car));
+                  onPressed: () => showDatePicker(
+                    context: context,
+                    initialDate: DateTime.now(),
+                    firstDate: DateTime(2020),
+                    lastDate: DateTime(2050),
+                  ).then((date) {
+                    setState(() {
+                      if (date != null) {
+                        year = date;
+                      }
+                    });
+                  }),
+                  child: const Text(
+                    'Registration Expire Date',
+                    style: TextStyle(color: AppColors.textTitleColor),
+                  ),
+                ),
+              ),
+              addVerticalSpace(20.h),
+              //Is serviced switch
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  isServiced
+                      ? const EasyText(
+                          'Serviced',
+                          color: AppColors.grey600,
+                        )
+                      : const EasyText(
+                          'Not Serviced',
+                          color: AppColors.grey600,
+                        ),
+                  Switch(
+                    onChanged: (value) {
+                      setState(() {
+                        isServiced = value;
+                      });
+                    },
+                    value: isServiced,
+                  )
+                ],
+              ),
+              // Image picker buttons
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  const EasyText(
+                    'Vehicle photo',
+                    color: AppColors.grey600,
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      context.read<ImagepickerBloc>().add(const TakePicture());
+                    },
+                    icon: const Icon(
+                      Icons.camera,
+                      color: AppColors.blueColor,
+                    ),
+                  ),
+                  IconButton(
+                    onPressed: () {
+                      context.read<ImagepickerBloc>().add(const PickFromGallery());
+                    },
+                    icon: const Icon(
+                      Icons.image,
+                      color: AppColors.blueColor,
+                    ),
+                  ),
+                ],
+              ),
+              // Image preview
+              imageUrl.when(
+                fulfilled: (imageUrl) {
+                  return imageUrl != null
+                      ? ImagePreview(
+                          path: imageUrl,
+                        )
+                      : const SizedBox.shrink();
+                },
+                initial: () => SizedBox(
+                  height: 30.h,
+                ),
+              ),
+              Expanded(child: Container(),),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  SizedBox(
+                    height: 40.h,
+                    width: 80.w,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: AppColors.listTileBackgroundColor,
+                      ),
+                      onPressed: () {
+                        final isValid = formKey.currentState!.validate();
+                        if (isValid) {
+                          final imageUrl = context
+                              .read<ImagepickerBloc>()
+                              .state
+                              .when(fulfilled: (url) => url, initial: () {});
+                          if (_checkOtherFields(year, imageUrl, isServiced, context)) {
+                            final car = Car(
+                              brand: carBrandTextController.text,
+                              description: descriptionTextController.text,
+                              isServiced: isServiced,
+                              licenceNumber: licenceNumberTextController.text,
+                              type: CarType.camperVan,
+                              uuid: uuid.v4(),
+                              year: year,
+                              imageUrl: imageUrl ?? '',
+                            );
+                            context.read<GarageBloc>().add(AddCarToGarage(car));
+                            context.read<ImagepickerBloc>().add(const ClearPhoto());
+                            Navigator.of(context).pop();
+                          }
+                        } else {
+                          return;
+                        }
+                      },
+                      child: const Text(
+                        'Add',
+                        style: TextStyle(
+                          color: AppColors.grey600,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 40.h,
+                    width: 80.w,
+                    child: TextButton(
+                      style: TextButton.styleFrom(
+                        backgroundColor: AppColors.listTileBackgroundColor,
+                      ),
+                      onPressed: () {
                         context.read<ImagepickerBloc>().add(const ClearPhoto());
                         Navigator.of(context).pop();
-                      }
-                    } else {
-                      return;
-                    }
-                  },
-                  child: const Text(
-                    'Add',
-                    style: TextStyle(
-                      color: AppColors.grey600,
-                      fontWeight: FontWeight.w700,
+                      },
+                      child: const Text(
+                        'Cancel',
+                        style: TextStyle(
+                          color: AppColors.grey600,
+                          fontWeight: FontWeight.w700,
+                        ),
+                      ),
                     ),
                   ),
-                ),
+                ],
               ),
-              SizedBox(
-                height: 40.h,
-                width: 80.w,
-                child: TextButton(
-                  style: TextButton.styleFrom(
-                    backgroundColor: AppColors.listTileBackgroundColor,
-                  ),
-                  onPressed: () {
-                    context.read<ImagepickerBloc>().add(const ClearPhoto());
-                    Navigator.of(context).pop();
-                  },
-                  child: const Text(
-                    'Cancel',
-                    style: TextStyle(
-                      color: AppColors.grey600,
-                      fontWeight: FontWeight.w700,
-                    ),
-                  ),
-                ),
-              ),
+              addVerticalSpace(10,)
+
             ],
-          )
-        ],
+          ),
+        ),
       ),
+      
     );
   }
 }
 
 class CustomTextFormField extends StatelessWidget {
   const CustomTextFormField({
-    required this.labelText,
     Key? key,
+    required this.labelText,
     required this.descriptionTextController,
     this.validator,
     this.maxLength,
     this.maxLines,
+    this.width,
+    this.height,
   }) : super(key: key);
   final String labelText;
   final TextEditingController descriptionTextController;
   final String? Function(String?)? validator;
   final int? maxLength;
   final int? maxLines;
+  final double? width;
+  final double? height;
 
   @override
   Widget build(BuildContext context) {
     return Container(
+      width:width,
+      height: height,
       decoration: BoxDecoration(
         color: AppColors.listTileBackgroundColor,
-        borderRadius: BorderRadius.circular(4.r),
+        borderRadius: BorderRadius.circular(6.r),
       ),
       padding: EdgeInsets.only(
         left: 6.w,

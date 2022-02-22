@@ -112,16 +112,18 @@ class CustomAppBar extends StatelessWidget {
             icon: Icons.add,
             size: 30.sp,
             onPressed: () {
-              showDialog(
+              showModalBottomSheet(
                   context: context,
+                  isScrollControlled: true,
+                  backgroundColor: AppColors.screenBackgroundColor,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
+                  ),
                   builder: (BuildContext context) {
-                    return  AlertDialog(
-                      contentPadding: EdgeInsets.all(15.sp),
-                      backgroundColor: AppColors.screenBackgroundColor,
-                      content: const SingleChildScrollView(
-                        physics: BouncingScrollPhysics(),
-                        child: AddVehicleDialog(),
-                      ),
+                    return FractionallySizedBox(
+                      heightFactor: 0.9,
+                      child: AddVehicleDialog(),
                     );
                   });
             },
@@ -168,7 +170,7 @@ class GarageBodyWidget extends StatelessWidget {
                   path: car.imageUrl,
                   year: car.year,
                   isServiced: car.isServiced,
-                  listTileContainerHeight: listTileContainerHeight ,
+                  listTileContainerHeight: listTileContainerHeight,
                 ),
               );
             },
