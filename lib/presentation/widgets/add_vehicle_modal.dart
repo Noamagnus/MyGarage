@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:provider/src/provider.dart';
+import 'package:uuid/uuid.dart';
 
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
 import 'package:my_garage/business_logic/image_picker/bloc/imagepicker_bloc.dart';
@@ -9,8 +11,6 @@ import 'package:my_garage/presentation/widgets/text_widgets.dart';
 import 'package:my_garage/utils/colors.dart';
 import 'package:my_garage/utils/dimensions.dart';
 import 'package:my_garage/utils/widget_functions.dart';
-import 'package:provider/src/provider.dart';
-import 'package:uuid/uuid.dart';
 
 class AddVehicleDialog extends StatefulWidget {
   const AddVehicleDialog({Key? key}) : super(key: key);
@@ -25,9 +25,11 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
   final licenceNumberTextController = TextEditingController();
   final carBrandTextController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+  final FocusNode focusNode1 = FocusNode();
+  final FocusNode focusNode2 = FocusNode();
+  final FocusNode focusNode3 = FocusNode();
 
   DateTime year = DateTime.now();
-
   bool isServiced = true;
 
   @override
@@ -36,6 +38,14 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
     carBrandTextController.addListener(() => setState(() {}));
     licenceNumberTextController.addListener(() => setState(() {}));
     descriptionTextController.addListener(() => setState(() {}));
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    focusNode1.dispose();
+    focusNode2.dispose();
+    focusNode3.dispose();
   }
 
   @override
@@ -60,21 +70,23 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
               children: [
                 addVerticalSpace(5),
                 CustomTextFormField(
-                  descriptionTextController: carBrandTextController,
-                  maxLines: 1,
-                  maxLength: 20,
-                  labelText: 'Brand',
-                  validator: (value) {
-                    if (value != null && value.isEmpty) {
-                      return ('Please enter vehicle brand');
-                    } else {
-                      return null;
-                    }
-                  },
-                ),
+                    focusNode: focusNode1,
+                    descriptionTextController: carBrandTextController,
+                    maxLines: 1,
+                    maxLength: 20,
+                    labelText: 'Brand',
+                    validator: (value) {
+                      if (value != null && value.isEmpty) {
+                        return ('Please enter vehicle brand');
+                      } else {
+                        return null;
+                      }
+                    },
+                    onEditingComplete: () => FocusScope.of(context).requestFocus(focusNode2)),
                 addVerticalSpace(10.h),
                 // Licence number text field
                 CustomTextFormField(
+                  focusNode: focusNode2,
                   descriptionTextController: licenceNumberTextController,
                   maxLines: 1,
                   maxLength: 10,
@@ -86,10 +98,13 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                       return null;
                     }
                   },
+                  onEditingComplete: () => FocusScope.of(context).requestFocus(focusNode3),
                 ),
+
                 addVerticalSpace(10),
                 // Description text field
                 CustomTextFormField(
+                  focusNode: focusNode3,
                   maxLines: 3,
                   descriptionTextController: descriptionTextController,
                   labelText: 'Description',
@@ -100,6 +115,7 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                       return null;
                     }
                   },
+                  onEditingComplete: () => FocusScope.of(context).unfocus(),
                 ),
                 addVerticalSpace(10.h),
                 //DatePicker button
@@ -291,6 +307,10 @@ class CustomTextFormField extends StatelessWidget {
     this.maxLines,
     this.width,
     this.height,
+    this.focusNode,
+    this.onSaved,
+    this.onFieldSubmitted,
+    this.onEditingComplete,
   }) : super(key: key);
   final String labelText;
   final TextEditingController descriptionTextController;
@@ -299,6 +319,10 @@ class CustomTextFormField extends StatelessWidget {
   final int? maxLines;
   final double? width;
   final double? height;
+  final FocusNode? focusNode;
+  final String? Function(String?)? onSaved;
+  final String? Function(String?)? onFieldSubmitted;
+  final void Function()? onEditingComplete;
 
   @override
   Widget build(BuildContext context) {
@@ -315,6 +339,10 @@ class CustomTextFormField extends StatelessWidget {
         bottom: 2.h,
       ),
       child: TextFormField(
+        onEditingComplete: onEditingComplete,
+        onSaved: onSaved,
+        onFieldSubmitted: onFieldSubmitted,
+        focusNode: focusNode,
         maxLength: maxLength,
         maxLines: maxLines,
         controller: descriptionTextController,
