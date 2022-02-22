@@ -6,6 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
+import 'package:my_garage/business_logic/vehicle_details/bloc/vehicle_details_bloc.dart';
 import 'package:my_garage/data/models/car_model.dart';
 import 'package:my_garage/presentation/widgets/rounder_icon_button.dart';
 import 'package:my_garage/presentation/widgets/small_rounded_container.dart';
@@ -16,108 +17,119 @@ import 'package:my_garage/utils/helper_functions.dart';
 import 'package:my_garage/utils/widget_functions.dart';
 
 class VehicleScreen extends StatelessWidget {
-  final Car car;
-  const VehicleScreen({Key? key, required this.car}) : super(key: key);
+  // final Car car;
+  const VehicleScreen({
+    Key? key,
+    // required this.car,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    final state = context.read<VehicleDetailsBloc>().state;
     final sidePadding = EdgeInsets.symmetric(horizontal: 15.sp);
-    final carYear = car.year;
-    final year = DateFormat('yyyy').format(carYear);
-
-    return SafeArea(
-      child: Scaffold(
-        backgroundColor: AppColors.screenBackgroundColor,
-        body: OrientationBuilder(
-          builder: (context, orientation) {
-            return orientation == Orientation.portrait
-                ? SizedBox(
-                    height: Dimensions.screenHeight,
-                    width: Dimensions.screenWidth,
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          flex: 34,
-                          child: StackImageWithButtons(car: car, sidePadding: sidePadding),
-                        ),
-                        Expanded(
-                          flex: 32,
-                          child: Container(
-                            width: Dimensions.screenWidth,
-                            padding: EdgeInsets.symmetric(
-                              horizontal: 20.h,
-                              vertical: 12.w,
+    return state.maybeWhen(
+      loaded: (car) {
+        final year = DateFormat('yyyy').format(car.year);
+        return SafeArea(
+          child: Scaffold(
+            backgroundColor: AppColors.screenBackgroundColor,
+            body: OrientationBuilder(
+              builder: (context, orientation) {
+                return orientation == Orientation.portrait
+                    ? SizedBox(
+                        height: Dimensions.screenHeight,
+                        width: Dimensions.screenWidth,
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              flex: 34,
+                              child: StackImageWithButtons(car: car, sidePadding: sidePadding),
                             ),
-                            color: AppColors.screenBackgroundColor,
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                VehicleScreenText(
-                                  label: 'Brand',
-                                  text: car.brand,
+                            Expanded(
+                              flex: 32,
+                              child: Container(
+                                width: Dimensions.screenWidth,
+                                padding: EdgeInsets.symmetric(
+                                  horizontal: 20.h,
+                                  vertical: 12.w,
                                 ),
-                                VehicleScreenText(
-                                  label: 'Year',
-                                  text: year,
-                                ),
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                color: AppColors.screenBackgroundColor,
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                                   children: [
                                     VehicleScreenText(
-                                      label: 'Licence number',
-                                      text: car.licenceNumber,
+                                      label: 'Brand',
+                                      text: car.brand,
                                     ),
-                                    Expanded(
-                                      child: Container(),
+                                    VehicleScreenText(
+                                      label: 'Year',
+                                      text: year,
                                     ),
-                                    SmallRoundedContainer(
-                                      color: AppColors.white,
-                                      text: isRegistered(car.year) ? 'Registered' : 'Not Registered',
-                                      border: Border.all(color: AppColors.blueColor, width: 0.5.sp),
-                                      borderRadius: BorderRadius.circular(30.r),
-                                      textColor: AppColors.blueColor,
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        VehicleScreenText(
+                                          label: 'Licence number',
+                                          text: car.licenceNumber,
+                                        ),
+                                        Expanded(
+                                          child: Container(),
+                                        ),
+                                        SmallRoundedContainer(
+                                          color: AppColors.white,
+                                          text: isRegistered(car.year)
+                                              ? 'Registered'
+                                              : 'Not Registered',
+                                          border:
+                                              Border.all(color: AppColors.blueColor, width: 0.5.sp),
+                                          borderRadius: BorderRadius.circular(30.r),
+                                          textColor: AppColors.blueColor,
+                                        ),
+                                        addHorizontalSpace(10),
+                                        SmallRoundedContainer(
+                                          color: AppColors.white,
+                                          text: car.isServiced ? 'Serviced' : 'Not Serviced',
+                                          border:
+                                              Border.all(color: AppColors.blueColor, width: 0.5.sp),
+                                          borderRadius: BorderRadius.circular(30.r),
+                                          textColor: AppColors.blueColor,
+                                        )
+                                      ],
                                     ),
-                                    addHorizontalSpace(10),
-                                    SmallRoundedContainer(
-                                      color: AppColors.white,
-                                      text: car.isServiced ? 'Serviced' : 'Not Serviced',
-                                      border: Border.all(color: AppColors.blueColor, width: 0.5.sp),
-                                      borderRadius: BorderRadius.circular(30.r),
-                                      textColor: AppColors.blueColor,
+                                    const Divider(
+                                      height: 0,
+                                      color: AppColors.blueColor,
                                     )
                                   ],
                                 ),
-                                const Divider(
-                                  height: 0,
-                                  color: AppColors.blueColor,
-                                )
-                              ],
+                              ),
                             ),
-                          ),
+                            Expanded(
+                              flex: 34,
+                              child: DescriptionStack(car: car),
+                            )
+                          ],
                         ),
-                        Expanded(
-                          flex: 34,
-                          child: DescriptionStack(car: car),
-                        )
-                      ],
-                    ),
-                  )
-                : StackImageWithButtons(
-                    car: car,
-                    sidePadding: sidePadding,
-                    height: Dimensions.screenWidth,
-                    width: Dimensions.screenHeight,
-                  );
-          },
-        ),
-      ),
+                      )
+                    : StackImageWithButtons(
+                        car: car,
+                        sidePadding: sidePadding,
+                        height: Dimensions.screenWidth,
+                        width: Dimensions.screenHeight,
+                      );
+              },
+            ),
+          ),
+        );
+      },
+      orElse: () => Text('Or Else'),
     );
   }
 }
 
- class DescriptionStack extends StatelessWidget {
+class DescriptionStack extends StatelessWidget {
   const DescriptionStack({
     Key? key,
     required this.car,

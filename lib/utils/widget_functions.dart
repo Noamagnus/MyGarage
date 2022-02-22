@@ -24,4 +24,4 @@ Future<dynamic> customShowDialog(String message, BuildContext context) {
       ],
     ),
   );
-}
+} 

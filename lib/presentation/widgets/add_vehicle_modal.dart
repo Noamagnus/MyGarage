@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
-import 'package:my_garage/business_logic/imagePicker/bloc/imagepicker_bloc.dart';
+import 'package:my_garage/business_logic/image_picker/bloc/imagepicker_bloc.dart';
 import 'package:my_garage/data/models/car_model.dart';
 import 'package:my_garage/presentation/screens/garage_screen.dart';
 import 'package:my_garage/presentation/widgets/text_widgets.dart';
@@ -190,13 +190,24 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                   initial: () => SizedBox(
                     height: 30.h,
                   ),
+                  error: (String e) {
+                    showDialog(
+                      builder: (context) => AlertDialog(
+                        content: Text(e.toString()),
+                      ),
+                      context: context,
+                    );
+                    return SizedBox(
+                      height: 30.h,
+                    );
+                  },
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     SizedBox(
-                      height: Dimensions.screenWidth/9.2,
-                      width: Dimensions.screenWidth/3,
+                      height: Dimensions.screenWidth / 9.2,
+                      width: Dimensions.screenWidth / 3,
                       child: TextButton(
                         style: TextButton.styleFrom(
                           backgroundColor: AppColors.listTileBackgroundColor,
@@ -207,7 +218,7 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                             final imageUrl = context
                                 .read<ImagepickerBloc>()
                                 .state
-                                .when(fulfilled: (url) => url, initial: () {});
+                                .maybeWhen(fulfilled: (url) => url, orElse: () {});
                             if (_checkOtherFields(year, imageUrl, isServiced, context)) {
                               final car = Car(
                                 brand: carBrandTextController.text,
@@ -237,8 +248,8 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                       ),
                     ),
                     SizedBox(
-                      height:Dimensions.screenWidth/9.2,
-                      width: Dimensions.screenWidth/3,
+                      height: Dimensions.screenWidth / 9.2,
+                      width: Dimensions.screenWidth / 3,
                       child: TextButton(
                         style: TextButton.styleFrom(
                           backgroundColor: AppColors.listTileBackgroundColor,

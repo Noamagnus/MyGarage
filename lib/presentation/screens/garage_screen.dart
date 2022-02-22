@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
+import 'package:my_garage/business_logic/vehicle_details/bloc/vehicle_details_bloc.dart';
 import 'package:my_garage/presentation/screens/vehicle_screen.dart';
 import 'package:my_garage/presentation/widgets/add_vehicle_modal.dart';
 import 'package:my_garage/presentation/widgets/list_tile.dart';
@@ -144,10 +145,10 @@ class GarageBodyWidget extends StatelessWidget {
   final double listTileContainerHeight;
   @override
   Widget build(BuildContext context) {
-    return state.when(
+    return state.maybeWhen(
       initial: () => const Expanded(child: Center(child: Text('Please add some vehicle'))),
-      garageLoadingState: () => const Center(child: CircularProgressIndicator()),
-      garageLoadedState: (listOfCars) {
+      loading: () => const Center(child: CircularProgressIndicator()),
+      loaded: (listOfCars) {
         return Expanded(
           child: ListView.builder(
             itemCount: listOfCars.length,
@@ -155,11 +156,12 @@ class GarageBodyWidget extends StatelessWidget {
               final car = listOfCars[index];
               return GestureDetector(
                 onTap: () {
+                  context.read<VehicleDetailsBloc>().add(ShowCarDetails(car));
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => VehicleScreen(
-                        car: car,
-                      ),
+                      builder: (context) => const VehicleScreen(
+                          // car: car,
+                          ),
                     ),
                   );
                 },
@@ -177,9 +179,20 @@ class GarageBodyWidget extends StatelessWidget {
           ),
         );
       },
-      garageErrorState: (String error) => Text(
-        error.toString(),
-      ),
+      error: (String e) {
+        return Builder(
+          builder: (context) {
+            return Center(
+              child: AlertDialog(
+                content: Text(e),
+              ),
+            );
+          },
+        );
+      },
+      orElse: () {
+        return Text('');
+      },
     );
   }
 }
@@ -198,8 +211,8 @@ class ImagePreview extends StatelessWidget {
         right: 8.w,
       ),
       child: SizedBox(
-        height: Dimensions.screenWidth*0.6,
-        width: Dimensions.screenWidth-30.w,
+        height: Dimensions.screenWidth * 0.6,
+        width: Dimensions.screenWidth - 30.w,
         child: ClipRRect(
           borderRadius: BorderRadius.circular(6.r),
           child: Image.file(

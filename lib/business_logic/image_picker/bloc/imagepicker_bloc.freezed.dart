@@ -586,6 +586,12 @@ class _$ImagepickerStateTearOff {
       imageUrl,
     );
   }
+
+  Error error(String error) {
+    return Error(
+      error,
+    );
+  }
 }
 
 /// @nodoc
@@ -597,18 +603,21 @@ mixin _$ImagepickerState {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String? imageUrl) fulfilled,
+    required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String? imageUrl)? fulfilled,
+    TResult Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String? imageUrl)? fulfilled,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -616,18 +625,21 @@ mixin _$ImagepickerState {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Fulfilled value) fulfilled,
+    required TResult Function(Error value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Fulfilled value)? fulfilled,
+    TResult Function(Error value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Fulfilled value)? fulfilled,
+    TResult Function(Error value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -690,6 +702,7 @@ class _$Initial implements Initial {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String? imageUrl) fulfilled,
+    required TResult Function(String error) error,
   }) {
     return initial();
   }
@@ -699,6 +712,7 @@ class _$Initial implements Initial {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String? imageUrl)? fulfilled,
+    TResult Function(String error)? error,
   }) {
     return initial?.call();
   }
@@ -708,6 +722,7 @@ class _$Initial implements Initial {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String? imageUrl)? fulfilled,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -721,6 +736,7 @@ class _$Initial implements Initial {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Fulfilled value) fulfilled,
+    required TResult Function(Error value) error,
   }) {
     return initial(this);
   }
@@ -730,6 +746,7 @@ class _$Initial implements Initial {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Fulfilled value)? fulfilled,
+    TResult Function(Error value)? error,
   }) {
     return initial?.call(this);
   }
@@ -739,6 +756,7 @@ class _$Initial implements Initial {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Fulfilled value)? fulfilled,
+    TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -816,6 +834,7 @@ class _$Fulfilled implements Fulfilled {
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
     required TResult Function(String? imageUrl) fulfilled,
+    required TResult Function(String error) error,
   }) {
     return fulfilled(imageUrl);
   }
@@ -825,6 +844,7 @@ class _$Fulfilled implements Fulfilled {
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String? imageUrl)? fulfilled,
+    TResult Function(String error)? error,
   }) {
     return fulfilled?.call(imageUrl);
   }
@@ -834,6 +854,7 @@ class _$Fulfilled implements Fulfilled {
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
     TResult Function(String? imageUrl)? fulfilled,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (fulfilled != null) {
@@ -847,6 +868,7 @@ class _$Fulfilled implements Fulfilled {
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
     required TResult Function(Fulfilled value) fulfilled,
+    required TResult Function(Error value) error,
   }) {
     return fulfilled(this);
   }
@@ -856,6 +878,7 @@ class _$Fulfilled implements Fulfilled {
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Fulfilled value)? fulfilled,
+    TResult Function(Error value)? error,
   }) {
     return fulfilled?.call(this);
   }
@@ -865,6 +888,7 @@ class _$Fulfilled implements Fulfilled {
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
     TResult Function(Fulfilled value)? fulfilled,
+    TResult Function(Error value)? error,
     required TResult orElse(),
   }) {
     if (fulfilled != null) {
@@ -881,4 +905,140 @@ abstract class Fulfilled implements ImagepickerState {
   @JsonKey(ignore: true)
   $FulfilledCopyWith<Fulfilled> get copyWith =>
       throw _privateConstructorUsedError;
+}
+
+/// @nodoc
+abstract class $ErrorCopyWith<$Res> {
+  factory $ErrorCopyWith(Error value, $Res Function(Error) then) =
+      _$ErrorCopyWithImpl<$Res>;
+  $Res call({String error});
+}
+
+/// @nodoc
+class _$ErrorCopyWithImpl<$Res> extends _$ImagepickerStateCopyWithImpl<$Res>
+    implements $ErrorCopyWith<$Res> {
+  _$ErrorCopyWithImpl(Error _value, $Res Function(Error) _then)
+      : super(_value, (v) => _then(v as Error));
+
+  @override
+  Error get _value => super._value as Error;
+
+  @override
+  $Res call({
+    Object? error = freezed,
+  }) {
+    return _then(Error(
+      error == freezed
+          ? _value.error
+          : error // ignore: cast_nullable_to_non_nullable
+              as String,
+    ));
+  }
+}
+
+/// @nodoc
+
+class _$Error implements Error {
+  const _$Error(this.error);
+
+  @override
+  final String error;
+
+  @override
+  String toString() {
+    return 'ImagepickerState.error(error: $error)';
+  }
+
+  @override
+  bool operator ==(dynamic other) {
+    return identical(this, other) ||
+        (other.runtimeType == runtimeType &&
+            other is Error &&
+            const DeepCollectionEquality().equals(other.error, error));
+  }
+
+  @override
+  int get hashCode =>
+      Object.hash(runtimeType, const DeepCollectionEquality().hash(error));
+
+  @JsonKey(ignore: true)
+  @override
+  $ErrorCopyWith<Error> get copyWith =>
+      _$ErrorCopyWithImpl<Error>(this, _$identity);
+
+  @override
+  @optionalTypeArgs
+  TResult when<TResult extends Object?>({
+    required TResult Function() initial,
+    required TResult Function(String? imageUrl) fulfilled,
+    required TResult Function(String error) error,
+  }) {
+    return error(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? whenOrNull<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String? imageUrl)? fulfilled,
+    TResult Function(String error)? error,
+  }) {
+    return error?.call(this.error);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeWhen<TResult extends Object?>({
+    TResult Function()? initial,
+    TResult Function(String? imageUrl)? fulfilled,
+    TResult Function(String error)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this.error);
+    }
+    return orElse();
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult map<TResult extends Object?>({
+    required TResult Function(Initial value) initial,
+    required TResult Function(Fulfilled value) fulfilled,
+    required TResult Function(Error value) error,
+  }) {
+    return error(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult? mapOrNull<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Fulfilled value)? fulfilled,
+    TResult Function(Error value)? error,
+  }) {
+    return error?.call(this);
+  }
+
+  @override
+  @optionalTypeArgs
+  TResult maybeMap<TResult extends Object?>({
+    TResult Function(Initial value)? initial,
+    TResult Function(Fulfilled value)? fulfilled,
+    TResult Function(Error value)? error,
+    required TResult orElse(),
+  }) {
+    if (error != null) {
+      return error(this);
+    }
+    return orElse();
+  }
+}
+
+abstract class Error implements ImagepickerState {
+  const factory Error(String error) = _$Error;
+
+  String get error;
+  @JsonKey(ignore: true)
+  $ErrorCopyWith<Error> get copyWith => throw _privateConstructorUsedError;
 }
