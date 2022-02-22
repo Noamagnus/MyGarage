@@ -6,7 +6,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
 import 'package:my_garage/presentation/screens/vehicle_screen.dart';
-import 'package:my_garage/presentation/widgets/add_vehicle_dialog.dart';
+import 'package:my_garage/presentation/widgets/add_vehicle_modal.dart';
 import 'package:my_garage/presentation/widgets/list_tile.dart';
 import 'package:my_garage/presentation/widgets/rounder_icon_button.dart';
 import 'package:my_garage/presentation/widgets/text_widgets.dart';
@@ -121,7 +121,7 @@ class CustomAppBar extends StatelessWidget {
                         topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
                   ),
                   builder: (BuildContext context) {
-                    return FractionallySizedBox(
+                    return const FractionallySizedBox(
                       heightFactor: 0.9,
                       child: AddVehicleDialog(),
                     );
@@ -191,17 +191,22 @@ class ImagePreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: EdgeInsets.symmetric(
-        vertical: 16.w,
-        horizontal: 8.h,
+      padding: EdgeInsets.only(
+        top: 16.h,
+        bottom: 20.h,
+        left: 8.w,
+        right: 8.w,
       ),
       child: SizedBox(
-        height: 150.h,
-        width: double.infinity,
-        child: Image.file(
-          File(path),
-          fit: BoxFit.cover,
-          width: double.infinity,
+        height: Dimensions.screenWidth*0.6,
+        width: Dimensions.screenWidth-30.w,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(6.r),
+          child: Image.file(
+            File(path),
+            fit: BoxFit.cover,
+            width: double.infinity,
+          ),
         ),
       ),
     );
