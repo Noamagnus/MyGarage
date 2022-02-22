@@ -1,7 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
 import 'package:my_garage/presentation/screens/vehicle_screen.dart';
 import 'package:my_garage/presentation/widgets/add_vehicle_dialog.dart';
@@ -11,9 +13,6 @@ import 'package:my_garage/presentation/widgets/text_widgets.dart';
 import 'package:my_garage/utils/colors.dart';
 import 'package:my_garage/utils/dimensions.dart';
 import 'package:my_garage/utils/widget_functions.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-
-
 
 class GarageScreen extends StatelessWidget {
   const GarageScreen({Key? key}) : super(key: key);
@@ -43,6 +42,7 @@ class GarageScreen extends StatelessWidget {
                         ),
                         GarageBodyWidget(
                           state: state,
+                          listTileContainerHeight: Dimensions.screenWidth / 2.8,
                         )
                       ],
                     ),
@@ -62,6 +62,7 @@ class GarageScreen extends StatelessWidget {
                         ),
                         GarageBodyWidget(
                           state: state,
+                          listTileContainerHeight: Dimensions.screenHeight / 2.8,
                         )
                       ],
                     ),
@@ -135,8 +136,10 @@ class GarageBodyWidget extends StatelessWidget {
   const GarageBodyWidget({
     Key? key,
     required this.state,
+    required this.listTileContainerHeight,
   }) : super(key: key);
   final GarageState state;
+  final double listTileContainerHeight;
   @override
   Widget build(BuildContext context) {
     return state.when(
@@ -165,6 +168,7 @@ class GarageBodyWidget extends StatelessWidget {
                   path: car.imageUrl,
                   year: car.year,
                   isServiced: car.isServiced,
+                  listTileContainerHeight: listTileContainerHeight ,
                 ),
               );
             },

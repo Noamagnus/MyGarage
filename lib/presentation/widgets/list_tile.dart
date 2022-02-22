@@ -3,9 +3,10 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
-import 'package:my_garage/presentation/widgets/small_rounded_container.dart';
 
+import 'package:my_garage/presentation/widgets/small_rounded_container.dart';
 import 'package:my_garage/utils/colors.dart';
+import 'package:my_garage/utils/dimensions.dart';
 import 'package:my_garage/utils/widget_functions.dart';
 
 class CustomListTile extends StatelessWidget {
@@ -17,6 +18,7 @@ class CustomListTile extends StatelessWidget {
     required this.year,
     required this.path,
     required this.isServiced,
+    required this.listTileContainerHeight,
   }) : super(key: key);
   final String brand;
   final String licenceNumber;
@@ -24,12 +26,13 @@ class CustomListTile extends StatelessWidget {
   final DateTime year;
   final String path;
   final bool isServiced;
+  final double listTileContainerHeight;
 
   @override
   Widget build(BuildContext context) {
     final selectedYear = DateFormat('yyyy').format(year);
     return Container(
-      height: 130,
+      height: listTileContainerHeight,
       margin: EdgeInsets.symmetric(
         horizontal: 16.w,
         vertical: 6.h,
@@ -48,7 +51,6 @@ class CustomListTile extends StatelessWidget {
           Expanded(
             flex: 45,
             child: SizedBox(
-              height: 110.h,
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(4.r),
                 child: path.isNotEmpty
@@ -131,5 +133,3 @@ class CustomListTile extends StatelessWidget {
     );
   }
 }
-
-
