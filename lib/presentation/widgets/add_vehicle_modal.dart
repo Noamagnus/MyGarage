@@ -64,17 +64,18 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
         ),
         child: Form(
           key: formKey,
-          child: Container(
+          child: SizedBox(
             height: Dimensions.screenHeight * 0.9 - 30,
             child: ListView(
               children: [
                 addVerticalSpace(5),
                 CustomTextFormField(
+                    labelText: 'Brand',
                     focusNode: focusNode1,
                     descriptionTextController: carBrandTextController,
                     maxLines: 1,
                     maxLength: 20,
-                    labelText: 'Brand',
+                    textInputAction: TextInputAction.next,
                     validator: (value) {
                       if (value != null && value.isEmpty) {
                         return ('Please enter vehicle brand');
@@ -82,15 +83,16 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                         return null;
                       }
                     },
-                    onEditingComplete: () => FocusScope.of(context).requestFocus(focusNode2)),
+                    onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(focusNode2)),
                 addVerticalSpace(10.h),
                 // Licence number text field
                 CustomTextFormField(
+                  labelText: 'Licence number',
                   focusNode: focusNode2,
                   descriptionTextController: licenceNumberTextController,
+                  textInputAction: TextInputAction.next,
                   maxLines: 1,
                   maxLength: 10,
-                  labelText: 'Licence number',
                   validator: (value) {
                     if (value != null && value.isEmpty) {
                       return ('Please enter vehicle LicenceNumber');
@@ -98,16 +100,17 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                       return null;
                     }
                   },
-                  onEditingComplete: () => FocusScope.of(context).requestFocus(focusNode3),
+                  onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(focusNode3),
                 ),
 
                 addVerticalSpace(10),
                 // Description text field
                 CustomTextFormField(
-                  focusNode: focusNode3,
-                  maxLines: 3,
-                  descriptionTextController: descriptionTextController,
                   labelText: 'Description',
+                  focusNode: focusNode3,
+                  descriptionTextController: descriptionTextController,
+                  textInputAction: TextInputAction.next,
+                  maxLines: 1,
                   validator: (value) {
                     if (value != null && value.isEmpty) {
                       return ('Please enter vehicle description');
@@ -115,7 +118,7 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                       return null;
                     }
                   },
-                  onEditingComplete: () => FocusScope.of(context).unfocus(),
+                  onFieldSubmitted: (_) => FocusScope.of(context).unfocus(),
                 ),
                 addVerticalSpace(10.h),
                 //DatePicker button
@@ -310,7 +313,7 @@ class CustomTextFormField extends StatelessWidget {
     this.focusNode,
     this.onSaved,
     this.onFieldSubmitted,
-    this.onEditingComplete,
+    this.textInputAction,
   }) : super(key: key);
   final String labelText;
   final TextEditingController descriptionTextController;
@@ -321,8 +324,8 @@ class CustomTextFormField extends StatelessWidget {
   final double? height;
   final FocusNode? focusNode;
   final String? Function(String?)? onSaved;
-  final String? Function(String?)? onFieldSubmitted;
-  final void Function()? onEditingComplete;
+  final void Function(String?)? onFieldSubmitted;
+  final TextInputAction? textInputAction;
 
   @override
   Widget build(BuildContext context) {
@@ -339,13 +342,13 @@ class CustomTextFormField extends StatelessWidget {
         bottom: 2.h,
       ),
       child: TextFormField(
-        onEditingComplete: onEditingComplete,
         onSaved: onSaved,
         onFieldSubmitted: onFieldSubmitted,
         focusNode: focusNode,
         maxLength: maxLength,
         maxLines: maxLines,
         controller: descriptionTextController,
+        textInputAction: textInputAction,
         keyboardType: TextInputType.multiline,
         decoration: InputDecoration(
           labelText: labelText,
