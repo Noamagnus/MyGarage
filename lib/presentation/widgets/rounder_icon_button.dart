@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_garage/utils/colors.dart';
 
 class RoundedIconButton extends StatelessWidget {
@@ -31,7 +30,7 @@ class RoundedIconButton extends StatelessWidget {
         child: Icon(
           icon,
           color: AppColors.iconButtonIconColor,
-          size: 22.sp,
+          size: 22,
         ),
       ),
     );

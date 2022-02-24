@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 import 'package:my_garage/presentation/widgets/small_rounded_container.dart';
@@ -34,25 +33,25 @@ class CustomListTile extends StatelessWidget {
     return Container(
       height: listTileContainerHeight,
       margin: EdgeInsets.symmetric(
-        horizontal: 16.w,
-        vertical: 6.h,
+        horizontal: 16,
+        vertical: 6,
       ),
       decoration: BoxDecoration(
         color: AppColors.listTileBackgroundColor,
-        borderRadius: BorderRadius.circular(8.r),
+        borderRadius: BorderRadius.circular(8),
         border: Border.all(
           color: AppColors.listTileBorderColor,
-          width: 0.5.sp,
+          width: 0.5,
         ),
       ),
-      padding: EdgeInsets.all(10.sp),
+      padding: EdgeInsets.all(10),
       child: Row(
         children: [
           Expanded(
             flex: 45,
             child: SizedBox(
               child: ClipRRect(
-                borderRadius: BorderRadius.circular(4.r),
+                borderRadius: BorderRadius.circular(4),
                 child: path.isNotEmpty
                     ? Image.file(
                         File(path),
@@ -66,7 +65,7 @@ class CustomListTile extends StatelessWidget {
           Expanded(
             flex: 55,
             child: Padding(
-              padding: EdgeInsets.only(left: 10.w),
+              padding: EdgeInsets.only(left: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -76,15 +75,15 @@ class CustomListTile extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Container(
-                          height: 20.h,
-                          width: 6.w,
+                          height: 20,
+                          width: 6,
                           color: AppColors.blueColor,
                         ),
-                        addHorizontalSpace(8.w),
+                        addHorizontalSpace(8),
                         Text(
                           brand,
                           style: TextStyle(
-                            fontSize: 16.sp,
+                            fontSize: 16,
                             fontWeight: FontWeight.w900,
                             color: AppColors.grey700,
                           ),
@@ -97,7 +96,7 @@ class CustomListTile extends StatelessWidget {
                     child: Text(
                       licenceNumber,
                       style: TextStyle(
-                        fontSize: 10.sp,
+                        fontSize: 10,
                         fontWeight: FontWeight.w400,
                         color: AppColors.listTileThinTextColor,
                       ),
@@ -108,7 +107,7 @@ class CustomListTile extends StatelessWidget {
                     child: Text(
                       selectedYear,
                       style: TextStyle(
-                        fontSize: 10.sp,
+                        fontSize: 10,
                         fontWeight: FontWeight.w400,
                         color: AppColors.listTileThinTextColor,
                       ),

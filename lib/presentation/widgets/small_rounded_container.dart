@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_garage/utils/colors.dart';
 
 class SmallRoundedContainer extends StatelessWidget {
@@ -19,16 +18,16 @@ class SmallRoundedContainer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(6.sp),
+      padding: EdgeInsets.all(6),
       decoration: BoxDecoration(
         color: color ?? AppColors.screenBackgroundColor,
-        borderRadius: borderRadius ?? BorderRadius.circular(20.r),
+        borderRadius: borderRadius ?? BorderRadius.circular(20),
         border: border,
       ),
       child: Text(
         text,
         style: TextStyle(
-          fontSize: 10.sp,
+          fontSize: 10,
           fontWeight: FontWeight.w600,
           color: textColor??AppColors.textTitleColor,
         ),

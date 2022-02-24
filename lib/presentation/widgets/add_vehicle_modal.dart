@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:provider/src/provider.dart';
 import 'package:uuid/uuid.dart';
 
@@ -52,7 +51,7 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
   Widget build(BuildContext context) {
     final imageUrl = context.watch<ImagepickerBloc>().state;
     return Padding(
-      padding: EdgeInsets.all(15.sp),
+      padding: EdgeInsets.all(15),
       child: Container(
         height: Dimensions.screenHeight * 0.9,
         decoration: const BoxDecoration(
@@ -84,7 +83,7 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                       }
                     },
                     onFieldSubmitted: (_) => FocusScope.of(context).requestFocus(focusNode2)),
-                addVerticalSpace(10.h),
+                addVerticalSpace(10),
                 // Licence number text field
                 CustomTextFormField(
                   labelText: 'Licence number',
@@ -120,16 +119,16 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                   },
                   onFieldSubmitted: (_) => FocusScope.of(context).unfocus(),
                 ),
-                addVerticalSpace(10.h),
+                addVerticalSpace(10),
                 //DatePicker button
                 SizedBox(
-                  height: 40.h,
+                  height: 40,
                   width: double.infinity,
                   child: EasyTextButton(
                     buttonTitle: 'Registration Expire Date',
                     textColor: AppColors.textTitleColor,
                     backgroundColor: AppColors.listTileBackgroundColor,
-                    radius: 6.r,
+                    radius: 6,
                     onPressed: () => showDatePicker(
                       context: context,
                       initialDate: DateTime.now(),
@@ -145,7 +144,7 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                   ),
                 ),
 
-                addVerticalSpace(20.h),
+                addVerticalSpace(20),
                 //Is serviced switch
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -207,7 +206,7 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                         : const SizedBox.shrink();
                   },
                   initial: () => SizedBox(
-                    height: 30.h,
+                    height: 30,
                   ),
                   error: (String e) {
                     showDialog(
@@ -217,7 +216,7 @@ class _AddVehicleDialogState extends State<AddVehicleDialog> {
                       context: context,
                     );
                     return SizedBox(
-                      height: 30.h,
+                      height: 30,
                     );
                   },
                 ),
@@ -334,12 +333,12 @@ class CustomTextFormField extends StatelessWidget {
       height: height,
       decoration: BoxDecoration(
         color: AppColors.listTileBackgroundColor,
-        borderRadius: BorderRadius.circular(6.r),
+        borderRadius: BorderRadius.circular(6),
       ),
       padding: EdgeInsets.only(
-        left: 6.w,
-        right: 6.h,
-        bottom: 2.h,
+        left: 6,
+        right: 6,
+        bottom: 2,
       ),
       child: TextFormField(
         onSaved: onSaved,

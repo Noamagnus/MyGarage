@@ -2,7 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:intl/intl.dart';
 
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
@@ -26,7 +25,7 @@ class VehicleScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final state = context.read<VehicleDetailsBloc>().state;
-    final sidePadding = EdgeInsets.symmetric(horizontal: 15.sp);
+    final sidePadding = EdgeInsets.symmetric(horizontal: 15);
     return state.maybeWhen(
       loaded: (car) {
         final year = DateFormat('yyyy').format(car.year);
@@ -51,8 +50,8 @@ class VehicleScreen extends StatelessWidget {
                               child: Container(
                                 width: Dimensions.screenWidth,
                                 padding: EdgeInsets.symmetric(
-                                  horizontal: 20.h,
-                                  vertical: 12.w,
+                                  horizontal: 20,
+                                  vertical: 12,
                                 ),
                                 color: AppColors.screenBackgroundColor,
                                 child: Column(
@@ -83,8 +82,8 @@ class VehicleScreen extends StatelessWidget {
                                               ? 'Registered'
                                               : 'Not Registered',
                                           border:
-                                              Border.all(color: AppColors.blueColor, width: 0.5.sp),
-                                          borderRadius: BorderRadius.circular(30.r),
+                                              Border.all(color: AppColors.blueColor, width: 0.5),
+                                          borderRadius: BorderRadius.circular(30),
                                           textColor: AppColors.blueColor,
                                         ),
                                         addHorizontalSpace(10),
@@ -92,8 +91,8 @@ class VehicleScreen extends StatelessWidget {
                                           color: AppColors.white,
                                           text: car.isServiced ? 'Serviced' : 'Not Serviced',
                                           border:
-                                              Border.all(color: AppColors.blueColor, width: 0.5.sp),
-                                          borderRadius: BorderRadius.circular(30.r),
+                                              Border.all(color: AppColors.blueColor, width: 0.5),
+                                          borderRadius: BorderRadius.circular(30),
                                           textColor: AppColors.blueColor,
                                         )
                                       ],
@@ -142,28 +141,28 @@ class DescriptionStack extends StatelessWidget {
     return Container(
       padding: EdgeInsets.only(
         // top: 20.h,
-        left: 20.w,
-        right: 20.w,
-        bottom: 20.w,
+        left: 20,
+        right: 20,
+        bottom: 20,
       ),
       width: Dimensions.screenWidth,
       color: AppColors.screenBackgroundColor,
       child: Container(
-        padding: EdgeInsets.all(10.sp),
+        padding: EdgeInsets.all(10),
         decoration: BoxDecoration(
           color: AppColors.white,
-          borderRadius: BorderRadius.circular(8.r),
+          borderRadius: BorderRadius.circular(8),
         ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             EasyText(
               'Description',
-              fontSize: 16.sp,
+              fontSize: 16,
               color: AppColors.grey600,
               fontWeight: FontWeight.w700,
             ),
-            addVerticalSpace(8.h),
+            addVerticalSpace(8),
             Container(
               height: 130,
               child: SingleChildScrollView(
@@ -208,26 +207,26 @@ class StackImageWithButtons extends StatelessWidget {
                   width: double.infinity,
                 )
               : SizedBox(
-                  height: 130.h,
+                  height: 130,
                   width: double.infinity,
                 ),
           Positioned(
             width: width ?? Dimensions.screenWidth,
-            top: 15.h,
+            top: 15,
             child: Padding(
               padding: sidePadding,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   RoundedIconButton(
-                    size: 30.sp,
+                    size: 30,
                     icon: Icons.keyboard_backspace,
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
                   ),
                   RoundedIconButton(
-                    size: 30.sp,
+                    size: 30,
                     icon: Icons.delete,
                     onPressed: () {
                       context.read<GarageBloc>().add(RemoveCarFromGarage(car));
@@ -261,12 +260,12 @@ class VehicleScreenText extends StatelessWidget {
         EasyText(
           label,
           color: AppColors.blueColor,
-          fontSize: 12.sp,
+          fontSize: 12,
         ),
         EasyText(
           text,
           color: AppColors.grey600,
-          fontSize: 20.sp,
+          fontSize: 20,
           fontWeight: FontWeight.w800,
         ),
       ],

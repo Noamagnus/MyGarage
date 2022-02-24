@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
-
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
 import 'package:my_garage/business_logic/vehicle_details/bloc/vehicle_details_bloc.dart';
 import 'package:my_garage/presentation/screens/vehicle_screen.dart';
@@ -36,7 +34,7 @@ class GarageScreen extends StatelessWidget {
                         addVerticalSpace(10),
                         const CustomAppBar(),
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15.w),
+                          padding: EdgeInsets.symmetric(horizontal: 15),
                           child: const Divider(
                             color: AppColors.blueColor,
                           ),
@@ -56,7 +54,7 @@ class GarageScreen extends StatelessWidget {
                         addVerticalSpace(10),
                         const CustomAppBar(),
                         Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15.w),
+                          padding: EdgeInsets.symmetric(horizontal: 15),
                           child: const Divider(
                             color: AppColors.blueColor,
                           ),
@@ -89,16 +87,16 @@ class CustomAppBar extends StatelessWidget {
         Row(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            addHorizontalSpace(10.w),
+            addHorizontalSpace(10),
             Icon(
               Icons.garage,
-              size: 40.sp,
+              size: 40,
               color: AppColors.blueColor,
             ),
-            addHorizontalSpace(10.w),
+            addHorizontalSpace(10),
             EasyText(
               'Garage',
-              fontSize: 24.sp,
+              fontSize: 24,
               fontWeight: FontWeight.w500,
               color: AppColors.textTitleColor,
             ),
@@ -106,12 +104,12 @@ class CustomAppBar extends StatelessWidget {
         ),
         Padding(
           padding: EdgeInsets.only(
-            right: 15.w,
-            bottom: 5.h,
+            right: 15,
+            bottom: 5,
           ),
           child: RoundedIconButton(
             icon: Icons.add,
-            size: 30.sp,
+            size: 30,
             onPressed: () {
               showModalBottomSheet(
                   context: context,
@@ -205,16 +203,16 @@ class ImagePreview extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.only(
-        top: 16.h,
-        bottom: 20.h,
-        left: 8.w,
-        right: 8.w,
+        top: 16,
+        bottom: 20,
+        left: 8,
+        right: 8,
       ),
       child: SizedBox(
         height: Dimensions.screenWidth * 0.6,
-        width: Dimensions.screenWidth - 30.w,
+        width: Dimensions.screenWidth - 30,
         child: ClipRRect(
-          borderRadius: BorderRadius.circular(6.r),
+          borderRadius: BorderRadius.circular(6),
           child: Image.file(
             File(path),
             fit: BoxFit.cover,

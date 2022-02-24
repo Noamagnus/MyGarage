@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:my_garage/data/dataproviders/sembast.dart';
 import 'package:my_garage/presentation/screens/garage_screen.dart';
 import 'package:my_garage/presentation/widgets/text_widgets.dart';
@@ -23,7 +22,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   void _navigateToHome() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 4));
     Navigator.of(context).pushReplacement(MaterialPageRoute(
       builder: (context) => const GarageScreen(),
     ));
@@ -56,17 +55,17 @@ class _SplashScreenState extends State<SplashScreen> {
               color: AppColors.grey800,
             ),
             SizedBox(
-              height: 30.h,
+              height: 30,
             ),
             Padding(
-              padding: EdgeInsets.symmetric(horizontal: 30.w),
+              padding: EdgeInsets.symmetric(horizontal: 30),
               child: const LinearProgressIndicator(),
             ),
-            const Expanded(
-              child: SizedBox(),
-            ),
+            // const Expanded(
+            //   child: SizedBox(),
+            // ),
             Padding(
-              padding:  EdgeInsets.only(bottom: 10.h,right: 10.w,),
+              padding:  EdgeInsets.only(bottom: 10,right: 10,),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
@@ -74,7 +73,7 @@ class _SplashScreenState extends State<SplashScreen> {
                     'Milos Ivackovic',
                     color: AppColors.grey600,
                   ),
-                  addHorizontalSpace(5.w),
+                  addHorizontalSpace(5),
                   const EasyText(
                     '2022.',
                     color: AppColors.grey600,
