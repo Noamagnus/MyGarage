@@ -27,7 +27,7 @@ var safeHeight = logicalHeight - paddingTop - paddingBottom;
 
 class Dimensions {
   // My screen is 640 logical pixels
-  static double screenHeight = logicalHeight; 
+  static double screenHeight = logicalHeight;
   static double screenWidth = logicalWidth;
-
+  static double safeAreaHeight = safeHeight;
 }

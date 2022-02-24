@@ -26,46 +26,38 @@ class GarageScreen extends StatelessWidget {
         body: OrientationBuilder(
           builder: (BuildContext context, Orientation orientation) {
             return orientation == Orientation.portrait
-                ? SizedBox(
-                    height: Dimensions.screenHeight,
-                    width: Dimensions.screenWidth,
-                    child: Column(
-                      children: [
-                        addVerticalSpace(10),
-                        const CustomAppBar(),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                          child: const Divider(
-                            color: AppColors.blueColor,
-                          ),
-                        ),
-                        GarageBodyWidget(
-                          state: state,
-                          listTileContainerHeight: Dimensions.screenWidth / 2.8,
-                        )
-                      ],
+                ? Column(
+                  children: [
+                    addVerticalSpace(10),
+                    const CustomAppBar(),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: const Divider(
+                        color: AppColors.blueColor,
+                      ),
                     ),
-                  )
-                : SizedBox(
-                    height: Dimensions.screenWidth,
-                    width: Dimensions.screenHeight,
-                    child: Column(
-                      children: [
-                        addVerticalSpace(10),
-                        const CustomAppBar(),
-                        Padding(
-                          padding: EdgeInsets.symmetric(horizontal: 15),
-                          child: const Divider(
-                            color: AppColors.blueColor,
-                          ),
-                        ),
-                        GarageBodyWidget(
-                          state: state,
-                          listTileContainerHeight: Dimensions.screenHeight / 2.8,
-                        )
-                      ],
+                    GarageBodyWidget(
+                      state: state,
+                      listTileContainerHeight: Dimensions.screenWidth / 2.8,
+                    )
+                  ],
+                )
+                : Column(
+                  children: [
+                    addVerticalSpace(10),
+                    const CustomAppBar(),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: const Divider(
+                        color: AppColors.blueColor,
+                      ),
                     ),
-                  );
+                    GarageBodyWidget(
+                      state: state,
+                      listTileContainerHeight: Dimensions.screenHeight / 2.8,
+                    )
+                  ],
+                );
           },
         ),
       ),

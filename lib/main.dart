@@ -63,6 +63,7 @@ class MyApp extends StatelessWidget {
         title: 'Flutter Demo',
         theme: ThemeData(
           primaryColor: AppColors.blueColor,
+          textTheme: GoogleFonts.nunitoTextTheme(Theme.of(context).textTheme),
           
         ),
         home: const SplashScreen(),
