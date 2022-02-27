@@ -39,12 +39,6 @@ class _$GarageEventTearOff {
       car,
     );
   }
-
-  ShowCarDetails showCarDetails(Car car) {
-    return ShowCarDetails(
-      car,
-    );
-  }
 }
 
 /// @nodoc
@@ -58,7 +52,6 @@ mixin _$GarageEvent {
     required TResult Function(List<Car>? listOfCars) loadCarsList,
     required TResult Function(Car car) addCarToGarage,
     required TResult Function(Car car) removeCarFromGarage,
-    required TResult Function(Car car) showCarDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -67,7 +60,6 @@ mixin _$GarageEvent {
     TResult Function(List<Car>? listOfCars)? loadCarsList,
     TResult Function(Car car)? addCarToGarage,
     TResult Function(Car car)? removeCarFromGarage,
-    TResult Function(Car car)? showCarDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -76,7 +68,6 @@ mixin _$GarageEvent {
     TResult Function(List<Car>? listOfCars)? loadCarsList,
     TResult Function(Car car)? addCarToGarage,
     TResult Function(Car car)? removeCarFromGarage,
-    TResult Function(Car car)? showCarDetails,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -86,7 +77,6 @@ mixin _$GarageEvent {
     required TResult Function(LoadCarsList value) loadCarsList,
     required TResult Function(AddCarToGarage value) addCarToGarage,
     required TResult Function(RemoveCarFromGarage value) removeCarFromGarage,
-    required TResult Function(ShowCarDetails value) showCarDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -95,7 +85,6 @@ mixin _$GarageEvent {
     TResult Function(LoadCarsList value)? loadCarsList,
     TResult Function(AddCarToGarage value)? addCarToGarage,
     TResult Function(RemoveCarFromGarage value)? removeCarFromGarage,
-    TResult Function(ShowCarDetails value)? showCarDetails,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
@@ -104,7 +93,6 @@ mixin _$GarageEvent {
     TResult Function(LoadCarsList value)? loadCarsList,
     TResult Function(AddCarToGarage value)? addCarToGarage,
     TResult Function(RemoveCarFromGarage value)? removeCarFromGarage,
-    TResult Function(ShowCarDetails value)? showCarDetails,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -168,7 +156,6 @@ class _$Started implements Started {
     required TResult Function(List<Car>? listOfCars) loadCarsList,
     required TResult Function(Car car) addCarToGarage,
     required TResult Function(Car car) removeCarFromGarage,
-    required TResult Function(Car car) showCarDetails,
   }) {
     return started();
   }
@@ -180,7 +167,6 @@ class _$Started implements Started {
     TResult Function(List<Car>? listOfCars)? loadCarsList,
     TResult Function(Car car)? addCarToGarage,
     TResult Function(Car car)? removeCarFromGarage,
-    TResult Function(Car car)? showCarDetails,
   }) {
     return started?.call();
   }
@@ -192,7 +178,6 @@ class _$Started implements Started {
     TResult Function(List<Car>? listOfCars)? loadCarsList,
     TResult Function(Car car)? addCarToGarage,
     TResult Function(Car car)? removeCarFromGarage,
-    TResult Function(Car car)? showCarDetails,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -208,7 +193,6 @@ class _$Started implements Started {
     required TResult Function(LoadCarsList value) loadCarsList,
     required TResult Function(AddCarToGarage value) addCarToGarage,
     required TResult Function(RemoveCarFromGarage value) removeCarFromGarage,
-    required TResult Function(ShowCarDetails value) showCarDetails,
   }) {
     return started(this);
   }
@@ -220,7 +204,6 @@ class _$Started implements Started {
     TResult Function(LoadCarsList value)? loadCarsList,
     TResult Function(AddCarToGarage value)? addCarToGarage,
     TResult Function(RemoveCarFromGarage value)? removeCarFromGarage,
-    TResult Function(ShowCarDetails value)? showCarDetails,
   }) {
     return started?.call(this);
   }
@@ -232,7 +215,6 @@ class _$Started implements Started {
     TResult Function(LoadCarsList value)? loadCarsList,
     TResult Function(AddCarToGarage value)? addCarToGarage,
     TResult Function(RemoveCarFromGarage value)? removeCarFromGarage,
-    TResult Function(ShowCarDetails value)? showCarDetails,
     required TResult orElse(),
   }) {
     if (started != null) {
@@ -315,7 +297,6 @@ class _$LoadCarsList implements LoadCarsList {
     required TResult Function(List<Car>? listOfCars) loadCarsList,
     required TResult Function(Car car) addCarToGarage,
     required TResult Function(Car car) removeCarFromGarage,
-    required TResult Function(Car car) showCarDetails,
   }) {
     return loadCarsList(listOfCars);
   }
@@ -327,7 +308,6 @@ class _$LoadCarsList implements LoadCarsList {
     TResult Function(List<Car>? listOfCars)? loadCarsList,
     TResult Function(Car car)? addCarToGarage,
     TResult Function(Car car)? removeCarFromGarage,
-    TResult Function(Car car)? showCarDetails,
   }) {
     return loadCarsList?.call(listOfCars);
   }
@@ -339,7 +319,6 @@ class _$LoadCarsList implements LoadCarsList {
     TResult Function(List<Car>? listOfCars)? loadCarsList,
     TResult Function(Car car)? addCarToGarage,
     TResult Function(Car car)? removeCarFromGarage,
-    TResult Function(Car car)? showCarDetails,
     required TResult orElse(),
   }) {
     if (loadCarsList != null) {
@@ -355,7 +334,6 @@ class _$LoadCarsList implements LoadCarsList {
     required TResult Function(LoadCarsList value) loadCarsList,
     required TResult Function(AddCarToGarage value) addCarToGarage,
     required TResult Function(RemoveCarFromGarage value) removeCarFromGarage,
-    required TResult Function(ShowCarDetails value) showCarDetails,
   }) {
     return loadCarsList(this);
   }
@@ -367,7 +345,6 @@ class _$LoadCarsList implements LoadCarsList {
     TResult Function(LoadCarsList value)? loadCarsList,
     TResult Function(AddCarToGarage value)? addCarToGarage,
     TResult Function(RemoveCarFromGarage value)? removeCarFromGarage,
-    TResult Function(ShowCarDetails value)? showCarDetails,
   }) {
     return loadCarsList?.call(this);
   }
@@ -379,7 +356,6 @@ class _$LoadCarsList implements LoadCarsList {
     TResult Function(LoadCarsList value)? loadCarsList,
     TResult Function(AddCarToGarage value)? addCarToGarage,
     TResult Function(RemoveCarFromGarage value)? removeCarFromGarage,
-    TResult Function(ShowCarDetails value)? showCarDetails,
     required TResult orElse(),
   }) {
     if (loadCarsList != null) {
@@ -475,7 +451,6 @@ class _$AddCarToGarage implements AddCarToGarage {
     required TResult Function(List<Car>? listOfCars) loadCarsList,
     required TResult Function(Car car) addCarToGarage,
     required TResult Function(Car car) removeCarFromGarage,
-    required TResult Function(Car car) showCarDetails,
   }) {
     return addCarToGarage(car);
   }
@@ -487,7 +462,6 @@ class _$AddCarToGarage implements AddCarToGarage {
     TResult Function(List<Car>? listOfCars)? loadCarsList,
     TResult Function(Car car)? addCarToGarage,
     TResult Function(Car car)? removeCarFromGarage,
-    TResult Function(Car car)? showCarDetails,
   }) {
     return addCarToGarage?.call(car);
   }
@@ -499,7 +473,6 @@ class _$AddCarToGarage implements AddCarToGarage {
     TResult Function(List<Car>? listOfCars)? loadCarsList,
     TResult Function(Car car)? addCarToGarage,
     TResult Function(Car car)? removeCarFromGarage,
-    TResult Function(Car car)? showCarDetails,
     required TResult orElse(),
   }) {
     if (addCarToGarage != null) {
@@ -515,7 +488,6 @@ class _$AddCarToGarage implements AddCarToGarage {
     required TResult Function(LoadCarsList value) loadCarsList,
     required TResult Function(AddCarToGarage value) addCarToGarage,
     required TResult Function(RemoveCarFromGarage value) removeCarFromGarage,
-    required TResult Function(ShowCarDetails value) showCarDetails,
   }) {
     return addCarToGarage(this);
   }
@@ -527,7 +499,6 @@ class _$AddCarToGarage implements AddCarToGarage {
     TResult Function(LoadCarsList value)? loadCarsList,
     TResult Function(AddCarToGarage value)? addCarToGarage,
     TResult Function(RemoveCarFromGarage value)? removeCarFromGarage,
-    TResult Function(ShowCarDetails value)? showCarDetails,
   }) {
     return addCarToGarage?.call(this);
   }
@@ -539,7 +510,6 @@ class _$AddCarToGarage implements AddCarToGarage {
     TResult Function(LoadCarsList value)? loadCarsList,
     TResult Function(AddCarToGarage value)? addCarToGarage,
     TResult Function(RemoveCarFromGarage value)? removeCarFromGarage,
-    TResult Function(ShowCarDetails value)? showCarDetails,
     required TResult orElse(),
   }) {
     if (addCarToGarage != null) {
@@ -636,7 +606,6 @@ class _$RemoveCarFromGarage implements RemoveCarFromGarage {
     required TResult Function(List<Car>? listOfCars) loadCarsList,
     required TResult Function(Car car) addCarToGarage,
     required TResult Function(Car car) removeCarFromGarage,
-    required TResult Function(Car car) showCarDetails,
   }) {
     return removeCarFromGarage(car);
   }
@@ -648,7 +617,6 @@ class _$RemoveCarFromGarage implements RemoveCarFromGarage {
     TResult Function(List<Car>? listOfCars)? loadCarsList,
     TResult Function(Car car)? addCarToGarage,
     TResult Function(Car car)? removeCarFromGarage,
-    TResult Function(Car car)? showCarDetails,
   }) {
     return removeCarFromGarage?.call(car);
   }
@@ -660,7 +628,6 @@ class _$RemoveCarFromGarage implements RemoveCarFromGarage {
     TResult Function(List<Car>? listOfCars)? loadCarsList,
     TResult Function(Car car)? addCarToGarage,
     TResult Function(Car car)? removeCarFromGarage,
-    TResult Function(Car car)? showCarDetails,
     required TResult orElse(),
   }) {
     if (removeCarFromGarage != null) {
@@ -676,7 +643,6 @@ class _$RemoveCarFromGarage implements RemoveCarFromGarage {
     required TResult Function(LoadCarsList value) loadCarsList,
     required TResult Function(AddCarToGarage value) addCarToGarage,
     required TResult Function(RemoveCarFromGarage value) removeCarFromGarage,
-    required TResult Function(ShowCarDetails value) showCarDetails,
   }) {
     return removeCarFromGarage(this);
   }
@@ -688,7 +654,6 @@ class _$RemoveCarFromGarage implements RemoveCarFromGarage {
     TResult Function(LoadCarsList value)? loadCarsList,
     TResult Function(AddCarToGarage value)? addCarToGarage,
     TResult Function(RemoveCarFromGarage value)? removeCarFromGarage,
-    TResult Function(ShowCarDetails value)? showCarDetails,
   }) {
     return removeCarFromGarage?.call(this);
   }
@@ -700,7 +665,6 @@ class _$RemoveCarFromGarage implements RemoveCarFromGarage {
     TResult Function(LoadCarsList value)? loadCarsList,
     TResult Function(AddCarToGarage value)? addCarToGarage,
     TResult Function(RemoveCarFromGarage value)? removeCarFromGarage,
-    TResult Function(ShowCarDetails value)? showCarDetails,
     required TResult orElse(),
   }) {
     if (removeCarFromGarage != null) {
@@ -720,166 +684,6 @@ abstract class RemoveCarFromGarage implements GarageEvent {
 }
 
 /// @nodoc
-abstract class $ShowCarDetailsCopyWith<$Res> {
-  factory $ShowCarDetailsCopyWith(
-          ShowCarDetails value, $Res Function(ShowCarDetails) then) =
-      _$ShowCarDetailsCopyWithImpl<$Res>;
-  $Res call({Car car});
-
-  $CarCopyWith<$Res> get car;
-}
-
-/// @nodoc
-class _$ShowCarDetailsCopyWithImpl<$Res> extends _$GarageEventCopyWithImpl<$Res>
-    implements $ShowCarDetailsCopyWith<$Res> {
-  _$ShowCarDetailsCopyWithImpl(
-      ShowCarDetails _value, $Res Function(ShowCarDetails) _then)
-      : super(_value, (v) => _then(v as ShowCarDetails));
-
-  @override
-  ShowCarDetails get _value => super._value as ShowCarDetails;
-
-  @override
-  $Res call({
-    Object? car = freezed,
-  }) {
-    return _then(ShowCarDetails(
-      car == freezed
-          ? _value.car
-          : car // ignore: cast_nullable_to_non_nullable
-              as Car,
-    ));
-  }
-
-  @override
-  $CarCopyWith<$Res> get car {
-    return $CarCopyWith<$Res>(_value.car, (value) {
-      return _then(_value.copyWith(car: value));
-    });
-  }
-}
-
-/// @nodoc
-
-class _$ShowCarDetails implements ShowCarDetails {
-  const _$ShowCarDetails(this.car);
-
-  @override
-  final Car car;
-
-  @override
-  String toString() {
-    return 'GarageEvent.showCarDetails(car: $car)';
-  }
-
-  @override
-  bool operator ==(dynamic other) {
-    return identical(this, other) ||
-        (other.runtimeType == runtimeType &&
-            other is ShowCarDetails &&
-            const DeepCollectionEquality().equals(other.car, car));
-  }
-
-  @override
-  int get hashCode =>
-      Object.hash(runtimeType, const DeepCollectionEquality().hash(car));
-
-  @JsonKey(ignore: true)
-  @override
-  $ShowCarDetailsCopyWith<ShowCarDetails> get copyWith =>
-      _$ShowCarDetailsCopyWithImpl<ShowCarDetails>(this, _$identity);
-
-  @override
-  @optionalTypeArgs
-  TResult when<TResult extends Object?>({
-    required TResult Function() started,
-    required TResult Function(List<Car>? listOfCars) loadCarsList,
-    required TResult Function(Car car) addCarToGarage,
-    required TResult Function(Car car) removeCarFromGarage,
-    required TResult Function(Car car) showCarDetails,
-  }) {
-    return showCarDetails(car);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? whenOrNull<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(List<Car>? listOfCars)? loadCarsList,
-    TResult Function(Car car)? addCarToGarage,
-    TResult Function(Car car)? removeCarFromGarage,
-    TResult Function(Car car)? showCarDetails,
-  }) {
-    return showCarDetails?.call(car);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeWhen<TResult extends Object?>({
-    TResult Function()? started,
-    TResult Function(List<Car>? listOfCars)? loadCarsList,
-    TResult Function(Car car)? addCarToGarage,
-    TResult Function(Car car)? removeCarFromGarage,
-    TResult Function(Car car)? showCarDetails,
-    required TResult orElse(),
-  }) {
-    if (showCarDetails != null) {
-      return showCarDetails(car);
-    }
-    return orElse();
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult map<TResult extends Object?>({
-    required TResult Function(Started value) started,
-    required TResult Function(LoadCarsList value) loadCarsList,
-    required TResult Function(AddCarToGarage value) addCarToGarage,
-    required TResult Function(RemoveCarFromGarage value) removeCarFromGarage,
-    required TResult Function(ShowCarDetails value) showCarDetails,
-  }) {
-    return showCarDetails(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult? mapOrNull<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(LoadCarsList value)? loadCarsList,
-    TResult Function(AddCarToGarage value)? addCarToGarage,
-    TResult Function(RemoveCarFromGarage value)? removeCarFromGarage,
-    TResult Function(ShowCarDetails value)? showCarDetails,
-  }) {
-    return showCarDetails?.call(this);
-  }
-
-  @override
-  @optionalTypeArgs
-  TResult maybeMap<TResult extends Object?>({
-    TResult Function(Started value)? started,
-    TResult Function(LoadCarsList value)? loadCarsList,
-    TResult Function(AddCarToGarage value)? addCarToGarage,
-    TResult Function(RemoveCarFromGarage value)? removeCarFromGarage,
-    TResult Function(ShowCarDetails value)? showCarDetails,
-    required TResult orElse(),
-  }) {
-    if (showCarDetails != null) {
-      return showCarDetails(this);
-    }
-    return orElse();
-  }
-}
-
-abstract class ShowCarDetails implements GarageEvent {
-  const factory ShowCarDetails(Car car) = _$ShowCarDetails;
-
-  Car get car;
-  @JsonKey(ignore: true)
-  $ShowCarDetailsCopyWith<ShowCarDetails> get copyWith =>
-      throw _privateConstructorUsedError;
-}
-
-/// @nodoc
 class _$GarageStateTearOff {
   const _$GarageStateTearOff();
 
@@ -887,17 +691,17 @@ class _$GarageStateTearOff {
     return const Initial();
   }
 
-  GarageLoadingState garageLoadingState() {
+  GarageLoadingState loading() {
     return const GarageLoadingState();
   }
 
-  GarageLoadedState garageLoadedState(List<Car> cars) {
+  GarageLoadedState loaded(List<Car> cars) {
     return GarageLoadedState(
       cars,
     );
   }
 
-  GarageErrorState garageErrorState(String error) {
+  GarageErrorState error(String error) {
     return GarageErrorState(
       error,
     );
@@ -912,50 +716,50 @@ mixin _$GarageState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() garageLoadingState,
-    required TResult Function(List<Car> cars) garageLoadedState,
-    required TResult Function(String error) garageErrorState,
+    required TResult Function() loading,
+    required TResult Function(List<Car> cars) loaded,
+    required TResult Function(String error) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? garageLoadingState,
-    TResult Function(List<Car> cars)? garageLoadedState,
-    TResult Function(String error)? garageErrorState,
+    TResult Function()? loading,
+    TResult Function(List<Car> cars)? loaded,
+    TResult Function(String error)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? garageLoadingState,
-    TResult Function(List<Car> cars)? garageLoadedState,
-    TResult Function(String error)? garageErrorState,
+    TResult Function()? loading,
+    TResult Function(List<Car> cars)? loaded,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
-    required TResult Function(GarageLoadingState value) garageLoadingState,
-    required TResult Function(GarageLoadedState value) garageLoadedState,
-    required TResult Function(GarageErrorState value) garageErrorState,
+    required TResult Function(GarageLoadingState value) loading,
+    required TResult Function(GarageLoadedState value) loaded,
+    required TResult Function(GarageErrorState value) error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(GarageLoadingState value)? garageLoadingState,
-    TResult Function(GarageLoadedState value)? garageLoadedState,
-    TResult Function(GarageErrorState value)? garageErrorState,
+    TResult Function(GarageLoadingState value)? loading,
+    TResult Function(GarageLoadedState value)? loaded,
+    TResult Function(GarageErrorState value)? error,
   }) =>
       throw _privateConstructorUsedError;
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(GarageLoadingState value)? garageLoadingState,
-    TResult Function(GarageLoadedState value)? garageLoadedState,
-    TResult Function(GarageErrorState value)? garageErrorState,
+    TResult Function(GarageLoadingState value)? loading,
+    TResult Function(GarageLoadedState value)? loaded,
+    TResult Function(GarageErrorState value)? error,
     required TResult orElse(),
   }) =>
       throw _privateConstructorUsedError;
@@ -1016,9 +820,9 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() garageLoadingState,
-    required TResult Function(List<Car> cars) garageLoadedState,
-    required TResult Function(String error) garageErrorState,
+    required TResult Function() loading,
+    required TResult Function(List<Car> cars) loaded,
+    required TResult Function(String error) error,
   }) {
     return initial();
   }
@@ -1027,9 +831,9 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? garageLoadingState,
-    TResult Function(List<Car> cars)? garageLoadedState,
-    TResult Function(String error)? garageErrorState,
+    TResult Function()? loading,
+    TResult Function(List<Car> cars)? loaded,
+    TResult Function(String error)? error,
   }) {
     return initial?.call();
   }
@@ -1038,9 +842,9 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? garageLoadingState,
-    TResult Function(List<Car> cars)? garageLoadedState,
-    TResult Function(String error)? garageErrorState,
+    TResult Function()? loading,
+    TResult Function(List<Car> cars)? loaded,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1053,9 +857,9 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
-    required TResult Function(GarageLoadingState value) garageLoadingState,
-    required TResult Function(GarageLoadedState value) garageLoadedState,
-    required TResult Function(GarageErrorState value) garageErrorState,
+    required TResult Function(GarageLoadingState value) loading,
+    required TResult Function(GarageLoadedState value) loaded,
+    required TResult Function(GarageErrorState value) error,
   }) {
     return initial(this);
   }
@@ -1064,9 +868,9 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(GarageLoadingState value)? garageLoadingState,
-    TResult Function(GarageLoadedState value)? garageLoadedState,
-    TResult Function(GarageErrorState value)? garageErrorState,
+    TResult Function(GarageLoadingState value)? loading,
+    TResult Function(GarageLoadedState value)? loaded,
+    TResult Function(GarageErrorState value)? error,
   }) {
     return initial?.call(this);
   }
@@ -1075,9 +879,9 @@ class _$Initial implements Initial {
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(GarageLoadingState value)? garageLoadingState,
-    TResult Function(GarageLoadedState value)? garageLoadedState,
-    TResult Function(GarageErrorState value)? garageErrorState,
+    TResult Function(GarageLoadingState value)? loading,
+    TResult Function(GarageLoadedState value)? loaded,
+    TResult Function(GarageErrorState value)? error,
     required TResult orElse(),
   }) {
     if (initial != null) {
@@ -1117,7 +921,7 @@ class _$GarageLoadingState implements GarageLoadingState {
 
   @override
   String toString() {
-    return 'GarageState.garageLoadingState()';
+    return 'GarageState.loading()';
   }
 
   @override
@@ -1133,35 +937,35 @@ class _$GarageLoadingState implements GarageLoadingState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() garageLoadingState,
-    required TResult Function(List<Car> cars) garageLoadedState,
-    required TResult Function(String error) garageErrorState,
+    required TResult Function() loading,
+    required TResult Function(List<Car> cars) loaded,
+    required TResult Function(String error) error,
   }) {
-    return garageLoadingState();
+    return loading();
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? garageLoadingState,
-    TResult Function(List<Car> cars)? garageLoadedState,
-    TResult Function(String error)? garageErrorState,
+    TResult Function()? loading,
+    TResult Function(List<Car> cars)? loaded,
+    TResult Function(String error)? error,
   }) {
-    return garageLoadingState?.call();
+    return loading?.call();
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? garageLoadingState,
-    TResult Function(List<Car> cars)? garageLoadedState,
-    TResult Function(String error)? garageErrorState,
+    TResult Function()? loading,
+    TResult Function(List<Car> cars)? loaded,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
-    if (garageLoadingState != null) {
-      return garageLoadingState();
+    if (loading != null) {
+      return loading();
     }
     return orElse();
   }
@@ -1170,35 +974,35 @@ class _$GarageLoadingState implements GarageLoadingState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
-    required TResult Function(GarageLoadingState value) garageLoadingState,
-    required TResult Function(GarageLoadedState value) garageLoadedState,
-    required TResult Function(GarageErrorState value) garageErrorState,
+    required TResult Function(GarageLoadingState value) loading,
+    required TResult Function(GarageLoadedState value) loaded,
+    required TResult Function(GarageErrorState value) error,
   }) {
-    return garageLoadingState(this);
+    return loading(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(GarageLoadingState value)? garageLoadingState,
-    TResult Function(GarageLoadedState value)? garageLoadedState,
-    TResult Function(GarageErrorState value)? garageErrorState,
+    TResult Function(GarageLoadingState value)? loading,
+    TResult Function(GarageLoadedState value)? loaded,
+    TResult Function(GarageErrorState value)? error,
   }) {
-    return garageLoadingState?.call(this);
+    return loading?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(GarageLoadingState value)? garageLoadingState,
-    TResult Function(GarageLoadedState value)? garageLoadedState,
-    TResult Function(GarageErrorState value)? garageErrorState,
+    TResult Function(GarageLoadingState value)? loading,
+    TResult Function(GarageLoadedState value)? loaded,
+    TResult Function(GarageErrorState value)? error,
     required TResult orElse(),
   }) {
-    if (garageLoadingState != null) {
-      return garageLoadingState(this);
+    if (loading != null) {
+      return loading(this);
     }
     return orElse();
   }
@@ -1250,7 +1054,7 @@ class _$GarageLoadedState implements GarageLoadedState {
 
   @override
   String toString() {
-    return 'GarageState.garageLoadedState(cars: $cars)';
+    return 'GarageState.loaded(cars: $cars)';
   }
 
   @override
@@ -1274,35 +1078,35 @@ class _$GarageLoadedState implements GarageLoadedState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() garageLoadingState,
-    required TResult Function(List<Car> cars) garageLoadedState,
-    required TResult Function(String error) garageErrorState,
+    required TResult Function() loading,
+    required TResult Function(List<Car> cars) loaded,
+    required TResult Function(String error) error,
   }) {
-    return garageLoadedState(cars);
+    return loaded(cars);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? garageLoadingState,
-    TResult Function(List<Car> cars)? garageLoadedState,
-    TResult Function(String error)? garageErrorState,
+    TResult Function()? loading,
+    TResult Function(List<Car> cars)? loaded,
+    TResult Function(String error)? error,
   }) {
-    return garageLoadedState?.call(cars);
+    return loaded?.call(cars);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? garageLoadingState,
-    TResult Function(List<Car> cars)? garageLoadedState,
-    TResult Function(String error)? garageErrorState,
+    TResult Function()? loading,
+    TResult Function(List<Car> cars)? loaded,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
-    if (garageLoadedState != null) {
-      return garageLoadedState(cars);
+    if (loaded != null) {
+      return loaded(cars);
     }
     return orElse();
   }
@@ -1311,35 +1115,35 @@ class _$GarageLoadedState implements GarageLoadedState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
-    required TResult Function(GarageLoadingState value) garageLoadingState,
-    required TResult Function(GarageLoadedState value) garageLoadedState,
-    required TResult Function(GarageErrorState value) garageErrorState,
+    required TResult Function(GarageLoadingState value) loading,
+    required TResult Function(GarageLoadedState value) loaded,
+    required TResult Function(GarageErrorState value) error,
   }) {
-    return garageLoadedState(this);
+    return loaded(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(GarageLoadingState value)? garageLoadingState,
-    TResult Function(GarageLoadedState value)? garageLoadedState,
-    TResult Function(GarageErrorState value)? garageErrorState,
+    TResult Function(GarageLoadingState value)? loading,
+    TResult Function(GarageLoadedState value)? loaded,
+    TResult Function(GarageErrorState value)? error,
   }) {
-    return garageLoadedState?.call(this);
+    return loaded?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(GarageLoadingState value)? garageLoadingState,
-    TResult Function(GarageLoadedState value)? garageLoadedState,
-    TResult Function(GarageErrorState value)? garageErrorState,
+    TResult Function(GarageLoadingState value)? loading,
+    TResult Function(GarageLoadedState value)? loaded,
+    TResult Function(GarageErrorState value)? error,
     required TResult orElse(),
   }) {
-    if (garageLoadedState != null) {
-      return garageLoadedState(this);
+    if (loaded != null) {
+      return loaded(this);
     }
     return orElse();
   }
@@ -1396,7 +1200,7 @@ class _$GarageErrorState implements GarageErrorState {
 
   @override
   String toString() {
-    return 'GarageState.garageErrorState(error: $error)';
+    return 'GarageState.error(error: $error)';
   }
 
   @override
@@ -1420,35 +1224,35 @@ class _$GarageErrorState implements GarageErrorState {
   @optionalTypeArgs
   TResult when<TResult extends Object?>({
     required TResult Function() initial,
-    required TResult Function() garageLoadingState,
-    required TResult Function(List<Car> cars) garageLoadedState,
-    required TResult Function(String error) garageErrorState,
+    required TResult Function() loading,
+    required TResult Function(List<Car> cars) loaded,
+    required TResult Function(String error) error,
   }) {
-    return garageErrorState(error);
+    return error(this.error);
   }
 
   @override
   @optionalTypeArgs
   TResult? whenOrNull<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? garageLoadingState,
-    TResult Function(List<Car> cars)? garageLoadedState,
-    TResult Function(String error)? garageErrorState,
+    TResult Function()? loading,
+    TResult Function(List<Car> cars)? loaded,
+    TResult Function(String error)? error,
   }) {
-    return garageErrorState?.call(error);
+    return error?.call(this.error);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeWhen<TResult extends Object?>({
     TResult Function()? initial,
-    TResult Function()? garageLoadingState,
-    TResult Function(List<Car> cars)? garageLoadedState,
-    TResult Function(String error)? garageErrorState,
+    TResult Function()? loading,
+    TResult Function(List<Car> cars)? loaded,
+    TResult Function(String error)? error,
     required TResult orElse(),
   }) {
-    if (garageErrorState != null) {
-      return garageErrorState(error);
+    if (error != null) {
+      return error(this.error);
     }
     return orElse();
   }
@@ -1457,35 +1261,35 @@ class _$GarageErrorState implements GarageErrorState {
   @optionalTypeArgs
   TResult map<TResult extends Object?>({
     required TResult Function(Initial value) initial,
-    required TResult Function(GarageLoadingState value) garageLoadingState,
-    required TResult Function(GarageLoadedState value) garageLoadedState,
-    required TResult Function(GarageErrorState value) garageErrorState,
+    required TResult Function(GarageLoadingState value) loading,
+    required TResult Function(GarageLoadedState value) loaded,
+    required TResult Function(GarageErrorState value) error,
   }) {
-    return garageErrorState(this);
+    return error(this);
   }
 
   @override
   @optionalTypeArgs
   TResult? mapOrNull<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(GarageLoadingState value)? garageLoadingState,
-    TResult Function(GarageLoadedState value)? garageLoadedState,
-    TResult Function(GarageErrorState value)? garageErrorState,
+    TResult Function(GarageLoadingState value)? loading,
+    TResult Function(GarageLoadedState value)? loaded,
+    TResult Function(GarageErrorState value)? error,
   }) {
-    return garageErrorState?.call(this);
+    return error?.call(this);
   }
 
   @override
   @optionalTypeArgs
   TResult maybeMap<TResult extends Object?>({
     TResult Function(Initial value)? initial,
-    TResult Function(GarageLoadingState value)? garageLoadingState,
-    TResult Function(GarageLoadedState value)? garageLoadedState,
-    TResult Function(GarageErrorState value)? garageErrorState,
+    TResult Function(GarageLoadingState value)? loading,
+    TResult Function(GarageLoadedState value)? loaded,
+    TResult Function(GarageErrorState value)? error,
     required TResult orElse(),
   }) {
-    if (garageErrorState != null) {
-      return garageErrorState(this);
+    if (error != null) {
+      return error(this);
     }
     return orElse();
   }

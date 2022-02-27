@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
-import 'package:my_garage/business_logic/imagePicker/bloc/imagepicker_bloc.dart';
-import 'package:my_garage/data/repositories/GarageService.dart';
+import 'package:my_garage/business_logic/image_picker/bloc/imagepicker_bloc.dart';
+import 'package:my_garage/business_logic/vehicle_details/bloc/vehicle_details_bloc.dart';
 import 'package:my_garage/data/dataproviders/sembast.dart';
-import 'package:my_garage/data/repositories/ImagePickerService.dart';
+import 'package:my_garage/data/repositories/image_picker_service.dart';
+import 'package:my_garage/data/repositories/garage_service.dart';
 import 'package:my_garage/presentation/screens/splash_screen.dart';
-import 'package:my_garage/utils/constants.dart';
-import 'package:my_garage/utils/dimensions.dart';
+import 'package:my_garage/utils/colors.dart';
 
 void main() {
-  WidgetsFlutterBinding.ensureInitialized();
-  SystemChrome.setEnabledSystemUIMode(
-    SystemUiMode.immersiveSticky,
-  );
+  // WidgetsFlutterBinding.ensureInitialized();
+  // SystemChrome.setEnabledSystemUIMode(
+  //   SystemUiMode.immersiveSticky,
+  // );
 
   runApp(MultiRepositoryProvider(
     providers: [
@@ -50,16 +50,22 @@ class MyApp extends StatelessWidget {
           )..add(const GarageEvent.loadCarsList()),
         ),
         BlocProvider(
-          create: (context) => ImagepickerBloc(RepositoryProvider.of<ImagePickerService>(context)),
+          create: (context) => ImagepickerBloc(
+            RepositoryProvider.of<ImagePickerService>(context),
+          ),
+        ),
+        BlocProvider(
+          create: (context) => VehicleDetailsBloc(),
         )
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Flutter Demo',
         theme: ThemeData(
-        primaryColor: Colors.blue,
-        textTheme: Dimensions.screenWidth < 500 ? kTextThemeDefault : kTextThemeLarge,
-      ),
+          primaryColor: AppColors.blueColor,
+          textTheme: GoogleFonts.nunitoTextTheme(Theme.of(context).textTheme),
+          
+        ),
         home: const SplashScreen(),
       ),
     );

@@ -7,9 +7,7 @@ import 'package:image_picker/image_picker.dart';
 
 class ImagePickerService {
   final _picker = ImagePicker();
-// This function should have two steps
-// 1. To take the picture
-// 2. To save the picture to database
+
   Future<String?> takePicture(ImageSource source) async {
     //We're getting cross-platforme file
     try {
@@ -26,8 +24,7 @@ class ImagePickerService {
       final String fileName = pth.basename(pickedImageFile);
 
       final savedImage = await File(imageFile.path).copy('${appDir.path}/$fileName');
-      //some function that is passed to statefull widget constructor
-      // onSelectedImage(savedImage);
+     
       return savedImage.path;
     } on PlatformException catch (e) {
       print('Failed to pick YO image $e');

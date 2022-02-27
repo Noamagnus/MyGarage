@@ -1,69 +1,157 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:my_garage/business_logic/garage/bloc/garage_bloc.dart';
-import 'package:my_garage/business_logic/imagePicker/bloc/imagepicker_bloc.dart';
-import 'package:my_garage/data/models/car_model.dart';
+import 'package:my_garage/business_logic/vehicle_details/bloc/vehicle_details_bloc.dart';
 import 'package:my_garage/presentation/screens/vehicle_screen.dart';
-import 'package:my_garage/presentation/widgets/add_vehicle_dialog.dart';
+import 'package:my_garage/presentation/widgets/add_vehicle_modal.dart';
 import 'package:my_garage/presentation/widgets/list_tile.dart';
 import 'package:my_garage/presentation/widgets/rounder_icon_button.dart';
+import 'package:my_garage/presentation/widgets/text_widgets.dart';
 import 'package:my_garage/utils/colors.dart';
-import 'package:provider/src/provider.dart';
-import 'package:uuid/uuid.dart';
+import 'package:my_garage/utils/dimensions.dart';
+import 'package:my_garage/utils/widget_functions.dart';
 
 class GarageScreen extends StatelessWidget {
   const GarageScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-        final ThemeData themeData = Theme.of(context);
-
     final state = context.watch<GarageBloc>().state;
-    return Scaffold(
-      backgroundColor: AppColors.buttonBackgroundColor,
-      appBar: AppBar(
-        title:  Text(
-          'Garage Screen',
-          style: themeData.textTheme.headline2,
-        ),
+
+    return SafeArea(
+      child: Scaffold(
         backgroundColor: AppColors.screenBackgroundColor,
-        elevation: 0,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: RoundedIconButton(
-              icon: Icons.add,
-              size: 40,
-              onPressed: () {
-                showDialog(
-                    context: context,
-                    builder: (BuildContext context) {
-                      return const AlertDialog(
-                        backgroundColor: AppColors.screenBackgroundColor,
-                        content:  SingleChildScrollView(child: AddVehicleDialog()),
-                      );
-                    });
-              },
-            ),
-          )
-        ],
+        body: OrientationBuilder(
+          builder: (BuildContext context, Orientation orientation) {
+            return orientation == Orientation.portrait
+                ? Column(
+                  children: [
+                    addVerticalSpace(10),
+                    const CustomAppBar(),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: const Divider(
+                        color: AppColors.blueColor,
+                      ),
+                    ),
+                    GarageBodyWidget(
+                      state: state,
+                      listTileContainerHeight: Dimensions.screenWidth / 2.8,
+                    )
+                  ],
+                )
+                : Column(
+                  children: [
+                    addVerticalSpace(10),
+                    const CustomAppBar(),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 15),
+                      child: const Divider(
+                        color: AppColors.blueColor,
+                      ),
+                    ),
+                    GarageBodyWidget(
+                      state: state,
+                      listTileContainerHeight: Dimensions.screenHeight / 2.8,
+                    )
+                  ],
+                );
+          },
+        ),
       ),
-      body: state.when(
-        initial: () => Container(),
-        garageLoadingState: () => const Center(child: CircularProgressIndicator()),
-        garageLoadedState: (listOfCars) {
-          return ListView.builder(
+    );
+  }
+}
+
+class CustomAppBar extends StatelessWidget {
+  const CustomAppBar({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      crossAxisAlignment: CrossAxisAlignment.end,
+      children: [
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.end,
+          children: [
+            addHorizontalSpace(10),
+            Icon(
+              Icons.garage,
+              size: 40,
+              color: AppColors.blueColor,
+            ),
+            addHorizontalSpace(10),
+            EasyText(
+              'Garage',
+              fontSize: 24,
+              fontWeight: FontWeight.w500,
+              color: AppColors.textTitleColor,
+            ),
+          ],
+        ),
+        Padding(
+          padding: EdgeInsets.only(
+            right: 15,
+            bottom: 5,
+          ),
+          child: RoundedIconButton(
+            icon: Icons.add,
+            size: 30,
+            onPressed: () {
+              showModalBottomSheet(
+                  context: context,
+                  isScrollControlled: true,
+                  backgroundColor: AppColors.screenBackgroundColor,
+                  shape: const RoundedRectangleBorder(
+                    borderRadius: BorderRadius.only(
+                        topLeft: Radius.circular(15.0), topRight: Radius.circular(15.0)),
+                  ),
+                  builder: (BuildContext context) {
+                    return const FractionallySizedBox(
+                      heightFactor: 0.9,
+                      child: AddVehicleDialog(),
+                    );
+                  });
+            },
+          ),
+        )
+      ],
+    );
+  }
+}
+
+class GarageBodyWidget extends StatelessWidget {
+  const GarageBodyWidget({
+    Key? key,
+    required this.state,
+    required this.listTileContainerHeight,
+  }) : super(key: key);
+  final GarageState state;
+  final double listTileContainerHeight;
+  @override
+  Widget build(BuildContext context) {
+    return state.maybeWhen(
+      initial: () => const Expanded(child: Center(child: Text('Please add some vehicle'))),
+      loading: () => const Center(child: CircularProgressIndicator()),
+      loaded: (listOfCars) {
+        return Expanded(
+          child: ListView.builder(
             itemCount: listOfCars.length,
             itemBuilder: (BuildContext context, int index) {
               final car = listOfCars[index];
               return GestureDetector(
                 onTap: () {
+                  context.read<VehicleDetailsBloc>().add(ShowCarDetails(car));
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => VehicleScreen(
-                        car: car,
-                      ),
+                      builder: (context) => const VehicleScreen(
+                          // car: car,
+                          ),
                     ),
                   );
                 },
@@ -73,16 +161,28 @@ class GarageScreen extends StatelessWidget {
                   licenceNumber: car.licenceNumber,
                   path: car.imageUrl,
                   year: car.year,
-                  isRegistered: car.isRegistered,
+                  isServiced: car.isServiced,
+                  listTileContainerHeight: listTileContainerHeight,
                 ),
               );
             },
-          );
-        },
-        garageErrorState: (String error) => Text(
-          error.toString(),
-        ),
-      ),
+          ),
+        );
+      },
+      error: (String e) {
+        return Builder(
+          builder: (context) {
+            return Center(
+              child: AlertDialog(
+                content: Text(e),
+              ),
+            );
+          },
+        );
+      },
+      orElse: () {
+        return Text('');
+      },
     );
   }
 }
@@ -94,17 +194,22 @@ class ImagePreview extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: 16,
-        horizontal: 8,
+      padding: EdgeInsets.only(
+        top: 16,
+        bottom: 20,
+        left: 8,
+        right: 8,
       ),
       child: SizedBox(
-        height: 150,
-        width: double.infinity,
-        child: Image.file(
-          File(path),
-          fit: BoxFit.cover,
-          width: double.infinity,
+        height: Dimensions.screenWidth * 0.6,
+        width: Dimensions.screenWidth - 30,
+        child: ClipRRect(
+          borderRadius: BorderRadius.circular(6),
+          child: Image.file(
+            File(path),
+            fit: BoxFit.cover,
+            width: double.infinity,
+          ),
         ),
       ),
     );

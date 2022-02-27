@@ -2,7 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import 'package:my_garage/presentation/widgets/small_rounded_container.dart';
 import 'package:my_garage/utils/colors.dart';
+import 'package:my_garage/utils/dimensions.dart';
 import 'package:my_garage/utils/widget_functions.dart';
 
 class CustomListTile extends StatelessWidget {
@@ -13,21 +16,23 @@ class CustomListTile extends StatelessWidget {
     required this.description,
     required this.year,
     required this.path,
-    required this.isRegistered,
+    required this.isServiced,
+    required this.listTileContainerHeight,
   }) : super(key: key);
   final String brand;
   final String licenceNumber;
   final String description;
   final DateTime year;
   final String path;
-  final bool isRegistered;
+  final bool isServiced;
+  final double listTileContainerHeight;
 
   @override
   Widget build(BuildContext context) {
     final selectedYear = DateFormat('yyyy').format(year);
     return Container(
-      height: 130,
-      margin: const EdgeInsets.symmetric(
+      height: listTileContainerHeight,
+      margin: EdgeInsets.symmetric(
         horizontal: 16,
         vertical: 6,
       ),
@@ -39,13 +44,12 @@ class CustomListTile extends StatelessWidget {
           width: 0.5,
         ),
       ),
-      padding: const EdgeInsets.all(10),
+      padding: EdgeInsets.all(10),
       child: Row(
         children: [
           Expanded(
             flex: 45,
-            child: Container(
-              height: 110,
+            child: SizedBox(
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(4),
                 child: path.isNotEmpty
@@ -61,26 +65,37 @@ class CustomListTile extends StatelessWidget {
           Expanded(
             flex: 55,
             child: Padding(
-              padding: const EdgeInsets.only(left: 10.0),
+              padding: EdgeInsets.only(left: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Expanded(
                     flex: 25,
-                    child: Text(
-                      brand,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: AppColors.listTileBrandTextColor,
-                      ),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Container(
+                          height: 20,
+                          width: 6,
+                          color: AppColors.blueColor,
+                        ),
+                        addHorizontalSpace(8),
+                        Text(
+                          brand,
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.w900,
+                            color: AppColors.grey700,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                   Expanded(
                     flex: 17,
                     child: Text(
                       licenceNumber,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.w400,
                         color: AppColors.listTileThinTextColor,
@@ -91,7 +106,7 @@ class CustomListTile extends StatelessWidget {
                     flex: 18,
                     child: Text(
                       selectedYear,
-                      style: const TextStyle(
+                      style: TextStyle(
                         fontSize: 10,
                         fontWeight: FontWeight.w400,
                         color: AppColors.listTileThinTextColor,
@@ -102,42 +117,17 @@ class CustomListTile extends StatelessWidget {
                     flex: 50,
                     child: Align(
                         alignment: Alignment.bottomRight,
-                        child: isRegistered
+                        child: isServiced
                             ? const SmallRoundedContainer(
-                                text: 'Registered',
+                                text: 'Serviced',
                               )
-                            : const SmallRoundedContainer(text: 'Not Registered')),
+                            : const SmallRoundedContainer(text: 'Not Serviced')),
                   ),
                 ],
               ),
             ),
           )
         ],
-      ),
-    );
-  }
-}
-
-class SmallRoundedContainer extends StatelessWidget {
-  const SmallRoundedContainer({Key? key, required this.text}) : super(key: key);
-  final String text;
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      // width: size,
-      // height: size,
-      padding: const EdgeInsets.all(6),
-      decoration: BoxDecoration(
-        color: AppColors.screenBackgroundColor,
-        borderRadius: BorderRadius.circular(20),
-      ),
-      child: Text(
-        text,
-        style: const TextStyle(
-          fontSize: 10,
-          fontWeight: FontWeight.w600,
-          color: AppColors.textTitleColor,
-        ),
       ),
     );
   }

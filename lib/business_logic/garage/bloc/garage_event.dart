@@ -6,5 +6,4 @@ class GarageEvent with _$GarageEvent {
   const factory GarageEvent.loadCarsList({List<Car>? listOfCars}) = LoadCarsList;
   const factory GarageEvent.addCarToGarage(Car car) = AddCarToGarage;
   const factory GarageEvent.removeCarFromGarage(Car car) = RemoveCarFromGarage;
-  const factory GarageEvent.showCarDetails(Car car) = ShowCarDetails;
 }
