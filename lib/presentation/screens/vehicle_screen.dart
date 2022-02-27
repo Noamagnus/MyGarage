@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 
@@ -35,88 +36,14 @@ class VehicleScreen extends StatelessWidget {
             body: OrientationBuilder(
               builder: (context, orientation) {
                 return orientation == Orientation.portrait
-                    ? SizedBox(
-                        height: Dimensions.screenHeight,
-                        width: Dimensions.screenWidth,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              flex: 34,
-                              child: StackImageWithButtons(car: car, sidePadding: sidePadding),
-                            ),
-                            Expanded(
-                              flex: 32,
-                              child: Container(
-                                width: Dimensions.screenWidth,
-                                padding: EdgeInsets.symmetric(
-                                  horizontal: 20,
-                                  vertical: 12,
-                                ),
-                                color: AppColors.screenBackgroundColor,
-                                child: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                                  children: [
-                                    VehicleScreenText(
-                                      label: 'Brand',
-                                      text: car.brand,
-                                    ),
-                                    VehicleScreenText(
-                                      label: 'Year',
-                                      text: year,
-                                    ),
-                                    Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                      children: [
-                                        VehicleScreenText(
-                                          label: 'Licence number',
-                                          text: car.licenceNumber,
-                                        ),
-                                        Expanded(
-                                          child: Container(),
-                                        ),
-                                        SmallRoundedContainer(
-                                          color: AppColors.white,
-                                          text: isRegistered(car.year)
-                                              ? 'Registered'
-                                              : 'Not Registered',
-                                          border:
-                                              Border.all(color: AppColors.blueColor, width: 0.5),
-                                          borderRadius: BorderRadius.circular(30),
-                                          textColor: AppColors.blueColor,
-                                        ),
-                                        addHorizontalSpace(10),
-                                        SmallRoundedContainer(
-                                          color: AppColors.white,
-                                          text: car.isServiced ? 'Serviced' : 'Not Serviced',
-                                          border:
-                                              Border.all(color: AppColors.blueColor, width: 0.5),
-                                          borderRadius: BorderRadius.circular(30),
-                                          textColor: AppColors.blueColor,
-                                        )
-                                      ],
-                                    ),
-                                    const Divider(
-                                      height: 0,
-                                      color: AppColors.blueColor,
-                                    )
-                                  ],
-                                ),
-                              ),
-                            ),
-                            Expanded(
-                              flex: 34,
-                              child: DescriptionStack(car: car),
-                            )
-                          ],
-                        ),
-                      )
-                    : StackImageWithButtons(
-                        car: car,
+                    ? ShowVehiclePortrait(
                         sidePadding: sidePadding,
-                        height: Dimensions.screenWidth,
-                        width: Dimensions.screenHeight,
+                        year: year,
+                        car: car,
+                      )
+                    : ShowVehicleLandscape(
+                        sidePadding: sidePadding,
+                        car: car,
                       );
               },
             ),
@@ -124,6 +51,113 @@ class VehicleScreen extends StatelessWidget {
         );
       },
       orElse: () => Text('Or Else'),
+    );
+  }
+}
+
+class ShowVehicleLandscape extends StatelessWidget {
+  const ShowVehicleLandscape({
+    Key? key,
+    required this.sidePadding,
+    required this.car,
+  }) : super(key: key);
+
+  final EdgeInsets sidePadding;
+  final Car car;
+
+  @override
+  Widget build(BuildContext context) {
+    return StackImageWithButtons(
+      car: car,
+      sidePadding: sidePadding,
+      height: Dimensions.screenWidth,
+      width: Dimensions.safeAreaHeight-Dimensions.safeAreaTopPadding,
+    );
+  }
+}
+
+class ShowVehiclePortrait extends StatelessWidget {
+  const ShowVehiclePortrait({
+    Key? key,
+    required this.sidePadding,
+    required this.year,
+    required this.car,
+  }) : super(key: key);
+
+  final EdgeInsets sidePadding;
+  final String year;
+  final Car car;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Expanded(
+          flex: 34,
+          child: StackImageWithButtons(car: car, sidePadding: sidePadding),
+        ),
+        Expanded(
+          flex: 32,
+          child: Container(
+            width: Dimensions.screenWidth,
+            padding: EdgeInsets.symmetric(
+              horizontal: 20,
+              vertical: 12,
+            ),
+            color: AppColors.screenBackgroundColor,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                VehicleScreenText(
+                  label: 'Brand',
+                  text: car.brand,
+                ),
+                VehicleScreenText(
+                  label: 'Year',
+                  text: year,
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    VehicleScreenText(
+                      label: 'Licence number',
+                      text: car.licenceNumber,
+                    ),
+                    Expanded(
+                      child: Container(),
+                    ),
+                    SmallRoundedContainer(
+                      color: AppColors.white,
+                      text: isRegistered(car.year) ? 'Registered' : 'Not Registered',
+                      border: Border.all(color: AppColors.blueColor, width: 0.5),
+                      borderRadius: BorderRadius.circular(30),
+                      textColor: AppColors.blueColor,
+                    ),
+                    addHorizontalSpace(10),
+                    SmallRoundedContainer(
+                      color: AppColors.white,
+                      text: car.isServiced ? 'Serviced' : 'Not Serviced',
+                      border: Border.all(color: AppColors.blueColor, width: 0.5),
+                      borderRadius: BorderRadius.circular(30),
+                      textColor: AppColors.blueColor,
+                    )
+                  ],
+                ),
+                const Divider(
+                  height: 0,
+                  color: AppColors.blueColor,
+                )
+              ],
+            ),
+          ),
+        ),
+        Expanded(
+          flex: 34,
+          child: DescriptionStack(car: car),
+        )
+      ],
     );
   }
 }
@@ -193,9 +227,10 @@ class StackImageWithButtons extends StatelessWidget {
   final EdgeInsets sidePadding;
   final double? height;
   final double? width;
-
+  @override
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: [SystemUiOverlay.bottom]);
     return SizedBox(
       height: height ?? Dimensions.screenHeight / 3,
       child: Stack(

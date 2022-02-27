@@ -30,4 +30,6 @@ class Dimensions {
   static double screenHeight = logicalHeight;
   static double screenWidth = logicalWidth;
   static double safeAreaHeight = safeHeight;
+  static double safeAreaTopPadding = paddingTop;
+  static double safeAreaLeftPadding = paddingLeft;
 }
